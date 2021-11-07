@@ -21,14 +21,14 @@ const PlayerSchema = new Schema({
     },
   },
   games_played: {
-    total: [{ type: Schema.Types.ObjectId, ref: "Game" }],
-    won: [{ type: Schema.Types.ObjectId, ref: "Game" }],
-    drawn: [{ type: Schema.Types.ObjectId, ref: "Game" }],
-    lost: [{ type: Schema.Types.ObjectId, ref: "Game" }],
+    total: Number,
+    won: Number,
+    drawn: Number,
+    lost: Number,
   },
   tournaments_played: {
-    played: [{ type: Schema.Types.ObjectId, ref: "Tournament" }],
-    won: [{ type: Schema.Types.ObjectId, ref: "Tournament" }],
+    played: Number,
+    won: Number,
   },
   goals: {
     for: Number,
