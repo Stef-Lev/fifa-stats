@@ -1,0 +1,11 @@
+{
+  "name": "fifa-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "runApp": "cd frontend/ && npm run start && cd .. && cd backend/ && npm run server"
+  },
+  "author": "",
+  "license": "ISC"
+}
