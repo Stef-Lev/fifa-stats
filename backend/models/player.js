@@ -2,23 +2,14 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const PlayerSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Provide a player name"],
-  },
+  name: String,
   role: {
     type: String,
     enum: ["user", "admin"],
   },
   credentials: {
-    username: {
-      type: String,
-      required: [true, "Add a username"],
-    },
-    password: {
-      type: String,
-      required: [true, "Add a password"],
-    },
+    username: String,
+    password: String,
   },
   games_played: {
     total: Number,
@@ -27,7 +18,7 @@ const PlayerSchema = new Schema({
     lost: Number,
   },
   tournaments_played: {
-    played: Number,
+    total: Number,
     won: Number,
   },
   goals: {

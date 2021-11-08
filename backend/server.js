@@ -21,7 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Players
-app.get("/players/all", player.list);
+app.post("/players", player.add);
+app.get("/players", player.list);
 
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
