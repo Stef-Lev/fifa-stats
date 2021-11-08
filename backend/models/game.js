@@ -20,6 +20,10 @@ const GameSchema = new Schema({
       },
     },
   },
+  date: {
+    type: Date,
+    default: new Date
+  },
   score: String,
   winner: { type: Schema.Types.ObjectId, ref: "Player" },
 });

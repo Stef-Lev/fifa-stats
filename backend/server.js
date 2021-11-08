@@ -24,6 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 app.post("/players", player.add);
 app.get("/players", player.list);
 
+// Tournaments
+app.post("/tournaments", tournament.add);
+app.put("/tournaments/:id", tournament.update);
+
+// Games
+app.post("/games", game.add);
+
+
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
 });
