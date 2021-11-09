@@ -12,10 +12,13 @@ const PlayerSchema = new Schema({
     password: String,
   },
   games_played: {
-    total: Number,
-    won: Number,
-    drawn: Number,
-    lost: Number,
+    list: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
+    statistics: {
+      total: Number,
+      won: Number,
+      drawn: Number,
+      lost: Number,
+    },
   },
   tournaments_played: {
     total: Number,

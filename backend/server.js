@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const PORT = 8077;
+const PORT = 8888;
 const mongoose = require('mongoose');
 const player = require('./routes/playerRoute');
 const game = require('./routes/gameRoute');
