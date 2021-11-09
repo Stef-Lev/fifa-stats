@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const TournamentSchema = new Schema({
   date: new Date(),
+  teams_rating: Number,
   games: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
   participants: [
     {
