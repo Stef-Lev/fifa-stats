@@ -26,6 +26,8 @@ app.get('/players', player.list);
 
 // Tournaments
 app.post('/tournaments', tournament.add);
+app.get('/tournaments/:id', tournament.show);
+app.get('/tournaments', tournament.list);
 app.put('/tournaments/:id', tournament.update);
 
 // Games

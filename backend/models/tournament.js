@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const TournamentSchema = new Schema({
-  date: new Date(),
+  date: {
+    type: Date,
+    default: new Date(),
+  },
   teams_rating: Number,
   games: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
   participants: [
@@ -12,10 +15,10 @@ const TournamentSchema = new Schema({
         ref: 'Player',
       },
       goals: {
-        for: Number,
-        against: Number,
+        for: { type: Number, default: 0 },
+        against: { type: Number, default: 0 },
       },
-      position: Number,
+      position: { type: Number, default: 0 },
     },
   ],
   winner: { type: Schema.Types.ObjectId, ref: 'Player' },

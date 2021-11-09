@@ -11,23 +11,21 @@ import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-
-const players = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
+import { getAllMethod, postMethod } from '../helpers/httpService';
+import { useNavigate } from 'react-router-dom';
 
 function Tournaments() {
   const [participants, setParticipants] = useState([]);
   const [rating, setRating] = useState(1);
+  const [players, setPlayers] = useState([]);
+  const [tournamentID, setTournamentID] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getAllMethod('http://localhost:8888/players').then((data) =>
+      setPlayers(data),
+    );
+  }, []);
 
   const handleChange = (event) => {
     const {
@@ -35,10 +33,26 @@ function Tournaments() {
     } = event;
     setParticipants(typeof value === 'string' ? value.split(',') : value);
   };
+
+  const handleSubmit = () => {
+    const filteredPlayers = players.filter((item) =>
+      participants.includes(item.name),
+    );
+    console.log('PARTICIPANTS', filteredPlayers);
+    const reqBody = {
+      teams_rating: rating,
+      participants: filteredPlayers,
+    };
+    postMethod('http://localhost:8888/tournaments', reqBody).then((res) =>
+      // navigate(`tournaments/${res._id}`),
+      console.log(res._id),
+    );
+  };
+
   console.log(participants, rating);
 
   return (
-    <div style={{ padding: '26px' }}>
+    <div>
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-checkbox-label">Players</InputLabel>
         <Select
@@ -56,10 +70,10 @@ function Tournaments() {
             </Box>
           )}
         >
-          {players.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={participants.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {players.map((player) => (
+            <MenuItem key={player.name} value={player.name}>
+              <Checkbox checked={participants.indexOf(player.name) > -1} />
+              <ListItemText primary={player.name} />
             </MenuItem>
           ))}
         </Select>
@@ -67,11 +81,11 @@ function Tournaments() {
         <Rating
           name="simple-controlled"
           value={rating}
-          onChange={(event, newValue) => {
+          onChange={(ev, newValue) => {
             setRating(newValue);
           }}
         />
-        <Button>Start Tournament</Button>
+        <Button onClick={handleSubmit}>Go to Tournament</Button>
       </FormControl>
     </div>
   );
