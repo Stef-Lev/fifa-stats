@@ -1,6 +1,6 @@
 //EXAMPLE
-const catchAsync = require("../utils/catchAsync");
-const Player = require("../models/player");
+const catchAsync = require('../utils/catchAsync');
+const Player = require('../models/player');
 
 exports.add = catchAsync(async (req, res) => {
   const player = new Player(req.body);

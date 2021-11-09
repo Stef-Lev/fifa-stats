@@ -7,5 +7,8 @@
     "runApp": "cd frontend/ && npm run start && cd .. && cd backend/ && npm run server"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^2.4.1"
+  }
 }

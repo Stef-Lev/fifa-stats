@@ -1,5 +1,5 @@
-const catchAsync = require("../utils/catchAsync");
-const Tournament = require("../models/tournament");
+const catchAsync = require('../utils/catchAsync');
+const Tournament = require('../models/tournament');
 
 exports.add = catchAsync(async (req, res) => {
   const tournament = new Tournament(req.body);
@@ -13,7 +13,7 @@ exports.list = catchAsync(async (req, res) => {
 });
 
 exports.update = catchAsync(async (req, res) => {
-    //@TODO fix this
-    const tournaments = await Tournament.find({});
-    res.json(tournaments);
-  });
+  //@TODO fix this
+  const tournaments = await Tournament.find({});
+  res.json(tournaments);
+});

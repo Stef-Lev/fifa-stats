@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const TournamentSchema = new Schema({
   date: new Date(),
-  games: [{ type: Schema.Types.ObjectId, ref: "Game" }],
+  games: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
   participants: [
     {
       player: {
         type: Schema.Types.ObjectId,
-        ref: "Player",
+        ref: 'Player',
       },
       goals: {
         for: Number,
@@ -17,7 +17,7 @@ const TournamentSchema = new Schema({
       position: Number,
     },
   ],
-  winner: { type: Schema.Types.ObjectId, ref: "Player" },
+  winner: { type: Schema.Types.ObjectId, ref: 'Player' },
 });
 
-module.exports = mongoose.model("Tournament", TournamentSchema);
+module.exports = mongoose.model('Tournament', TournamentSchema);

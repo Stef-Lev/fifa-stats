@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const PlayerSchema = new Schema({
   name: String,
   role: {
     type: String,
-    enum: ["user", "admin"],
+    enum: ['user', 'admin'],
   },
   credentials: {
     username: String,
@@ -27,4 +27,4 @@ const PlayerSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Player", PlayerSchema);
+module.exports = mongoose.model('Player', PlayerSchema);

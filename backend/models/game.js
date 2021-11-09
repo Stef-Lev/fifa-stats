@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const GameSchema = new Schema({
   opponents: {
     homePlayer: {
-      player: { type: Schema.Types.ObjectId, ref: "Player" },
+      player: { type: Schema.Types.ObjectId, ref: 'Player' },
       goals: Number,
       points: {
         type: Number,
@@ -12,7 +12,7 @@ const GameSchema = new Schema({
       },
     },
     awayPlayer: {
-      player: { type: Schema.Types.ObjectId, ref: "Player" },
+      player: { type: Schema.Types.ObjectId, ref: 'Player' },
       goals: Number,
       points: {
         type: Number,
@@ -22,10 +22,10 @@ const GameSchema = new Schema({
   },
   date: {
     type: Date,
-    default: new Date
+    default: new Date(),
   },
   score: String,
-  winner: { type: Schema.Types.ObjectId, ref: "Player" },
+  winner: { type: Schema.Types.ObjectId, ref: 'Player' },
 });
 
-module.exports = mongoose.model("Game", GameSchema);
+module.exports = mongoose.model('Game', GameSchema);

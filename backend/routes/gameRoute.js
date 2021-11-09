@@ -1,5 +1,5 @@
-const catchAsync = require("../utils/catchAsync");
-const Game = require("../models/game");
+const catchAsync = require('../utils/catchAsync');
+const Game = require('../models/game');
 
 exports.add = catchAsync(async (req, res) => {
   const game = new Game(req.body);
