@@ -18,6 +18,7 @@ const TournamentSchema = new Schema({
         for: { type: Number, default: 0 },
         against: { type: Number, default: 0 },
       },
+      points: { type: Number, default: 0 },
       position: { type: Number, default: 0 },
       _id: false,
     },

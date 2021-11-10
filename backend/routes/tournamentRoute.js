@@ -6,7 +6,6 @@ exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;
   const formattedPlayers = participants.map((item) => ({
     player: { id: item._id, name: item.name },
-    goals: { for: 0, against: 0, position: 0 },
   }));
   const tournament = new Tournament({
     team_rating: team_rating,
