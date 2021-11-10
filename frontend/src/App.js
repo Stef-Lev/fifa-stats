@@ -10,17 +10,23 @@ import TournamentCreate from './routes/TournamentCreate';
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/tournaments/new" element={<TournamentCreate />} />
-          <Route exact path="/tournaments/:id" element={<TournamentPlay />} />
-          <Route exact path="/tournaments/" />
-          <Route exact path="/games" element={<Games />} />
-          <Route exact path="/playerstats/:id" element={<PlayerStats />} />
-          <Route element={<ErrorPage />} />
-        </Routes>
-      </Router>
+      <div>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route
+              exact
+              path="/tournaments/new"
+              element={<TournamentCreate />}
+            />
+            <Route exact path="/tournaments/:id" element={<TournamentPlay />} />
+            <Route exact path="/tournaments/" />
+            <Route exact path="/games" element={<Games />} />
+            <Route exact path="/playerstats/:id" element={<PlayerStats />} />
+            <Route element={<ErrorPage />} />
+          </Routes>
+        </Router>
+      </div>
     </div>
   );
 }

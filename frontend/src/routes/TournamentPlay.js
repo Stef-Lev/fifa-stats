@@ -7,7 +7,7 @@ import Standings from '../components/Standings';
 function TournamentPlay() {
   const { id } = useParams();
   const [tournament, setTournament] = useState(null);
-  const [game, setGames] = useState([]);
+  // const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function TournamentPlay() {
       setLoading(false);
       console.log(data);
     });
-  }, []);
+  }, [id]);
 
   return (
     <div>

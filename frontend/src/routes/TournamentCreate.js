@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { getAllMethod, postMethod } from '../helpers/httpService';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
+import PlayerSelection from '../components/PlayerSelection';
 
 function TournamentCreate() {
   const [participants, setParticipants] = useState([]);
@@ -63,7 +64,7 @@ function TournamentCreate() {
     <div>
       {loading && <Loader />}
       {!loading && (
-        <FormControl sx={{ m: 1, width: 320 }}>
+        <FormControl fullWidth style={{ textAlign: 'center' }}>
           <InputLabel id="demo-multiple-checkbox-label">Players</InputLabel>
           <Select
             labelId="demo-multiple-checkbox-label"
@@ -93,16 +94,24 @@ function TournamentCreate() {
             </FormHelperText>
           )}
           <Typography component="legend">Teams rating</Typography>
-          <Rating
-            name="simple-controlled"
-            value={rating}
-            size="large"
-            precision={0.5}
-            onChange={(ev, newValue) => {
-              setRating(newValue);
-            }}
-          />
-          <Button variant="contained" onClick={handleSubmit}>
+          <div className="flex-centered">
+            <Rating
+              name="simple-controlled"
+              value={rating}
+              size="large"
+              precision={0.5}
+              onChange={(ev, newValue) => {
+                setRating(newValue);
+              }}
+            />
+          </div>
+
+          <PlayerSelection players={players} />
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            disabled={participants.length < 2}
+          >
             Go to Tournament
           </Button>
         </FormControl>

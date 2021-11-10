@@ -1,7 +1,10 @@
 @import '../utilities/mainTheme.scss';
 
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 10px;
+
   .error {
     color: $error;
   }
@@ -9,6 +12,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .side-by-side {
+    display: flex;
+    gap: 20px;
   }
   .loader {
     color: $brandTeal;
