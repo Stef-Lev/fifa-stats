@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -14,11 +15,11 @@ import Typography from '@mui/material/Typography';
 import { getAllMethod, postMethod } from '../helpers/httpService';
 import { useNavigate } from 'react-router-dom';
 
-function Tournaments() {
+function TournamentCreate() {
   const [participants, setParticipants] = useState([]);
+  const [hasError, setHasError] = useState(false);
   const [rating, setRating] = useState(1);
   const [players, setPlayers] = useState([]);
-  const [tournamentID, setTournamentID] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,25 +36,28 @@ function Tournaments() {
   };
 
   const handleSubmit = () => {
-    const filteredPlayers = players.filter((item) =>
-      participants.includes(item.name),
-    );
-    console.log('PARTICIPANTS', filteredPlayers);
-    const reqBody = {
-      teams_rating: rating,
-      participants: filteredPlayers,
-    };
-    postMethod('http://localhost:8888/tournaments', reqBody).then((res) =>
-      // navigate(`tournaments/${res._id}`),
-      console.log(res._id),
-    );
-  };
+    if (!participants.length) {
+      setHasError(true);
+    } else {
+      setHasError(false);
+      const filteredPlayers = players.filter((item) =>
+        participants.includes(item.name),
+      );
 
-  console.log(participants, rating);
+      const reqBody = {
+        teams_rating: rating,
+        participants: filteredPlayers,
+      };
+      postMethod('http://localhost:8888/tournaments', reqBody).then((res) =>
+        // navigate(`tournaments/${res._id}`),
+        console.log(res._id),
+      );
+    }
+  };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 1, width: 320 }}>
         <InputLabel id="demo-multiple-checkbox-label">Players</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
@@ -77,7 +81,12 @@ function Tournaments() {
             </MenuItem>
           ))}
         </Select>
-        <Typography component="legend">Read only</Typography>
+        {hasError && (
+          <FormHelperText>
+            Please add the players of the tournament
+          </FormHelperText>
+        )}
+        <Typography component="legend">Teams rating</Typography>
         <Rating
           name="simple-controlled"
           value={rating}
@@ -85,10 +94,12 @@ function Tournaments() {
             setRating(newValue);
           }}
         />
-        <Button onClick={handleSubmit}>Go to Tournament</Button>
+        <Button variant="contained" onClick={handleSubmit}>
+          Go to Tournament
+        </Button>
       </FormControl>
     </div>
   );
 }
 
-export default Tournaments;
+export default TournamentCreate;

@@ -11,14 +11,15 @@ const TournamentSchema = new Schema({
   participants: [
     {
       player: {
-        type: Schema.Types.ObjectId,
-        ref: 'Player',
+        id: String,
+        name: String,
       },
       goals: {
         for: { type: Number, default: 0 },
         against: { type: Number, default: 0 },
       },
       position: { type: Number, default: 0 },
+      _id: false,
     },
   ],
   winner: { type: Schema.Types.ObjectId, ref: 'Player' },

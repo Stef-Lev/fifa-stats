@@ -4,10 +4,8 @@ const Player = require('../models/player');
 
 exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;
-  const participantIds = participants.map((item) => item._id);
-  const players = await Player.find().where('_id').in(participantIds).exec();
-  const formattedPlayers = players.map((item) => ({
-    player: item,
+  const formattedPlayers = participants.map((item) => ({
+    player: { id: item._id, name: item.name },
     goals: { for: 0, against: 0, position: 0 },
   }));
   const tournament = new Tournament({

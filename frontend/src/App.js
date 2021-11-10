@@ -5,7 +5,7 @@ import ErrorPage from './routes/ErrorPage';
 import PlayerStats from './routes/PlayerStats';
 import Games from './routes/Games';
 import Tournaments from './routes/Tournaments';
-import TournamentSubmit from './routes/TournamentSubmit';
+import TournamentCreate from './routes/TournamentCreate';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/tournaments/new" element={<TournamentSubmit />} />
+          <Route exact path="/tournaments/new" element={<TournamentCreate />} />
           <Route exact path="/tournaments/:id" element={<Tournaments />} />
           <Route exact path="/tournaments/" element={<Tournaments />} />
           <Route exact path="/games" element={<Games />} />
