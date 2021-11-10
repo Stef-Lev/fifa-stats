@@ -14,6 +14,7 @@ const TournamentSchema = new Schema({
         id: String,
         name: String,
       },
+      team: String,
       goals: {
         for: { type: Number, default: 0 },
         against: { type: Number, default: 0 },

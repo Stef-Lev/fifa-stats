@@ -57,6 +57,8 @@ function TournamentCreate() {
     }
   };
 
+  //@TODO instead of multi select just add a player - team combo
+
   return (
     <div>
       {loading && <Loader />}

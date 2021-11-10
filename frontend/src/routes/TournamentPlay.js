@@ -7,6 +7,7 @@ import Standings from '../components/Standings';
 function TournamentPlay() {
   const { id } = useParams();
   const [tournament, setTournament] = useState(null);
+  const [game, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,9 +20,16 @@ function TournamentPlay() {
 
   return (
     <div>
-      <h2>TOURNAMENT PLAY</h2>
+      <h2>
+        TOURNAMENT{' '}
+        {tournament && new Date(tournament.date).toLocaleDateString('el-GR')}
+      </h2>
       {loading && <Loader />}
-      {!loading && <Standings tournament={tournament} />}
+      {!loading && (
+        <div>
+          <Standings tournament={tournament} />
+        </div>
+      )}
     </div>
   );
 }

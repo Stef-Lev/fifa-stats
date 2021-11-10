@@ -5,6 +5,7 @@ const GameSchema = new Schema({
   opponents: {
     homePlayer: {
       player: { type: Schema.Types.ObjectId, ref: 'Player' },
+      team: String,
       goals: Number,
       points: {
         type: Number,
@@ -13,6 +14,7 @@ const GameSchema = new Schema({
     },
     awayPlayer: {
       player: { type: Schema.Types.ObjectId, ref: 'Player' },
+      team: String,
       goals: Number,
       points: {
         type: Number,
