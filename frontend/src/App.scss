@@ -1,5 +1,11 @@
 @import '../utilities/mainTheme.scss';
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -15,7 +21,7 @@
   }
   .side-by-side {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
   }
   .loader {
     color: $brandTeal;
@@ -25,5 +31,17 @@
   }
   .MuiRating-root {
     font-size: 4rem;
+  }
+  .plus-button {
+    width: 56px;
+    height: 56px;
+    background-color: $brandTeal;
+    color: $white;
+    &:hover {
+      background-color: $brandTeal;
+    }
+    &:active {
+      background-color: $brandTeal;
+    }
   }
 }

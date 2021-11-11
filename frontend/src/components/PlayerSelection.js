@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,7 +9,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import AddIcon from '@mui/icons-material/Add';
 
 function PlayerSelection({ players }) {
-  const [player, setPlayer] = React.useState({});
+  const [player, setPlayer] = useState({});
 
   const handleChange = (event) => {
     setPlayer(event.target.value);
@@ -17,7 +17,7 @@ function PlayerSelection({ players }) {
 
   return (
     <div className="side-by-side">
-      <FormControl style={{ width: '40%' }}>
+      <FormControl style={{ width: '35%' }}>
         <InputLabel id="demo-simple-select-label">Player</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -32,7 +32,7 @@ function PlayerSelection({ players }) {
           ))}
         </Select>
       </FormControl>
-      <FormControl style={{ width: '40%' }}>
+      <FormControl style={{ width: '35%' }}>
         <InputLabel id="demo-simple-select-label">Player</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -47,9 +47,9 @@ function PlayerSelection({ players }) {
           ))}
         </Select>
       </FormControl>
-      {/* <IconButton aria-label="add" color="success">
-        <AddIcon />
-      </IconButton> */}
+      <IconButton aria-label="add" className="plus-button">
+        <AddIcon style={{ width: '32px', height: '32px' }} />
+      </IconButton>
     </div>
   );
 }
