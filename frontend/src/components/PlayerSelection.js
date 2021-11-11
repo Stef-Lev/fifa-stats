@@ -7,9 +7,10 @@ import IconButton from '@mui/material/IconButton';
 import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import AddIcon from '@mui/icons-material/Add';
+import TextField from '@mui/material/TextField';
 
 function PlayerSelection({ players }) {
-  const [player, setPlayer] = useState({});
+  const [player, setPlayer] = useState('');
 
   const handleChange = (event) => {
     setPlayer(event.target.value);
@@ -17,11 +18,11 @@ function PlayerSelection({ players }) {
 
   return (
     <div className="side-by-side">
-      <FormControl style={{ width: '35%' }}>
-        <InputLabel id="demo-simple-select-label">Player</InputLabel>
+      <FormControl style={{ width: '40%' }}>
+        <InputLabel id="select-label">Player</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="select-label"
+          id="select"
           value={player}
           label="Player"
           input={<OutlinedInput label="Player" />}
@@ -32,20 +33,8 @@ function PlayerSelection({ players }) {
           ))}
         </Select>
       </FormControl>
-      <FormControl style={{ width: '35%' }}>
-        <InputLabel id="demo-simple-select-label">Player</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={player}
-          label="Player"
-          input={<OutlinedInput label="Player" />}
-          onChange={handleChange}
-        >
-          {players.map((player) => (
-            <MenuItem value={player.name}>{player.name}</MenuItem>
-          ))}
-        </Select>
+      <FormControl style={{ width: '40%' }}>
+        <TextField id="outlined-basic" label="Team" variant="outlined" />
       </FormControl>
       <IconButton aria-label="add" className="plus-button">
         <AddIcon style={{ width: '32px', height: '32px' }} />

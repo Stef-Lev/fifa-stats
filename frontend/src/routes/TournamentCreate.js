@@ -64,35 +64,7 @@ function TournamentCreate() {
     <div>
       {loading && <Loader />}
       {!loading && (
-        <FormControl fullWidth style={{ textAlign: 'center' }}>
-          <InputLabel id="demo-multiple-checkbox-label">Players</InputLabel>
-          <Select
-            labelId="demo-multiple-checkbox-label"
-            id="demo-multiple-checkbox"
-            multiple
-            value={participants}
-            onChange={handleChange}
-            input={<OutlinedInput label="Players" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {players.map((player) => (
-              <MenuItem key={player.name} value={player.name}>
-                <Checkbox checked={participants.indexOf(player.name) > -1} />
-                <ListItemText primary={player.name} />
-              </MenuItem>
-            ))}
-          </Select>
-          {hasError && (
-            <FormHelperText className="error">
-              Please add the players of the tournament
-            </FormHelperText>
-          )}
+        <>
           <Typography component="legend">Teams rating</Typography>
           <div className="flex-centered">
             <Rating
@@ -114,7 +86,7 @@ function TournamentCreate() {
           >
             Go to Tournament
           </Button>
-        </FormControl>
+        </>
       )}
     </div>
   );
