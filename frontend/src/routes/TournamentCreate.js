@@ -23,16 +23,12 @@ function TournamentCreate() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(rating,participants)
-  }, [rating,participants]);
-
   const playerAdd = (item) => {
-    setParticipants([...participants, item])
+    setParticipants([...participants, item]);
+    setPlayers(players.filter(player => player.name !== item.name))
   };
 
   const handleSubmit = () => {
-      console.log('no')
       const filteredPlayers = players.filter((item) =>
         participants.includes(item.name),
       );
@@ -68,7 +64,7 @@ function TournamentCreate() {
 
           <PlayerSelection playerList={players} addAction={playerAdd}/>
 
-          {participants.map((item, index) => <Participant name={item.name} team={item.team}/>)}
+          {participants.map((item, index) => <Participant key={index+1} name={item.name} team={item.team}/>)}
 
           <div className='flex-centered'>
             <Button

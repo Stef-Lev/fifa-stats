@@ -11,7 +11,6 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 function PlayerSelection({ playerList, addAction }) {
   const [player, setPlayer] = useState({name: '', id: '', team:''});
-  const [hasError, setHasError] = useState(false);
 
   const clearFields = () => {
     setPlayer({name: '', id: '', team:''})
