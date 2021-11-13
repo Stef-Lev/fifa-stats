@@ -23,13 +23,17 @@
     margin-bottom: 1.5rem;
   }
   .participant-item {
-    display: flex;
-    justify-content: flex-start;
-    gap: 16px;
     background-color: $container-bcg;
     border-radius: $radius;
     padding: 8px;
     margin-bottom: 1rem;
+
+    .part-data {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 16px;
+    }
   }
 
   .error {
@@ -40,6 +44,19 @@
     justify-content: center;
     align-items: center;
   }
+  .flex-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 16px;
+  }
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
   .side-by-side {
     display: flex;
     justify-content: space-between;
@@ -53,16 +70,21 @@
   .MuiRating-root {
     font-size: 4rem;
   }
-  .plus-button {
-    width: 56px;
-    height: 56px;
+
+  .brand-btn {
     background-color: $brandTeal;
     color: $white;
+    font-weight: 700;
+
     &:hover {
       background-color: $brandTeal;
     }
     &:active {
       background-color: $brandTeal;
     }
+  }
+  .round-btn {
+    width: 56px;
+    height: 56px;
   }
 }

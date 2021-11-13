@@ -13,6 +13,7 @@ const TournamentSchema = new Schema({
       player: {
         id: String,
         name: String,
+        team: String
       },
       team: String,
       goals: {

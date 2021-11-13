@@ -28,14 +28,16 @@ function TournamentCreate() {
     setPlayers(players.filter(player => player.name !== item.name))
   };
 
+  const playerRemove = (item) => {
+    setParticipants(participants.filter(player => player.name !== item.name));
+    setPlayers([...players, item]);
+  };
+
   const handleSubmit = () => {
-      const filteredPlayers = players.filter((item) =>
-        participants.includes(item.name),
-      );
 
       const reqBody = {
         teams_rating: rating,
-        participants: filteredPlayers,
+        participants,
       };
       postMethod('http://localhost:8888/tournaments', reqBody).then((res) =>
         navigate(`/tournaments/${res._id}`),
@@ -64,10 +66,11 @@ function TournamentCreate() {
 
           <PlayerSelection playerList={players} addAction={playerAdd}/>
 
-          {participants.map((item, index) => <Participant key={index+1} name={item.name} team={item.team}/>)}
+          {participants.map((item, index) => <Participant key={index+1} player={item}  removeAction={playerRemove}/>)}
 
           <div className='flex-centered'>
             <Button
+              className='brand-btn'
               variant="contained"
               onClick={handleSubmit}
               disabled={participants.length < 2}

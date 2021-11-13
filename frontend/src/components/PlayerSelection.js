@@ -21,8 +21,10 @@ function PlayerSelection({ playerList, addAction }) {
   };
 
   const handleSubmit = () => {
-    addAction(player)
-    clearFields();
+    if (player.name) {
+      addAction(player)
+      clearFields();
+    };
   }
   
   const handlePlayerChange = (event) => {
@@ -46,8 +48,8 @@ function PlayerSelection({ playerList, addAction }) {
           input={<OutlinedInput label="Player" />}
           onChange={handlePlayerChange}
         >
-          {playerList.map((player) => (
-            <MenuItem key={player._id} value={player.name}>{player.name}</MenuItem>
+          {playerList.map((player, index) => (
+            <MenuItem key={index+1} value={player.name}>{player.name}</MenuItem>
           ))}
         </Select>
         <FormHelperText/>
@@ -56,7 +58,7 @@ function PlayerSelection({ playerList, addAction }) {
         <TextField id="outlined-basic" label="Team" variant="outlined" value={player.team} onChange={handleTeamChange} />
         <FormHelperText/>
       </FormControl>
-      <IconButton aria-label="add" className="plus-button" onClick={handleSubmit}>
+      <IconButton aria-label="add" className="brand-btn round-btn" onClick={handleSubmit}>
         <AddIcon style={{ width: '32px', height: '32px' }} />
       </IconButton>
     </div>

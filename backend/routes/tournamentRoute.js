@@ -5,7 +5,7 @@ const Player = require('../models/player');
 exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;
   const formattedPlayers = participants.map((item) => ({
-    player: { id: item._id, name: item.name },
+    player: { id: item.id, name: item.name, team: item.team },
   }));
   const tournament = new Tournament({
     team_rating: team_rating,

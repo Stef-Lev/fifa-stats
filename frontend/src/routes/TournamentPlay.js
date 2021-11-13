@@ -3,6 +3,7 @@ import { getOneMethod } from '../helpers/httpService';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Standings from '../components/Standings';
+import Typography from '@mui/material/Typography';
 
 function TournamentPlay() {
   const { id } = useParams();
@@ -20,10 +21,7 @@ function TournamentPlay() {
 
   return (
     <div>
-      <h2>
-        TOURNAMENT{' '}
-        {tournament && new Date(tournament.date).toLocaleDateString('el-GR')}
-      </h2>
+      <Typography className='main-title'>TOURNAMENT{' '}{tournament && new Date(tournament.date).toLocaleDateString('el-GR')}</Typography>
       {loading && <Loader />}
       {!loading && (
         <div>
