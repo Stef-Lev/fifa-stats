@@ -65,8 +65,9 @@ function TournamentCreate() {
       {loading && <Loader />}
       {!loading && (
         <>
-          <Typography component="legend">Teams rating</Typography>
-          <div className="flex-centered">
+          <Typography className="main-title">Create tournament</Typography>
+          <Typography>Teams rating</Typography>
+          <div className="flex-centered container">
             <Rating
               name="simple-controlled"
               value={rating}
@@ -79,13 +80,15 @@ function TournamentCreate() {
           </div>
 
           <PlayerSelection players={players} />
-          <Button
-            variant="contained"
-            onClick={handleSubmit}
-            disabled={participants.length < 2}
-          >
-            Go to Tournament
-          </Button>
+          <div className='flex-centered'>
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              disabled={participants.length < 2}
+            >
+              Start Tournament
+            </Button>
+          </div>
         </>
       )}
     </div>
