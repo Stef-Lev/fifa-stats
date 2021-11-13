@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Standings from '../components/Standings';
 import Typography from '@mui/material/Typography';
+import TournamentGamesContainer from '../components/TournamentGamesContainer';
 
 function TournamentPlay() {
   const { id } = useParams();
@@ -26,6 +27,7 @@ function TournamentPlay() {
       {!loading && (
         <div>
           <Standings tournament={tournament} />
+          <TournamentGamesContainer tournament={tournament}/>
         </div>
       )}
     </div>

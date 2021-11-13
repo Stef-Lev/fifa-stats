@@ -21,6 +21,11 @@
   .container {
     border-radius: $radius;
     margin-bottom: 1.5rem;
+    padding: 10px;
+
+    &.colored {
+      background-color: $container-bcg;
+    }
   }
   .participant-item {
     background-color: $container-bcg;
@@ -69,6 +74,9 @@
   }
   .MuiRating-root {
     font-size: 4rem;
+  }
+  .MuiTableContainer-root {
+    margin-bottom: 2rem;
   }
 
   .brand-btn {
