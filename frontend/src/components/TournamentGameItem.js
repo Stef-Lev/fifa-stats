@@ -8,10 +8,10 @@ function TournamentGameItem({ game }) {
       <div className="flex-between" style={{ width: '80%' }}>
         <div className="flex-between">
           <Chip label={game.home.goals} color="primary" />
-          <div>{game?.home.team}</div>
+          <div className='score'>{game?.home.team}</div>
         </div>
         <div className="flex-between">
-          <div>{game?.away.team}</div>
+          <div className='score'>{game?.away.team}</div>
           <Chip label={game.away.goals} color="error" />
         </div>
       </div>

@@ -34,9 +34,9 @@ function Standings({ tournament }) {
             <TableRow>
               <TableCell>Player</TableCell>
               <TableCell>Points</TableCell>
-              <TableCell>Goals+</TableCell>
-              <TableCell>Goals-</TableCell>
-              <TableCell>Diff</TableCell>
+              <TableCell>G+</TableCell>
+              <TableCell>G-</TableCell>
+              <TableCell>G+/-</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

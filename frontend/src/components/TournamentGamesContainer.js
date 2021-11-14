@@ -39,11 +39,9 @@ const mockGames = [
 
 function TournamentGamesContainer({ tournament }) {
   const [game, setGame] = useState({
-    home: { participant: '', team: '', goals: '' },
-    away: { participant: '', team: '', goals: '' },
+    home: { participant: '', id:'', team: '', goals: '' },
+    away: { participant: '', id:'', team: '', goals: '' },
   });
-
-  console.log('GAME____', game);
 
   const getParticipantData = (list, attr, name) => {
     if (list.length) {
@@ -75,13 +73,19 @@ function TournamentGamesContainer({ tournament }) {
           'team',
           ev.target.value,
         ),
+        id: getParticipantData(
+          tournament.participants,
+          'id',
+          ev.target.value,
+        ),
       },
     });
   };
 
+  console.log(tournament);
   return (
     <div>
-      <div className="container colored with-shadow">
+      <div className="container with-shadow">
         {/* Include form buttons for games data */}
         {/* Include each game component */}
         <div className="side-by-side">
@@ -160,7 +164,7 @@ function TournamentGamesContainer({ tournament }) {
           <Button
             className="brand-btn"
             variant="contained"
-            onClick={() => console.log('clicked')}
+            onClick={() => console.log(game)}
           >
             Submit game
           </Button>

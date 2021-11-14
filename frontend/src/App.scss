@@ -26,6 +26,11 @@
     &.colored {
       background-color: $container-bcg;
     }
+
+    .MuiOutlinedInput-input {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
   }
   .participant-item {
     background-color: $container-bcg;
@@ -64,7 +69,7 @@
   .side-by-side {
     display: flex;
     justify-content: flex-start;
-    gap: 16px;
+    gap: 8px;
     margin: 8px 0;
   }
   .goal-input {
@@ -102,11 +107,17 @@
   .game-item {
     padding: 6px;
     border-radius: $radius;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+  }
+  .score {
+    font-size: 0.8rem !important;
   }
   .with-shadow {
     -webkit-box-shadow: 0px 2px 2px 0px rgba(133, 133, 133, 1);
     -moz-box-shadow: 0px 2px 2px 0px rgba(133, 133, 133, 1);
     box-shadow: 0px 2px 2px 0px rgba(133, 133, 133, 1);
+  }
+  .MuiTableCell-root {
+    padding: 6px;
   }
 }
