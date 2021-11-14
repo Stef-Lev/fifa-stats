@@ -9,7 +9,7 @@ import TournamentGamesContainer from '../components/TournamentGamesContainer';
 function TournamentPlay() {
   const { id } = useParams();
   const [tournament, setTournament] = useState(null);
-  // const [games, setGames] = useState([]);
+  const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,12 +22,12 @@ function TournamentPlay() {
 
   return (
     <div>
-      <Typography className='main-title'>TOURNAMENT{' '}{tournament && new Date(tournament.date).toLocaleDateString('el-GR')}</Typography>
+      <Typography className="main-title">TOURNAMENT</Typography>
       {loading && <Loader />}
       {!loading && (
         <div>
           <Standings tournament={tournament} />
-          <TournamentGamesContainer tournament={tournament}/>
+          <TournamentGamesContainer tournament={tournament} />
         </div>
       )}
     </div>

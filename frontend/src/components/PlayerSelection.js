@@ -10,34 +10,34 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 
 function PlayerSelection({ playerList, addAction }) {
-  const [player, setPlayer] = useState({name: '', id: '', team:''});
+  const [player, setPlayer] = useState({ name: '', id: '', team: '' });
 
   const clearFields = () => {
-    setPlayer({name: '', id: '', team:''})
-  }
- 
+    setPlayer({ name: '', id: '', team: '' });
+  };
+
   const filterPlayer = (list, selected) => {
-    return list.filter(player => player.name === selected)[0]
+    return list.filter((player) => player.name === selected)[0];
   };
 
   const handleSubmit = () => {
     if (player.name) {
-      addAction(player)
+      addAction(player);
       clearFields();
-    };
-  }
-  
+    }
+  };
+
   const handlePlayerChange = (event) => {
-    const selectedPlayer = filterPlayer(playerList, event.target.value)
-    setPlayer({...player, name: selectedPlayer.name, id:selectedPlayer._id, });
+    const selectedPlayer = filterPlayer(playerList, event.target.value);
+    setPlayer({ ...player, name: selectedPlayer.name, id: selectedPlayer._id });
   };
 
   const handleTeamChange = (event) => {
-    setPlayer({...player, team: event.target.value });
+    setPlayer({ ...player, team: event.target.value });
   };
 
   return (
-    <div className="side-by-side container">
+    <div className="flex-between container">
       <FormControl style={{ width: '40%' }}>
         <InputLabel id="select-label">Player</InputLabel>
         <Select
@@ -49,16 +49,28 @@ function PlayerSelection({ playerList, addAction }) {
           onChange={handlePlayerChange}
         >
           {playerList.map((player, index) => (
-            <MenuItem key={index+1} value={player.name}>{player.name}</MenuItem>
+            <MenuItem key={index + 1} value={player.name}>
+              {player.name}
+            </MenuItem>
           ))}
         </Select>
-        <FormHelperText/>
+        <FormHelperText />
       </FormControl>
       <FormControl style={{ width: '40%' }}>
-        <TextField id="outlined-basic" label="Team" variant="outlined" value={player.team} onChange={handleTeamChange} />
-        <FormHelperText/>
+        <TextField
+          id="outlined-basic"
+          label="Team"
+          variant="outlined"
+          value={player.team}
+          onChange={handleTeamChange}
+        />
+        <FormHelperText />
       </FormControl>
-      <IconButton aria-label="add" className="brand-btn round-btn" onClick={handleSubmit}>
+      <IconButton
+        aria-label="add"
+        className="brand-btn round-btn"
+        onClick={handleSubmit}
+      >
         <AddIcon style={{ width: '32px', height: '32px' }} />
       </IconButton>
     </div>

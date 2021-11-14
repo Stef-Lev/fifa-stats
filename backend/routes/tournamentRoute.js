@@ -18,7 +18,7 @@ exports.add = catchAsync(async (req, res) => {
 });
 
 exports.list = catchAsync(async (req, res) => {
-  const tournaments = await Tournament.find({}).populate('participants');
+  const tournaments = await Tournament.find({});
   res.json(tournaments);
 });
 
