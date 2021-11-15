@@ -39,8 +39,8 @@ const mockGames = [
 
 function TournamentGamesContainer({ tournament }) {
   const [game, setGame] = useState({
-    home: { participant: '', id:'', team: '', goals: '' },
-    away: { participant: '', id:'', team: '', goals: '' },
+    home: { participant: '', id: '', team: '', goals: '' },
+    away: { participant: '', id: '', team: '', goals: '' },
   });
 
   const getParticipantData = (list, attr, name) => {
@@ -73,11 +73,7 @@ function TournamentGamesContainer({ tournament }) {
           'team',
           ev.target.value,
         ),
-        id: getParticipantData(
-          tournament.participants,
-          'id',
-          ev.target.value,
-        ),
+        id: getParticipantData(tournament.participants, 'id', ev.target.value),
       },
     });
   };
@@ -85,7 +81,7 @@ function TournamentGamesContainer({ tournament }) {
   console.log(tournament);
   return (
     <div>
-      <div className="container with-shadow">
+      <div className="container game-submit with-shadow">
         {/* Include form buttons for games data */}
         {/* Include each game component */}
         <div className="side-by-side">
