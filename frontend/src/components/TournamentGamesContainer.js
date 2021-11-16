@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
+import { updateMethod } from '../helpers/httpService';
 
 const mockGames = [
   {
@@ -78,7 +79,16 @@ function TournamentGamesContainer({ tournament }) {
     });
   };
 
-  console.log(tournament);
+  const handleGameSubmit = async () => {
+    await updateMethod(
+      'http://localhost:8888/tournaments/',
+      tournament._id,
+      game,
+    );
+    // window.location.reload();
+  };
+
+  console.log(tournament.games);
   return (
     <div>
       <div className="container game-submit with-shadow">
@@ -160,14 +170,14 @@ function TournamentGamesContainer({ tournament }) {
           <Button
             className="brand-btn"
             variant="contained"
-            onClick={() => console.log(game)}
+            onClick={handleGameSubmit}
           >
             Submit game
           </Button>
         </div>
       </div>
-      {mockGames &&
-        mockGames.map((game, index) => (
+      {!!tournament.games.length &&
+        tournament.games.map((game, index) => (
           <TournamentGameItem key={index + 1} game={game} />
         ))}
     </div>

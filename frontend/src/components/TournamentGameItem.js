@@ -3,16 +3,17 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
 
 function TournamentGameItem({ game }) {
+  const { home, away } = game.opponents;
   return (
     <div className="game-item flex-between with-shadow">
       <div className="flex-between" style={{ width: '80%' }}>
         <div className="flex-between">
-          <Chip label={game.home.goals} color="primary" size="small" />
-          <div className="score">{game?.home.team}</div>
+          <Chip label={home.goals} color="primary" size="small" />
+          <div className="score">{home.team}</div>
         </div>
         <div className="flex-between">
-          <div className="score">{game?.away.team}</div>
-          <Chip label={game.away.goals} color="error" size="small" />
+          <div className="score">{away.team}</div>
+          <Chip label={away.goals} color="error" size="small" />
         </div>
       </div>
       <div className="flex-centered">

@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const GameSchema = new Schema({
   opponents: {
-    homePlayer: {
+    home: {
       player: { type: Schema.Types.ObjectId, ref: 'Player' },
       team: String,
       goals: Number,
@@ -12,7 +12,7 @@ const GameSchema = new Schema({
         enum: [0, 1, 3],
       },
     },
-    awayPlayer: {
+    away: {
       player: { type: Schema.Types.ObjectId, ref: 'Player' },
       team: String,
       goals: Number,
@@ -27,7 +27,7 @@ const GameSchema = new Schema({
     default: new Date(),
   },
   score: String,
-  winner: { type: Schema.Types.ObjectId, ref: 'Player' },
+  winner: [{ type: Schema.Types.ObjectId, ref: 'Player' }],
 });
 
 module.exports = mongoose.model('Game', GameSchema);
