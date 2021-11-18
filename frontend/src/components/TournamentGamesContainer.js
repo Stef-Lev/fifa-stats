@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -144,15 +144,22 @@ function TournamentGamesContainer({ tournament, onChange }) {
             className="brand-btn"
             variant="contained"
             onClick={handleGameSubmit}
+            disabled={
+              tournament.games.length ===
+              tournament.participants.length *
+                (tournament.participants.length - 1)
+            }
           >
             Submit game
           </Button>
         </div>
       </div>
-      {!!tournament.games.length &&
-        tournament.games.map((game, index) => (
-          <TournamentGameItem key={index + 1} game={game} />
-        ))}
+      <div style={{ marginBottom: '1.5rem' }}>
+        {!!tournament.games.length &&
+          tournament.games.map((game, index) => (
+            <TournamentGameItem key={index + 1} game={game} />
+          ))}
+      </div>
     </div>
   );
 }

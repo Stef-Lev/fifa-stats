@@ -2,11 +2,7 @@ const catchAsync = require('../utils/catchAsync');
 const Tournament = require('../models/tournament');
 const Player = require('../models/player');
 const Game = require('../models/game');
-const {
-  calcWinner,
-  updatePlayerOnGame,
-  updateTournamentStats,
-} = require('../utils/helpers');
+const { calcWinner, updatePlayerOnGame } = require('../utils/helpers');
 
 exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;

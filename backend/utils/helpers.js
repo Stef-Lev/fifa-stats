@@ -54,20 +54,5 @@ const updatePlayerOnGame = (player, game, tournament) => {
   )[0].points += points;
 };
 
-const updateTournamentStats = (tournament, game) => {
-  //add goals for, against, points
-  const { home, away } = game.opponents;
-  const homeStats = tournament.participants.find(
-    (item) => item.player.id === home.player._id,
-  );
-  const awayStats = tournament.participants.find(
-    (item) => item.player.id === away.player._id,
-  );
-  return tournament.participants.find(
-    (item) => item.player.id === home.player._id,
-  );
-};
-
 exports.calcWinner = calcWinner;
 exports.updatePlayerOnGame = updatePlayerOnGame;
-exports.updateTournamentStats = updateTournamentStats;

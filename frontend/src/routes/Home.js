@@ -1,13 +1,18 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
   return (
-    <div>
-      <button onClick={() => navigate('/tournaments/new')}>
+    <div className="flex-centered">
+      <Button
+        className="brand-btn"
+        variant="outlined"
+        onClick={() => navigate('/tournaments/new')}
+      >
         NEW TOURNAMENT
-      </button>
+      </Button>
     </div>
   );
 }

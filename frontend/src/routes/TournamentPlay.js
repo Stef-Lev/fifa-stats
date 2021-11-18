@@ -5,11 +5,11 @@ import Loader from '../components/Loader';
 import Standings from '../components/Standings';
 import Typography from '@mui/material/Typography';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
+import Button from '@mui/material/Button';
 
 function TournamentPlay() {
   const { id } = useParams();
   const [tournament, setTournament] = useState(null);
-  const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,6 +20,10 @@ function TournamentPlay() {
     });
   }, [id]);
 
+  const finalizeTournament = () => {
+    console.log(tournament);
+  };
+
   return (
     <div>
       <Typography className="main-title">TOURNAMENT</Typography>
@@ -28,6 +32,15 @@ function TournamentPlay() {
         <div>
           <Standings tournament={tournament} />
           <TournamentGamesContainer tournament={tournament} />
+          <div className="flex-centered">
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={finalizeTournament}
+            >
+              Finalize tournament
+            </Button>
+          </div>
         </div>
       )}
     </div>
