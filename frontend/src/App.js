@@ -7,7 +7,7 @@ import Games from './routes/Games';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 
-// test tournament url http://localhost:3000/tournaments/6190fa698171fe2fb8d25bb9
+// test tournament url http://localhost:3000/tournaments/6193ad32a411ffa208bebf8b
 
 function App() {
   return (

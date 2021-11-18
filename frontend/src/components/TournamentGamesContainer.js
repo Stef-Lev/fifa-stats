@@ -11,34 +11,7 @@ import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
 import { updateMethod } from '../helpers/httpService';
 
-const mockGames = [
-  {
-    home: {
-      participant: 'TestStef',
-      team: 'Dortmund',
-      goals: '2',
-    },
-    away: {
-      participant: 'TestAndre',
-      team: 'Olympiacos',
-      goals: '2',
-    },
-  },
-  {
-    home: {
-      participant: 'TestTax',
-      team: 'Real',
-      goals: '4',
-    },
-    away: {
-      participant: 'TestAndre',
-      team: 'Olympiacos',
-      goals: '3',
-    },
-  },
-];
-
-function TournamentGamesContainer({ tournament }) {
+function TournamentGamesContainer({ tournament, onChange }) {
   const [game, setGame] = useState({
     home: { participant: '', id: '', team: '', goals: '' },
     away: { participant: '', id: '', team: '', goals: '' },
@@ -85,10 +58,10 @@ function TournamentGamesContainer({ tournament }) {
       tournament._id,
       game,
     );
-    // window.location.reload();
+    window.location.reload();
   };
 
-  console.log(tournament.games);
+  console.log(tournament);
   return (
     <div>
       <div className="container game-submit with-shadow">

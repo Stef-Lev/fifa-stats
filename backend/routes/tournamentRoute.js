@@ -65,15 +65,16 @@ exports.update = catchAsync(async (req, res) => {
   tournament.games.push(game);
 
   homePlayer.games_played.list.push(game);
-  updatePlayerOnGame(homePlayer, game);
-  updatePlayerOnGame(awayPlayer, game);
-
-  // await tournament.save();
-  // await game.save();
-  // await homePlayer.save();
-  // await awayPlayer.save();
+  updatePlayerOnGame(homePlayer, game, tournament);
+  updatePlayerOnGame(awayPlayer, game, tournament);
 
   //Save all
-  let result = { tournament, game, homePlayer, awayPlayer };
-  res.json(tournament);
+  await tournament.save();
+  await game.save();
+  await homePlayer.save();
+  await awayPlayer.save();
+
+  const result = { ...tournament };
+
+  res.status(200).json(result);
 });

@@ -16,7 +16,7 @@ const calcWinner = (obj) => {
   return obj;
 };
 
-const updatePlayerOnGame = (player, game) => {
+const updatePlayerOnGame = (player, game, tournament) => {
   player.games_played.list.push(game);
   const { statistics } = player.games_played;
   statistics.total++;
@@ -42,10 +42,30 @@ const updatePlayerOnGame = (player, game) => {
   }
   player.goals.for += goalsFor;
   player.goals.against += goalsAgainst;
+
+  tournament.participants.filter(
+    (item) => item.player.id === String(player.id),
+  )[0].goals.for += goalsFor;
+  tournament.participants.filter(
+    (item) => item.player.id === String(player.id),
+  )[0].goals.against += goalsAgainst;
+  tournament.participants.filter(
+    (item) => item.player.id === String(player.id),
+  )[0].points += points;
 };
 
-const updateTournamentStats = (tournament) => {
+const updateTournamentStats = (tournament, game) => {
   //add goals for, against, points
+  const { home, away } = game.opponents;
+  const homeStats = tournament.participants.find(
+    (item) => item.player.id === home.player._id,
+  );
+  const awayStats = tournament.participants.find(
+    (item) => item.player.id === away.player._id,
+  );
+  return tournament.participants.find(
+    (item) => item.player.id === home.player._id,
+  );
 };
 
 exports.calcWinner = calcWinner;
