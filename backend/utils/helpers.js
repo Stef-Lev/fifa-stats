@@ -16,7 +16,7 @@ const calcWinner = (obj) => {
   return obj;
 };
 
-const updatePlayerOnGame = (player, game, tournament) => {
+const updatePlayersData = (player, game, tournament) => {
   player.games_played.list.push(game);
   const { statistics } = player.games_played;
   statistics.total++;
@@ -54,5 +54,10 @@ const updatePlayerOnGame = (player, game, tournament) => {
   )[0].points += points;
 };
 
+const rollBackData = (params) => {
+  console.log(params);
+};
+
 exports.calcWinner = calcWinner;
-exports.updatePlayerOnGame = updatePlayerOnGame;
+exports.updatePlayersData = updatePlayersData;
+exports.rollBackData = rollBackData;

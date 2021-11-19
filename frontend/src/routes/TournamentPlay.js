@@ -6,9 +6,11 @@ import Standings from '../components/Standings';
 import Typography from '@mui/material/Typography';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 function TournamentPlay() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [tournament, setTournament] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,12 +18,13 @@ function TournamentPlay() {
     getOneMethod(`http://localhost:8888/tournaments/`, id).then((data) => {
       setTournament(data);
       setLoading(false);
-      console.log(data);
     });
   }, [id]);
 
   const finalizeTournament = () => {
-    console.log(tournament);
+    getOneMethod(`http://localhost:8888/tournaments/complete/`, id).then(() =>
+      navigate('/'),
+    );
   };
 
   return (

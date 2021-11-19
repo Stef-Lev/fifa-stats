@@ -26,12 +26,15 @@ app.get('/players', player.list);
 
 // Tournaments
 app.post('/tournaments', tournament.add);
+app.get('/tournaments/complete/:id', tournament.finalize);
 app.get('/tournaments/:id', tournament.show);
 app.get('/tournaments', tournament.list);
 app.put('/tournaments/:id', tournament.update);
 
 // Games
 app.post('/games', game.add);
+app.get('/games', game.list);
+app.delete('/games/:id', game.delete);
 
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);

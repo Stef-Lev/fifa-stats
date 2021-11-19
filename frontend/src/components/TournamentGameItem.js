@@ -1,9 +1,17 @@
 import React from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
+import { deleteMethod } from '../helpers/httpService';
 
 function TournamentGameItem({ game }) {
   const { home, away } = game.opponents;
+
+  const removeGame = (id) => {
+    deleteMethod('http://localhost:8888/games/', id).then(() =>
+      window.location.reload(),
+    );
+  };
+
   return (
     <div className="game-item flex-between with-shadow">
       <div className="flex-between" style={{ width: '80%' }}>
@@ -17,7 +25,7 @@ function TournamentGameItem({ game }) {
         </div>
       </div>
       <div className="flex-centered">
-        <HighlightOffIcon />
+        <HighlightOffIcon onClick={() => removeGame(game._id)} />
       </div>
     </div>
   );

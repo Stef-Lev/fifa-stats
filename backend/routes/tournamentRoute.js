@@ -2,7 +2,12 @@ const catchAsync = require('../utils/catchAsync');
 const Tournament = require('../models/tournament');
 const Player = require('../models/player');
 const Game = require('../models/game');
-const { calcWinner, updatePlayerOnGame } = require('../utils/helpers');
+const {
+  calcWinner,
+  updatePlayersData,
+  rollBackData,
+} = require('../utils/helpers');
+const player = require('../models/player');
 
 exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;
@@ -61,8 +66,8 @@ exports.update = catchAsync(async (req, res) => {
   tournament.games.push(game);
 
   homePlayer.games_played.list.push(game);
-  updatePlayerOnGame(homePlayer, game, tournament);
-  updatePlayerOnGame(awayPlayer, game, tournament);
+  updatePlayersData(homePlayer, game, tournament);
+  updatePlayersData(awayPlayer, game, tournament);
 
   //Save all
   await tournament.save();
@@ -73,4 +78,25 @@ exports.update = catchAsync(async (req, res) => {
   const result = { ...tournament };
 
   res.status(200).json(result);
+});
+
+exports.finalize = catchAsync(async (req, res) => {
+  const tournament = await Tournament.findById(req.params.id);
+  tournament.participants
+    .sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff)
+    .map((item, index) => (item.position = index + 1));
+
+  const champ = tournament.participants[0];
+  const champPlayer = await Player.findById(champ.player.id);
+
+  tournament.participants.forEach(async (item) => {
+    let player = await Player.findById(item.player.id);
+    player.tournaments_played.total += 1;
+    return await player.save();
+  });
+  champPlayer.tournaments_played.won += 1;
+
+  await tournament.save();
+  await champPlayer.save();
+  res.json(champPlayer);
 });

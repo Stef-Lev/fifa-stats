@@ -52,16 +52,14 @@ function TournamentGamesContainer({ tournament, onChange }) {
     });
   };
 
-  const handleGameSubmit = async () => {
-    await updateMethod(
+  const handleGameSubmit = () => {
+    updateMethod(
       'http://localhost:8888/tournaments/',
       tournament._id,
       game,
-    );
-    window.location.reload();
+    ).then(() => window.location.reload());
   };
 
-  console.log(tournament);
   return (
     <div>
       <div className="container game-submit with-shadow">
