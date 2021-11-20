@@ -12,7 +12,7 @@ function TournamentGameItem({ game, tournament }) {
       '',
     ).then(() =>
       // window.location.reload(),
-      console.log('DONE'),
+      console.log('DELETED'),
     );
     // console.log('GAME', game._id, 'TOURNAMENT', tournament._id);
   };

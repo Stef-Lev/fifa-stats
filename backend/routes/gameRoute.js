@@ -1,5 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const Game = require('../models/game');
+const Tournament = require('../models/tournament');
 
 exports.add = catchAsync(async (req, res) => {
   const game = new Game(req.body);
@@ -14,6 +15,7 @@ exports.list = catchAsync(async (req, res) => {
 
 exports.delete = catchAsync(async (req, res) => {
   // await Game.findByIdAndDelete(req.params.id);
-  console.log(req.params.tid);
-  res.json('req.params.tid');
+  const tournament = await Tournament.findById(req.params.tid);
+  const game = await Game.findById(req.params.gid);
+  res.json({tournament, game});
 });

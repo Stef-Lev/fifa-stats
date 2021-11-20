@@ -4,10 +4,8 @@ const Player = require('../models/player');
 const Game = require('../models/game');
 const {
   calcWinner,
-  updatePlayersData,
-  rollBackData,
+  updateTournamentStats,
 } = require('../utils/helpers');
-const player = require('../models/player');
 
 exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;
@@ -64,16 +62,12 @@ exports.update = catchAsync(async (req, res) => {
   const game = new Game(gameObj);
   const tournament = await Tournament.findById(req.params.id);
   tournament.games.push(game);
-
-  homePlayer.games_played.list.push(game);
-  updatePlayersData(homePlayer, game, tournament);
-  updatePlayersData(awayPlayer, game, tournament);
+  updateTournamentStats(homePlayer,game,tournament)
+  updateTournamentStats(awayPlayer,game,tournament)
 
   //Save all
   await tournament.save();
   await game.save();
-  await homePlayer.save();
-  await awayPlayer.save();
 
   const result = { ...tournament };
 
