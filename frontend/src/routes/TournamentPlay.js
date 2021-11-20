@@ -27,6 +27,7 @@ function TournamentPlay() {
     );
   };
 
+  tournament && console.log(tournament);
   return (
     <div>
       <Typography className="main-title">TOURNAMENT</Typography>

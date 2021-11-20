@@ -34,7 +34,7 @@ app.put('/tournaments/:id', tournament.update);
 // Games
 app.post('/games', game.add);
 app.get('/games', game.list);
-app.delete('/games/:id', game.delete);
+app.delete('/tournaments/:tid/game/:gid', game.delete);
 
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);

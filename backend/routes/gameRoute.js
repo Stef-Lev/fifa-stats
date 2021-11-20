@@ -13,6 +13,7 @@ exports.list = catchAsync(async (req, res) => {
 });
 
 exports.delete = catchAsync(async (req, res) => {
-  await Game.findByIdAndDelete(req.params.id);
-  res.json('DELETED GAME');
+  // await Game.findByIdAndDelete(req.params.id);
+  console.log(req.params.tid);
+  res.json('req.params.tid');
 });

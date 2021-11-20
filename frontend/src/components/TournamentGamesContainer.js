@@ -155,7 +155,11 @@ function TournamentGamesContainer({ tournament, onChange }) {
       <div style={{ marginBottom: '1.5rem' }}>
         {!!tournament.games.length &&
           tournament.games.map((game, index) => (
-            <TournamentGameItem key={index + 1} game={game} />
+            <TournamentGameItem
+              key={index + 1}
+              game={game}
+              tournament={tournament}
+            />
           ))}
       </div>
     </div>

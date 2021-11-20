@@ -3,13 +3,18 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
 import { deleteMethod } from '../helpers/httpService';
 
-function TournamentGameItem({ game }) {
+function TournamentGameItem({ game, tournament }) {
   const { home, away } = game.opponents;
 
-  const removeGame = (id) => {
-    deleteMethod('http://localhost:8888/games/', id).then(() =>
-      window.location.reload(),
+  const removeGame = () => {
+    deleteMethod(
+      `http://localhost:8888/tournaments/${tournament._id}/game/${game._id}`,
+      '',
+    ).then(() =>
+      // window.location.reload(),
+      console.log('DONE'),
     );
+    // console.log('GAME', game._id, 'TOURNAMENT', tournament._id);
   };
 
   return (
@@ -25,7 +30,7 @@ function TournamentGameItem({ game }) {
         </div>
       </div>
       <div className="flex-centered">
-        <HighlightOffIcon onClick={() => removeGame(game._id)} />
+        <HighlightOffIcon onClick={removeGame} />
       </div>
     </div>
   );
