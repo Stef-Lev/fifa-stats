@@ -16,10 +16,7 @@ const calcWinner = (obj) => {
   return obj;
 };
 
-const updatePlayersData = (player, game, tournament) => {
-  player.games_played.list.push(game);
-  const { statistics } = player.games_played;
-  statistics.total++;
+const updateTournamentStats = (player, game, tournament) => {
   const points = Object.values(game.opponents).find(
     (item) => item.player._id === player._id,
   ).points;
@@ -33,6 +30,23 @@ const updatePlayersData = (player, game, tournament) => {
       .goals,
     10,
   );
+  tournament.participants.filter(
+    (item) => item.player.id === String(player.id),
+  )[0].goals.for += goalsFor;
+  tournament.participants.filter(
+    (item) => item.player.id === String(player.id),
+  )[0].goals.against += goalsAgainst;
+  tournament.participants.filter(
+    (item) => item.player.id === String(player.id),
+  )[0].points += points;
+
+};
+
+const updatePlayersData = (player, game, tournament) => {
+  player.games_played.list.push(game);
+  const { statistics } = player.games_played;
+  statistics.total++;
+  
   if (points === 3) {
     statistics.won++;
   } else if (points === 1) {
@@ -43,21 +57,14 @@ const updatePlayersData = (player, game, tournament) => {
   player.goals.for += goalsFor;
   player.goals.against += goalsAgainst;
 
-  tournament.participants.filter(
-    (item) => item.player.id === String(player.id),
-  )[0].goals.for += goalsFor;
-  tournament.participants.filter(
-    (item) => item.player.id === String(player.id),
-  )[0].goals.against += goalsAgainst;
-  tournament.participants.filter(
-    (item) => item.player.id === String(player.id),
-  )[0].points += points;
 };
 
-const rollBackData = (params) => {
-  console.log(params);
+const rollBackTournamentStats = (player,game,tournament) => {
+  return true;
+   
 };
 
 exports.calcWinner = calcWinner;
 exports.updatePlayersData = updatePlayersData;
-exports.rollBackData = rollBackData;
+exports.rollBackTournamentStats = rollBackTournamentStats;
+exports.updateTournamentStats = updateTournamentStats;
