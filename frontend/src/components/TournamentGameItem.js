@@ -11,7 +11,8 @@ function TournamentGameItem({ game, tournament }) {
       `http://localhost:8888/tournaments/${tournament._id}/game/${game._id}`,
       '',
     ).then(() =>
-      window.location.reload()
+      // window.location.reload()
+      console.log('ok')
     );
   };
 

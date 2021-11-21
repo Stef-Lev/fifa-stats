@@ -26,9 +26,10 @@ exports.delete = catchAsync(async (req, res) => {
   awayPlayer.goals.for -= away.goals;
   awayPlayer.goals.against -= home.goals;
   awayPlayer.points -= away.points;
-
+  const filteredGames = tournament.games.filter(item => item._id != req.params.gid)
+  tournament.games = filteredGames;
   await Game.findByIdAndDelete(req.params.gid);
   await tournament.save();
  
-  res.json({ tournament });
+  res.json('DELETED');
 });
