@@ -59,8 +59,9 @@ const updatePlayersData = (player, game, tournament) => {
 
 };
 
-const rollBackTournamentStats = (params) => {
-  console.log(params);
+const rollBackTournamentStats = (player,game,tournament) => {
+  return true;
+   
 };
 
 exports.calcWinner = calcWinner;

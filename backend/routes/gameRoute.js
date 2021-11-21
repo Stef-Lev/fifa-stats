@@ -14,8 +14,21 @@ exports.list = catchAsync(async (req, res) => {
 });
 
 exports.delete = catchAsync(async (req, res) => {
-  // await Game.findByIdAndDelete(req.params.id);
+  
   const tournament = await Tournament.findById(req.params.tid);
   const game = await Game.findById(req.params.gid);
-  res.json({tournament, game});
+  const {home, away} = game.opponents;
+  const homePlayer = tournament.participants.find(item => item.player.id == home.player._id)
+  const awayPlayer = tournament.participants.find(item => item.player.id == away.player._id)
+  homePlayer.goals.for -= home.goals;
+  homePlayer.goals.against -= away.goals;
+  homePlayer.points -= home.points;
+  awayPlayer.goals.for -= away.goals;
+  awayPlayer.goals.against -= home.goals;
+  awayPlayer.points -= away.points;
+
+  await Game.findByIdAndDelete(req.params.gid);
+  await tournament.save();
+ 
+  res.json({ tournament });
 });
