@@ -41,8 +41,16 @@ function TournamentPlay() {
               variant="contained"
               color="warning"
               onClick={finalizeTournament}
+              style={{ marginRight: '20px' }}
             >
               Finalize tournament
+            </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => console.log('Cancel tournament')}
+            >
+              Cancel
             </Button>
           </div>
         </div>
