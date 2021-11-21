@@ -30,6 +30,7 @@ app.get('/tournaments/complete/:id', tournament.finalize);
 app.get('/tournaments/:id', tournament.show);
 app.get('/tournaments', tournament.list);
 app.put('/tournaments/:id', tournament.update);
+app.delete('/tournaments/:id', tournament.cancel);
 
 // Games
 app.post('/games', game.add);

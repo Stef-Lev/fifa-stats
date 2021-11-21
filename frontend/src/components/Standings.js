@@ -24,7 +24,7 @@ function Standings({ tournament }) {
         item.goals.for - item.goals.against,
       ),
     )
-    .sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff);
+    .sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff || b.goalsFor - a.goalsFor);
 
   return (
     <div>

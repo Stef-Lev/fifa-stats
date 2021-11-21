@@ -77,7 +77,7 @@ exports.update = catchAsync(async (req, res) => {
 exports.finalize = catchAsync(async (req, res) => {
   const tournament = await Tournament.findById(req.params.id);
   tournament.participants
-    .sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff)
+    .sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff || b.goalsFor - a.goalsFor)
     .map((item, index) => (item.position = index + 1));
 
   const champ = tournament.participants[0];
@@ -93,4 +93,8 @@ exports.finalize = catchAsync(async (req, res) => {
   await tournament.save();
   await champPlayer.save();
   res.json(champPlayer);
+});
+
+exports.cancel = catchAsync(async (req, res) => {
+   return true;
 });
