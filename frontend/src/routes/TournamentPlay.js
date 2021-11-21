@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Standings from '../components/Standings';
 import Typography from '@mui/material/Typography';
+import MessageModal from '../components/MessageModal';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +14,7 @@ function TournamentPlay() {
   const navigate = useNavigate();
   const [tournament, setTournament] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     getOneMethod(`http://localhost:8888/tournaments/`, id).then((data) => {
@@ -50,9 +52,16 @@ function TournamentPlay() {
               color="error"
               onClick={() => console.log('Cancel tournament')}
             >
-              Cancel
+              Quit
             </Button>
           </div>
+          <MessageModal
+            open={open}
+            onClose={() => setOpen(false)}
+            title={'Wait a minute!'}
+            msg={'Are you sure you want to delete the tournament?'}
+            type="warning"
+          />
         </div>
       )}
     </div>

@@ -122,3 +122,23 @@
     padding: 6px;
   }
 }
+#modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .flex-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
