@@ -11,7 +11,7 @@ import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
 import { updateMethod } from '../helpers/httpService';
 
-function TournamentGamesContainer({ tournament, onChange }) {
+function TournamentGamesContainer({ tournament }) {
   const [game, setGame] = useState({
     home: { participant: '', id: '', team: '', goals: '' },
     away: { participant: '', id: '', team: '', goals: '' },
@@ -23,6 +23,13 @@ function TournamentGamesContainer({ tournament, onChange }) {
       return selected.player[attr];
     }
     return new Error('Provide a list');
+  };
+
+  const allGamesPlayed = () => {
+    return (
+      tournament.games.length ===
+      tournament.participants.length * (tournament.participants.length - 1)
+    );
   };
 
   const handleGoalsChange = (ev, side) => {
@@ -74,6 +81,7 @@ function TournamentGamesContainer({ tournament, onChange }) {
               labelId="select-label"
               id="select"
               value={game.home.participant}
+              disabled={allGamesPlayed()}
               label="Player"
               input={<OutlinedInput notched label="Player" />}
               onChange={(ev) => handlePlayerChange(ev, 'home')}
@@ -93,6 +101,7 @@ function TournamentGamesContainer({ tournament, onChange }) {
               variant="outlined"
               InputLabelProps={{ shrink: true }}
               value={game.home.goals}
+              disabled={allGamesPlayed()}
               onChange={(ev) => handleGoalsChange(ev, 'home')}
             />
             <FormHelperText />
@@ -110,6 +119,7 @@ function TournamentGamesContainer({ tournament, onChange }) {
               labelId="select-label"
               id="select"
               value={game.away.participant}
+              disabled={allGamesPlayed()}
               label="Player"
               input={<OutlinedInput notched label="Player" />}
               onChange={(ev) => handlePlayerChange(ev, 'away')}
@@ -129,6 +139,7 @@ function TournamentGamesContainer({ tournament, onChange }) {
               variant="outlined"
               InputLabelProps={{ shrink: true }}
               value={game.away.goals}
+              disabled={allGamesPlayed()}
               onChange={(ev) => handleGoalsChange(ev, 'away')}
             />
             <FormHelperText />
@@ -142,11 +153,7 @@ function TournamentGamesContainer({ tournament, onChange }) {
             className="brand-btn"
             variant="contained"
             onClick={handleGameSubmit}
-            disabled={
-              tournament.games.length ===
-              tournament.participants.length *
-                (tournament.participants.length - 1)
-            }
+            disabled={allGamesPlayed()}
           >
             Submit game
           </Button>

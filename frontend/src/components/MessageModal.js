@@ -31,7 +31,7 @@ const MessageModal = ({
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {msg}
           </Typography>
-          {type === 'warning' && (
+          {type === 'cancel' && (
             <div className="flex-centered" style={{ marginTop: '20px' }}>
               <Button
                 variant="contained"
@@ -43,6 +43,21 @@ const MessageModal = ({
               </Button>
               <Button variant="outlined" color="error" onClick={buttonAction}>
                 Yes
+              </Button>
+            </div>
+          )}
+          {type === 'confirm' && (
+            <div className="flex-centered" style={{ marginTop: '20px' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: '20px' }}
+                onClick={buttonAction}
+              >
+                Yes
+              </Button>
+              <Button variant="outlined" color="error" onClick={onClose}>
+                No
               </Button>
             </div>
           )}

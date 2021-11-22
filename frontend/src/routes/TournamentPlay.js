@@ -14,7 +14,8 @@ function TournamentPlay() {
   const navigate = useNavigate();
   const [tournament, setTournament] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [openModal, setOpenModal] = useState(false);
+  const [openCancelModal, setOpenCancelModal] = useState(false);
+  const [openFinalModal, setOpenFinalModal] = useState(false);
 
   useEffect(() => {
     getOneMethod(`http://localhost:8888/tournaments/`, id).then((data) => {
@@ -24,15 +25,16 @@ function TournamentPlay() {
   }, [id]);
 
   const finalizeTournament = () => {
-    getOneMethod(`http://localhost:8888/tournaments/complete/`, id).then(() =>
-      navigate('/'),
-    );
+    getOneMethod(`http://localhost:8888/tournaments/complete/`, id).then(() => {
+      setOpenFinalModal(false);
+      navigate('/');
+    });
   };
 
   const cancelTournament = () => {
     deleteMethod(`http://localhost:8888/tournaments/`, id)
       .then(() => {
-        setOpenModal(false);
+        setOpenCancelModal(false);
         navigate('/');
       })
       .catch((err) => console.log(new Error(err)));
@@ -51,7 +53,7 @@ function TournamentPlay() {
             <Button
               variant="contained"
               color="warning"
-              onClick={finalizeTournament}
+              onClick={() => setOpenFinalModal(true)}
               style={{ marginRight: '20px' }}
             >
               Finalize tournament
@@ -59,18 +61,26 @@ function TournamentPlay() {
             <Button
               variant="outlined"
               color="error"
-              onClick={() => setOpenModal(true)}
+              onClick={() => setOpenCancelModal(true)}
             >
               Quit
             </Button>
           </div>
           <MessageModal
-            open={openModal}
-            onClose={() => setOpenModal(false)}
+            open={openCancelModal}
+            onClose={() => setOpenCancelModal(false)}
             title={'Wait a minute!'}
             buttonAction={() => cancelTournament()}
             msg={'Are you sure you want to delete the tournament?'}
-            type="warning"
+            type="cancel"
+          />
+          <MessageModal
+            open={openFinalModal}
+            onClose={() => setOpenFinalModal(false)}
+            title={'Are you finished?'}
+            buttonAction={() => finalizeTournament()}
+            msg={'Are you sure you want to complete the tournament?'}
+            type="confirm"
           />
         </div>
       )}
