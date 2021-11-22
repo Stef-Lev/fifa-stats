@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getOneMethod } from '../helpers/httpService';
+import { getOneMethod, deleteMethod } from '../helpers/httpService';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Standings from '../components/Standings';
@@ -14,7 +14,7 @@ function TournamentPlay() {
   const navigate = useNavigate();
   const [tournament, setTournament] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     getOneMethod(`http://localhost:8888/tournaments/`, id).then((data) => {
@@ -27,6 +27,15 @@ function TournamentPlay() {
     getOneMethod(`http://localhost:8888/tournaments/complete/`, id).then(() =>
       navigate('/'),
     );
+  };
+
+  const cancelTournament = () => {
+    deleteMethod(`http://localhost:8888/tournaments/`, id)
+      .then(() => {
+        setOpenModal(false);
+        navigate('/');
+      })
+      .catch((err) => console.log(new Error(err)));
   };
 
   tournament && console.log(tournament);
@@ -50,15 +59,16 @@ function TournamentPlay() {
             <Button
               variant="outlined"
               color="error"
-              onClick={() => console.log('Cancel tournament')}
+              onClick={() => setOpenModal(true)}
             >
               Quit
             </Button>
           </div>
           <MessageModal
-            open={open}
-            onClose={() => setOpen(false)}
+            open={openModal}
+            onClose={() => setOpenModal(false)}
             title={'Wait a minute!'}
+            buttonAction={() => cancelTournament()}
             msg={'Are you sure you want to delete the tournament?'}
             type="warning"
           />

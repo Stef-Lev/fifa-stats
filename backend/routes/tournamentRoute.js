@@ -2,10 +2,7 @@ const catchAsync = require('../utils/catchAsync');
 const Tournament = require('../models/tournament');
 const Player = require('../models/player');
 const Game = require('../models/game');
-const {
-  calcWinner,
-  updateTournamentStats,
-} = require('../utils/helpers');
+const { calcWinner, updateTournamentStats } = require('../utils/helpers');
 
 exports.add = catchAsync(async (req, res) => {
   const { participants, team_rating } = req.body;
@@ -62,8 +59,8 @@ exports.update = catchAsync(async (req, res) => {
   const game = new Game(gameObj);
   const tournament = await Tournament.findById(req.params.id);
   tournament.games.push(game);
-  updateTournamentStats(homePlayer,game,tournament)
-  updateTournamentStats(awayPlayer,game,tournament)
+  updateTournamentStats(homePlayer, game, tournament);
+  updateTournamentStats(awayPlayer, game, tournament);
 
   //Save all
   await tournament.save();
@@ -77,7 +74,12 @@ exports.update = catchAsync(async (req, res) => {
 exports.finalize = catchAsync(async (req, res) => {
   const tournament = await Tournament.findById(req.params.id);
   tournament.participants
-    .sort((a, b) => b.points - a.points || b.goalDiff - a.goalDiff || b.goalsFor - a.goalsFor)
+    .sort(
+      (a, b) =>
+        b.points - a.points ||
+        b.goalDiff - a.goalDiff ||
+        b.goalsFor - a.goalsFor,
+    )
     .map((item, index) => (item.position = index + 1));
 
   const champ = tournament.participants[0];
@@ -96,5 +98,6 @@ exports.finalize = catchAsync(async (req, res) => {
 });
 
 exports.cancel = catchAsync(async (req, res) => {
-   return true;
+  await Tournament.findByIdAndDelete(req.params.id);
+  res.status(200).json('Deleted');
 });

@@ -5,7 +5,14 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-const MessageModal = ({ open, onClose, title, msg, type = 'info' }) => {
+const MessageModal = ({
+  open,
+  onClose,
+  title,
+  msg,
+  type = 'info',
+  buttonAction,
+}) => {
   return (
     <div>
       <Modal
@@ -34,11 +41,7 @@ const MessageModal = ({ open, onClose, title, msg, type = 'info' }) => {
               >
                 No
               </Button>
-              <Button
-                variant="outlined"
-                color="error"
-                onClick={() => console.log('Cancel tournament')}
-              >
+              <Button variant="outlined" color="error" onClick={buttonAction}>
                 Yes
               </Button>
             </div>

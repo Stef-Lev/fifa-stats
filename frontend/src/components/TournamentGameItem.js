@@ -10,10 +10,7 @@ function TournamentGameItem({ game, tournament }) {
     deleteMethod(
       `http://localhost:8888/tournaments/${tournament._id}/game/${game._id}`,
       '',
-    ).then(() =>
-      // window.location.reload()
-      console.log('ok')
-    );
+    ).then(() => window.location.reload());
   };
 
   return (
