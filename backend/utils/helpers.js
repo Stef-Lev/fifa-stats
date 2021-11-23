@@ -1,3 +1,6 @@
+const Player = require('../models/player');
+const Game = require('../models/game');
+
 const calcWinner = (obj) => {
   const { home, away } = obj.opponents;
   if (home.goals > away.goals) {
@@ -39,32 +42,64 @@ const updateTournamentStats = (player, game, tournament) => {
   tournament.participants.filter(
     (item) => item.player.id === String(player.id),
   )[0].points += points;
-
 };
 
-const updatePlayersData = (player, game, tournament) => {
-  player.games_played.list.push(game);
-  const { statistics } = player.games_played;
-  statistics.total++;
-  
-  if (points === 3) {
-    statistics.won++;
-  } else if (points === 1) {
-    statistics.drawn++;
-  } else if (points === 0) {
-    statistics.lost++;
+const calculateResults = (points, player) => {
+  switch (points) {
+    case 0:
+      player.games_played.statistics.lost += 1;
+      break;
+    case 1:
+      player.games_played.statistics.drawn += 1;
+      break;
+    case 3:
+      player.games_played.statistics.won += 1;
+      break;
   }
-  player.goals.for += goalsFor;
-  player.goals.against += goalsAgainst;
-
 };
 
-const rollBackTournamentStats = (player,game,tournament) => {
-  return true;
-   
+const updatePlayerData = async (participant, tournament) => {
+  // Select a user and find his games
+  const player = await Player.findById(participant.player.id).populate(
+    'games_played.list',
+  );
+  const playerGames = tournament.games.filter(
+    (item) =>
+      item.opponents.home.player == player.id ||
+      item.opponents.away.player == player.id,
+  );
+  // Add games to list
+  for (let i = 0; i < playerGames.length; i++) {
+    const game = await Game.findById(playerGames[i].id);
+    player.games_played.list.push(game);
+  }
+  player.games_played.statistics.total += playerGames.length;
+
+  //Update goals and stats
+  player.games_played.list.map((item) => {
+    const { home, away } = item.opponents;
+    if (home.player == player.id) {
+      player.goals.for += home.goals;
+      player.goals.against += away.goals;
+      calculateResults(home.points, player);
+    } else {
+      player.goals.for += away.goals;
+      player.goals.against += home.goals;
+      calculateResults(away.points, player);
+    }
+  });
+
+  player.tournaments_played.total += 1;
+  const champ = tournament.participants[0];
+
+  if (player.id == champ.player.id) {
+    player.tournaments_played.won += 1;
+    tournament.winner = player;
+    await tournament.save();
+  }
+  await player.save();
 };
 
 exports.calcWinner = calcWinner;
-exports.updatePlayersData = updatePlayersData;
-exports.rollBackTournamentStats = rollBackTournamentStats;
+exports.updatePlayerData = updatePlayerData;
 exports.updateTournamentStats = updateTournamentStats;

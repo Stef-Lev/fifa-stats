@@ -13,6 +13,11 @@ exports.list = catchAsync(async (req, res) => {
   res.json(game);
 });
 
+exports.getOne = catchAsync(async (req, res) => {
+  const game = await Game.findById(req.params.id);
+  res.status(200).json(game);
+});
+
 exports.delete = catchAsync(async (req, res) => {
   const tournament = await Tournament.findById(req.params.tid);
   const game = await Game.findById(req.params.gid);

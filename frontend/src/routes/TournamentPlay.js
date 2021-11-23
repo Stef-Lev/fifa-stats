@@ -27,7 +27,7 @@ function TournamentPlay() {
   const finalizeTournament = () => {
     getOneMethod(`http://localhost:8888/tournaments/complete/`, id).then(() => {
       setOpenFinalModal(false);
-      navigate('/');
+      // navigate('/');
     });
   };
 

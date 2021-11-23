@@ -35,6 +35,7 @@ app.delete('/tournaments/:id', tournament.cancel);
 // Games
 app.post('/games', game.add);
 app.get('/games', game.list);
+app.get('/games/:id', game.getOne);
 app.delete('/tournaments/:tid/game/:gid', game.delete);
 
 app.listen(PORT, () => {
