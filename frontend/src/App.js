@@ -6,14 +6,14 @@ import PlayerStats from './routes/PlayerStats';
 import Games from './routes/Games';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
-
-// test tournament url http://localhost:3000/tournaments/6193ad32a411ffa208bebf8b
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
       <div>
         <Router>
+          <Header />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route

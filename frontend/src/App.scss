@@ -10,15 +10,31 @@
 .App {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  padding: 1rem;
+  margin-top: 56px;
+
+  .app-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgb(16, 119, 195);
+    background: linear-gradient(
+      90deg,
+      rgba(16, 119, 195, 1) 0%,
+      rgba(16, 119, 195, 1) 70%,
+      rgba(73, 188, 227, 1) 100%
+    );
+    position: absolute;
+  }
 
   .main-title {
     text-align: center;
     font-weight: 700;
-    font-size: 2.1rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
   .container {
+    background-color: $white;
     border-radius: $radius;
     margin-bottom: 1.5rem;
     padding: 10px;
@@ -78,7 +94,7 @@
   }
 
   .loader {
-    color: $brandTeal;
+    color: $brandLight;
     width: 120px !important;
     height: 120px !important;
   }
@@ -90,15 +106,15 @@
   }
 
   .brand-btn {
-    background-color: $brandTeal;
+    background-color: $brandLight;
     color: $white;
     font-weight: 700;
 
     &:hover {
-      background-color: $brandTeal;
+      background-color: $brandLight;
     }
     &:active {
-      background-color: $brandTeal;
+      background-color: $brandLight;
     }
   }
   .round-btn {
@@ -141,4 +157,8 @@
     justify-content: center;
     align-items: center;
   }
+}
+.app-item {
+  border-bottom: 1px solid #c4c4c4;
+  font-size: 1.3rem;
 }
