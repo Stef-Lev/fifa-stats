@@ -34,3 +34,8 @@ function App() {
 }
 
 export default App;
+
+// @TODO
+// Home page
+// Players overall comparison page
+// Tournaments list page with chip that indicates if it is completed or not
