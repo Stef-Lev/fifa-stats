@@ -1,14 +1,14 @@
 import React from 'react';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
-import { deleteMethod } from '../helpers/httpService';
+import { deleteMethod, ip } from '../helpers/httpService';
 
 function TournamentGameItem({ game, tournament }) {
   const { home, away } = game.opponents;
 
   const removeGame = () => {
     deleteMethod(
-      `http://localhost:8888/tournaments/${tournament._id}/game/${game._id}`,
+      `http://${ip}:8888/tournaments/${tournament._id}/game/${game._id}`,
       '',
     ).then(() => window.location.reload());
   };

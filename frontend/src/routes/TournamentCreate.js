@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { getAllMethod, postMethod } from '../helpers/httpService';
+import { getAllMethod, postMethod, ip } from '../helpers/httpService';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import PlayerSelection from '../components/PlayerSelection';
@@ -10,14 +10,14 @@ import Participant from '../components/Participant';
 
 function TournamentCreate() {
   const [participants, setParticipants] = useState([]);
-  
+
   const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState(1);
   const [players, setPlayers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllMethod('http://localhost:8888/players').then((data) => {
+    getAllMethod(`http://${ip}:8888/players`).then((data) => {
       setPlayers(data);
       setLoading(false);
     });
@@ -25,25 +25,23 @@ function TournamentCreate() {
 
   const playerAdd = (item) => {
     setParticipants([...participants, item]);
-    setPlayers(players.filter(player => player.name !== item.name))
+    setPlayers(players.filter((player) => player.name !== item.name));
   };
 
   const playerRemove = (item) => {
-    setParticipants(participants.filter(player => player.name !== item.name));
+    setParticipants(participants.filter((player) => player.name !== item.name));
     setPlayers([...players, item]);
   };
 
   const handleSubmit = () => {
-
-      const reqBody = {
-        teams_rating: rating,
-        participants,
-      };
-      postMethod('http://localhost:8888/tournaments', reqBody).then((res) =>
-        navigate(`/tournaments/${res._id}`),
-      );
+    const reqBody = {
+      teams_rating: rating,
+      participants,
+    };
+    postMethod(`http://${ip}:8888/tournaments`, reqBody).then((res) =>
+      navigate(`/tournaments/${res._id}`),
+    );
   };
-
 
   return (
     <div>
@@ -64,13 +62,19 @@ function TournamentCreate() {
             />
           </div>
 
-          <PlayerSelection playerList={players} addAction={playerAdd}/>
+          <PlayerSelection playerList={players} addAction={playerAdd} />
 
-          {participants.map((item, index) => <Participant key={index+1} player={item}  removeAction={playerRemove}/>)}
+          {participants.map((item, index) => (
+            <Participant
+              key={index + 1}
+              player={item}
+              removeAction={playerRemove}
+            />
+          ))}
 
-          <div className='flex-centered'>
+          <div className="flex-centered">
             <Button
-              className='brand-btn'
+              className="brand-btn"
               variant="contained"
               onClick={handleSubmit}
               disabled={participants.length < 2}

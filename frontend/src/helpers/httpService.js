@@ -10,9 +10,9 @@ export const postMethod = (url, body) => {
   return fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   }).then((response) => response.json());
 };
 
@@ -20,14 +20,17 @@ export const updateMethod = (url, id, body) => {
   return fetch(url + id, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   }).then((res) => res.json());
 };
 
 export const deleteMethod = (url, id) => {
   return fetch(url + id, {
-    method: 'DELETE'
+    method: 'DELETE',
   }).then((res) => res.json());
 };
+
+const debug = true;
+export const ip = debug ? '192.168.1.15' : 'localhost';
