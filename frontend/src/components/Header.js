@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import CloseIcon from '@mui/icons-material/Close';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -129,6 +130,20 @@ const Header = () => {
             onClose: handleDrawerClose,
           }}
         >
+          <MenuItem
+            className="app-item"
+            sx={{
+              fontSize: '1.3rem',
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+            onClick={() =>
+              mobileView &&
+              setState((prevState) => ({ ...prevState, drawerOpen: false }))
+            }
+          >
+            <CloseIcon />
+          </MenuItem>
           <div>{getDrawerChoices()}</div>
         </Drawer>
         <div>
