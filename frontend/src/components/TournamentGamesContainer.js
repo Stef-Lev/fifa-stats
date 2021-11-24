@@ -68,8 +68,6 @@ function TournamentGamesContainer({ tournament }) {
   return (
     <div>
       <div className="container game-submit with-shadow">
-        {/* Include form buttons for games data */}
-        {/* Include each game component */}
         <div className="side-by-side">
           <FormControl style={{ width: '55%' }}>
             <InputLabel id="select-label" shrink>
@@ -97,6 +95,7 @@ function TournamentGamesContainer({ tournament }) {
               id="outlined-basic"
               label="Goals"
               variant="outlined"
+              autoComplete="off"
               InputLabelProps={{ shrink: true }}
               value={game.home.goals}
               disabled={allGamesPlayed()}
@@ -135,6 +134,7 @@ function TournamentGamesContainer({ tournament }) {
               id="outlined-basic"
               label="Goals"
               variant="outlined"
+              autoComplete="off"
               InputLabelProps={{ shrink: true }}
               value={game.away.goals}
               disabled={allGamesPlayed()}

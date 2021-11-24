@@ -61,6 +61,7 @@ function PlayerSelection({ playerList, addAction }) {
           id="outlined-basic"
           label="Team"
           variant="outlined"
+          autoComplete="off"
           value={player.team}
           onChange={handleTeamChange}
         />
