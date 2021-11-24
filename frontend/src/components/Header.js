@@ -16,12 +16,20 @@ const headerData = [
     href: '/',
   },
   {
+    label: 'Tournaments',
+    href: '/tournaments',
+  },
+  {
+    label: 'New tournament',
+    href: '/tournaments/new',
+  },
+  {
     label: 'Players statistics',
     href: '/players',
   },
   {
-    label: 'Create Tournament',
-    href: '/tournaments/new',
+    label: 'Add player',
+    href: '/player/add',
   },
 ];
 
@@ -35,7 +43,7 @@ const Header = () => {
 
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 800
+      return window.innerWidth < 854
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -63,7 +71,25 @@ const Header = () => {
               setState((prevState) => ({ ...prevState, drawerOpen: false })),
           }}
         >
-          <MenuItem className="app-item">{label}</MenuItem>
+          <MenuItem
+            className="app-item"
+            sx={{
+              fontSize: '1.3rem',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                height: '1px',
+                width: '90%',
+                backgroundColor: '#c4c4c4',
+                margin: '0 auto',
+                left: '0',
+                right: '0',
+                bottom: '0',
+              },
+            }}
+          >
+            {label}
+          </MenuItem>
         </Link>
       );
     });

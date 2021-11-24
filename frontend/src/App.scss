@@ -40,7 +40,8 @@
     padding: 10px;
 
     &.colored {
-      background-color: $container-bcg;
+      background-color: $brandLight;
+      color: $white;
     }
   }
   .game-submit {
@@ -50,7 +51,8 @@
     }
   }
   .participant-item {
-    background-color: $container-bcg;
+    background-color: $brandDark;
+    color: $white;
     border-radius: $radius;
     padding: 8px;
     margin-bottom: 1rem;
@@ -117,6 +119,48 @@
       background-color: $brandLight;
     }
   }
+  .finalize-btn {
+    background-color: $brandScarlett;
+    color: $white;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $brandScarlett;
+    }
+    &:active {
+      background-color: $brandScarlett;
+    }
+  }
+  .home-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
+
+    .fifa-image {
+      min-width: 100%;
+      min-height: 100%;
+      border-radius: $radius;
+    }
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.725rem;
+    margin: 1.2rem 0;
+
+    .home-item {
+      height: 100px;
+      color: white;
+      border-radius: $radius;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+
   .round-btn {
     width: 56px;
     height: 56px;
@@ -157,8 +201,4 @@
     justify-content: center;
     align-items: center;
   }
-}
-.app-item {
-  border-bottom: 1px solid #c4c4c4;
-  font-size: 1.3rem;
 }

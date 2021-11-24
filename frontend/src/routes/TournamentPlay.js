@@ -52,7 +52,7 @@ function TournamentPlay() {
           <div className="flex-centered">
             <Button
               variant="contained"
-              color="warning"
+              className="finalize-btn"
               onClick={() => setOpenFinalModal(true)}
               style={{ marginRight: '20px' }}
             >

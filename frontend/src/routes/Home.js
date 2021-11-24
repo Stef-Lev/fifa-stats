@@ -1,18 +1,29 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
+import HomeGridItem from '../components/HomeGridItem';
+
+const links = [
+  { label: 'Tournaments', link: '/tournaments' },
+  { label: 'Player statistics', link: '/players' },
+  { label: 'New tournament', link: '/tournaments/new' },
+  { label: 'Add player', link: '/player/add' },
+];
 
 function Home() {
-  const navigate = useNavigate();
   return (
-    <div className="flex-centered">
-      <Button
-        className="brand-btn"
-        variant="outlined"
-        onClick={() => navigate('/tournaments/new')}
-      >
-        NEW TOURNAMENT
-      </Button>
+    <div>
+      <div className="home-image-container">
+        <img src="/fifa22.jpeg" className="fifa-image" alt="fifa" />
+      </div>
+      <div className="home-grid">
+        {links.map((item, index) => (
+          <HomeGridItem
+            key={index + 1}
+            title={item.label}
+            index={index}
+            page={item.link}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -38,4 +38,4 @@ export default App;
 // @TODO
 // Home page
 // Players overall comparison page
-// Tournaments list page with chip that indicates if it is completed or not
+// Tournaments list page with chip that indicates if it is completed or not an leads to the read-only tournament page.
