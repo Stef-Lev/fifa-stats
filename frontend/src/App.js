@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import ErrorPage from './routes/ErrorPage';
 import PlayerStats from './routes/PlayerStats';
-import Games from './routes/Games';
+import Tournaments from './routes/Tournaments';
+import Players from './routes/Players';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 import Header from './components/Header';
@@ -22,9 +23,9 @@ function App() {
               element={<TournamentCreate />}
             />
             <Route exact path="/tournaments/:id" element={<TournamentPlay />} />
-            <Route exact path="/tournaments/" />
-            <Route exact path="/games" element={<Games />} />
-            <Route exact path="/playerstats/:id" element={<PlayerStats />} />
+            <Route exact path="/tournaments" element={<Tournaments />} />
+            <Route exact path="/players/:id" element={<PlayerStats />} />
+            <Route exact path="/players" element={<Players />} />
             <Route element={<ErrorPage />} />
           </Routes>
         </Router>
@@ -36,6 +37,6 @@ function App() {
 export default App;
 
 // @TODO
-// Home page
+// Style desktop navbar
 // Players overall comparison page
 // Tournaments list page with chip that indicates if it is completed or not an leads to the read-only tournament page.

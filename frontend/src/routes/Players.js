@@ -5,12 +5,12 @@ import React from 'react';
 // import Select from '@mui/material/Select';
 // import Button from '@mui/material/Button';
 
-function Games() {
+function Players() {
   return (
     <div>
-      <h2>Games</h2>
+      <h2>Players</h2>
     </div>
   );
 }
 
-export default Games;
+export default Players;
