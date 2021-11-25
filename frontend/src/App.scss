@@ -192,6 +192,9 @@
   .tournament-play-page {
     color: $white;
   }
+  .player-stats-page {
+    color: $white;
+  }
 }
 #modal {
   position: absolute;
@@ -212,4 +215,7 @@
     justify-content: center;
     align-items: center;
   }
+}
+.css-19kzrtu {
+  padding: 1rem 0 0 !important;
 }

@@ -10,15 +10,15 @@ function PlayerDataItem({ player }) {
       100 || 0;
 
   return (
-    <div>
+    <div className="player-stats-page">
       <p>{player.name}</p>
       <p>Games played: {games.total}</p>
       <p>Games won: {games.won}</p>
       <p>Games drawn: {games.drawn}</p>
       <p>Games lost: {games.lost}</p>
       <p>Success Rate: {gameWinPercent}%</p>
-      <p>Goals for: {player.goals.for}%</p>
-      <p>Goals against: {player.goals.against}%</p>
+      <p>Goals for: {player.goals.for}</p>
+      <p>Goals against: {player.goals.against}</p>
       <p>Tournaments played: {player.tournaments_played.total}</p>
       <p>Tournaments won: {player.tournaments_played.won}</p>
       <p>Success Rate: {tournamentWinPercent}%</p>
