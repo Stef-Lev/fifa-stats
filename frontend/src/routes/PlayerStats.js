@@ -41,7 +41,7 @@ function PlayerStats({ tab, players }) {
                     <TableCell>{won}</TableCell>
                     <TableCell>{drawn}</TableCell>
                     <TableCell>{lost}</TableCell>
-                    <TableCell>{(won / total) * 100}</TableCell>
+                    <TableCell>{Math.floor((won / total) * 100)}</TableCell>
                   </TableRow>
                 );
               })}
@@ -98,7 +98,7 @@ function PlayerStats({ tab, players }) {
                     </TableCell>
                     <TableCell>{won}</TableCell>
                     <TableCell>{total}</TableCell>
-                    <TableCell>{(won / total) * 100}</TableCell>
+                    <TableCell>{Math.floor((won / total) * 100)}%</TableCell>
                   </TableRow>
                 );
               })}

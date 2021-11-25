@@ -67,7 +67,7 @@ function TournamentGamesContainer({ tournament }) {
 
   return (
     <div>
-      <div className="container game-submit with-shadow">
+      {!allGamesPlayed() && (<div className="container game-submit with-shadow">
         <div className="side-by-side">
           <FormControl style={{ width: '55%' }}>
             <InputLabel
@@ -86,7 +86,6 @@ function TournamentGamesContainer({ tournament }) {
               labelId="select-label"
               id="select"
               value={game.home.participant}
-              disabled={allGamesPlayed()}
               label="Player"
               input={
                 <OutlinedInput
@@ -119,7 +118,6 @@ function TournamentGamesContainer({ tournament }) {
               autoComplete="off"
               InputLabelProps={{ shrink: true }}
               value={game.home.goals}
-              disabled={allGamesPlayed()}
               onChange={(ev) => handleGoalsChange(ev, 'home')}
               sx={{
                 '& .MuiOutlinedInput-root': {
@@ -166,7 +164,6 @@ function TournamentGamesContainer({ tournament }) {
               labelId="select-label"
               id="select"
               value={game.away.participant}
-              disabled={allGamesPlayed()}
               label="Player"
               input={
                 <OutlinedInput
@@ -199,7 +196,6 @@ function TournamentGamesContainer({ tournament }) {
               autoComplete="off"
               InputLabelProps={{ shrink: true }}
               value={game.away.goals}
-              disabled={allGamesPlayed()}
               onChange={(ev) => handleGoalsChange(ev, 'away')}
               sx={{
                 '& .MuiOutlinedInput-root': {
@@ -238,7 +234,7 @@ function TournamentGamesContainer({ tournament }) {
             Submit game
           </Button>
         </div>
-      </div>
+      </div>)}
       <div style={{ marginBottom: '1.5rem' }}>
         {!!tournament.games.length &&
           tournament.games.map((game, index) => (

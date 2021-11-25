@@ -27,7 +27,7 @@ function TournamentPlay() {
   const finalizeTournament = () => {
     getOneMethod(`http://${ip}:8888/tournaments/complete/`, id).then(() => {
       setOpenFinalModal(false);
-      // navigate('/');
+      navigate('/');
     });
   };
 
@@ -40,7 +40,6 @@ function TournamentPlay() {
       .catch((err) => console.log(new Error(err)));
   };
 
-  tournament && console.log(tournament);
   return (
     <div className="tournament-play-page">
       {loading && <Loader />}
