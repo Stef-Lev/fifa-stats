@@ -75,13 +75,13 @@ const Header = () => {
           <MenuItem
             className="app-item"
             sx={{
-              fontSize: '1.3rem',
+              fontSize: '1.6rem',
               '&::after': {
                 content: '""',
                 position: 'absolute',
-                height: '1px',
+                height: '2px',
                 width: '90%',
-                backgroundColor: '#c4c4c4',
+                backgroundColor: '#c2f158',
                 margin: '0 auto',
                 left: '0',
                 right: '0',
@@ -120,8 +120,8 @@ const Header = () => {
           PaperProps={{
             sx: {
               width: '75%',
-              backgroundColor: '#222222',
-              color: '#ffffff',
+              backgroundColor: '#1b2433',
+              color: '#fff',
             },
           }}
           {...{
