@@ -70,7 +70,16 @@ function TournamentGamesContainer({ tournament }) {
       <div className="container game-submit with-shadow">
         <div className="side-by-side">
           <FormControl style={{ width: '55%' }}>
-            <InputLabel id="select-label" shrink>
+            <InputLabel
+              id="select-label"
+              shrink
+              sx={{
+                color: '#fff',
+                '&.Mui-focused': {
+                  color: '#c2f158',
+                },
+              }}
+            >
               Player
             </InputLabel>
             <Select
@@ -79,7 +88,19 @@ function TournamentGamesContainer({ tournament }) {
               value={game.home.participant}
               disabled={allGamesPlayed()}
               label="Player"
-              input={<OutlinedInput notched label="Player" />}
+              input={
+                <OutlinedInput
+                  notched
+                  label="Player"
+                  sx={{
+                    '&.MuiOutlinedInput-root': {
+                      color: '#fff',
+                      '& fieldset': { borderColor: '#fff' },
+                      '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                    },
+                  }}
+                />
+              }
               onChange={(ev) => handlePlayerChange(ev, 'home')}
             >
               {tournament.participants.map((item, index) => (
@@ -100,6 +121,26 @@ function TournamentGamesContainer({ tournament }) {
               value={game.home.goals}
               disabled={allGamesPlayed()}
               onChange={(ev) => handleGoalsChange(ev, 'home')}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#fff',
+                  '& fieldset': {
+                    borderColor: '#fff',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#c2f158',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#c2f158',
+                  },
+                },
+                '& label': {
+                  color: 'white',
+                  '&.Mui-focused': {
+                    color: '#c2f158',
+                  },
+                },
+              }}
             />
             <FormHelperText />
           </FormControl>
@@ -109,7 +150,16 @@ function TournamentGamesContainer({ tournament }) {
         </div>
         <div className="side-by-side">
           <FormControl style={{ width: '55%' }}>
-            <InputLabel id="select-label" shrink>
+            <InputLabel
+              id="select-label"
+              shrink
+              sx={{
+                color: '#fff',
+                '&.Mui-focused': {
+                  color: '#c2f158',
+                },
+              }}
+            >
               Player
             </InputLabel>
             <Select
@@ -118,7 +168,19 @@ function TournamentGamesContainer({ tournament }) {
               value={game.away.participant}
               disabled={allGamesPlayed()}
               label="Player"
-              input={<OutlinedInput notched label="Player" />}
+              input={
+                <OutlinedInput
+                  notched
+                  label="Player"
+                  sx={{
+                    '&.MuiOutlinedInput-root': {
+                      color: '#fff',
+                      '& fieldset': { borderColor: '#fff' },
+                      '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                    },
+                  }}
+                />
+              }
               onChange={(ev) => handlePlayerChange(ev, 'away')}
             >
               {tournament.participants.map((item, index) => (
@@ -139,6 +201,26 @@ function TournamentGamesContainer({ tournament }) {
               value={game.away.goals}
               disabled={allGamesPlayed()}
               onChange={(ev) => handleGoalsChange(ev, 'away')}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#fff',
+                  '& fieldset': {
+                    borderColor: '#fff',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#c2f158',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#c2f158',
+                  },
+                },
+                '& label': {
+                  color: 'white',
+                  '&.Mui-focused': {
+                    color: '#c2f158',
+                  },
+                },
+              }}
             />
             <FormHelperText />
           </FormControl>

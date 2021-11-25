@@ -76,6 +76,10 @@ const Header = () => {
             className="app-item"
             sx={{
               fontSize: '1.6rem',
+              '&:hover': {
+                backgroundColor: '#c2f158',
+                color: '#1b2433',
+              },
               '&::after': {
                 content: '""',
                 position: 'absolute',

@@ -44,7 +44,7 @@ function TournamentCreate() {
   };
 
   return (
-    <div>
+    <div className="tournament-create-page">
       {loading && <Loader />}
       {!loading && (
         <>
@@ -61,7 +61,7 @@ function TournamentCreate() {
               }}
             />
           </div>
-
+          <Typography>Participants</Typography>
           <PlayerSelection playerList={players} addAction={playerAdd} />
 
           {participants.map((item, index) => (

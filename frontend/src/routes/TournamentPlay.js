@@ -42,7 +42,7 @@ function TournamentPlay() {
 
   tournament && console.log(tournament);
   return (
-    <div>
+    <div className="tournament-play-page">
       {loading && <Loader />}
       {!loading && (
         <>
@@ -66,6 +66,7 @@ function TournamentPlay() {
                 variant="outlined"
                 color="error"
                 onClick={() => setOpenCancelModal(true)}
+                sx={{ color: '#c2f158', borderColor: '#c2f158' }}
               >
                 Quit
               </Button>

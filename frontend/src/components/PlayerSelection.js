@@ -39,13 +39,34 @@ function PlayerSelection({ playerList, addAction }) {
   return (
     <div className="flex-between container">
       <FormControl style={{ width: '40%' }}>
-        <InputLabel id="select-label">Player</InputLabel>
+        <InputLabel
+          id="select-label"
+          sx={{
+            color: '#fff',
+            '&.Mui-focused': {
+              color: '#c2f158',
+            },
+          }}
+        >
+          Player
+        </InputLabel>
         <Select
           labelId="select-label"
           id="select"
           value={player.name}
           label="Player"
-          input={<OutlinedInput label="Player" />}
+          input={
+            <OutlinedInput
+              label="Player"
+              sx={{
+                '&.MuiOutlinedInput-root': {
+                  color: '#fff',
+                  '& fieldset': { borderColor: '#fff' },
+                  '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                },
+              }}
+            />
+          }
           onChange={handlePlayerChange}
         >
           {playerList.map((player, index) => (
@@ -64,6 +85,26 @@ function PlayerSelection({ playerList, addAction }) {
           autoComplete="off"
           value={player.team}
           onChange={handleTeamChange}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              color: '#fff',
+              '& fieldset': {
+                borderColor: '#fff',
+              },
+              '&:hover fieldset': {
+                borderColor: '#c2f158',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#c2f158',
+              },
+            },
+            '& label': {
+              color: 'white',
+              '&.Mui-focused': {
+                color: '#c2f158',
+              },
+            },
+          }}
         />
         <FormHelperText />
       </FormControl>

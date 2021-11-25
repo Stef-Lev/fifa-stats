@@ -29,7 +29,6 @@
     margin-bottom: 0.5rem;
   }
   .container {
-    background-color: $white;
     border-radius: $radius;
     margin-bottom: 1.5rem;
     padding: 10px;
@@ -46,8 +45,8 @@
     }
   }
   .participant-item {
-    background-color: $brandDark;
-    color: $white;
+    background-color: $brandTeal;
+    color: $brandDarkBlue;
     border-radius: $radius;
     padding: 8px;
     margin-bottom: 1rem;
@@ -90,6 +89,9 @@
     width: 60px;
   }
 
+  .loader-container {
+    margin: 33% auto;
+  }
   .loader {
     color: $brandLightGreen;
     width: 120px !important;
@@ -99,31 +101,32 @@
     font-size: 4rem;
   }
   .MuiTableContainer-root {
+    background-color: transparent;
     margin-bottom: 1rem;
   }
 
   .brand-btn {
-    background-color: $brandLight;
+    background-color: $brandPurple;
     color: $white;
     font-weight: 700;
 
     &:hover {
-      background-color: $brandLight;
+      background-color: $brandPurple;
     }
     &:active {
-      background-color: $brandLight;
+      background-color: $brandPurple;
     }
   }
   .finalize-btn {
-    background-color: $brandScarlett;
-    color: $white;
+    background-color: $brandLightGreen;
+    color: $brandDarkBlue;
     font-weight: 700;
 
     &:hover {
-      background-color: $brandScarlett;
+      background-color: $brandLightGreen;
     }
     &:active {
-      background-color: $brandScarlett;
+      background-color: $brandLightGreen;
     }
   }
   .home-image-container {
@@ -148,10 +151,11 @@
 
     .home-item {
       height: 100px;
-      color: $brandLightBlue;
+      color: $brandTeal;
       background-color: $brandDarkGrey;
       padding: 0.5rem;
       font-size: 1.3rem;
+      border-radius: $radius;
     }
   }
 
@@ -174,6 +178,19 @@
   }
   .MuiTableCell-root {
     padding: 6px;
+    color: $white;
+    border: none;
+    // border-color: $brandLightGreen;
+    background-color: $brandDarkGrey;
+  }
+  .tournament-create-page {
+    color: $white;
+    label span .MuiSvgIcon-root {
+      color: $brandLightGreen;
+    }
+  }
+  .tournament-play-page {
+    color: $white;
   }
 }
 #modal {

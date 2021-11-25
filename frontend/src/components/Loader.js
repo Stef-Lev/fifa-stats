@@ -3,7 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 function Loader() {
   return (
-    <div className="flex-centered">
+    <div className="flex-centered loader-container">
       <CircularProgress className="loader" />
     </div>
   );
