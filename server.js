@@ -2,13 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const PORT = 8888;
+const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const player = require('./routes/playerRoute');
 const game = require('./routes/gameRoute');
 const tournament = require('./routes/tournamentRoute');
+const { path } = require('express/lib/application');
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGODB_URI);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build/'));
+  app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+  });
+}
 
 const db = mongoose.connection;
 db.on('error', () => console.error('Error'));

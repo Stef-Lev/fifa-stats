@@ -32,5 +32,5 @@ export const deleteMethod = (url, id) => {
   }).then((res) => res.json());
 };
 
-const debug = true;
+const debug = false;
 export const ip = debug ? '192.168.1.12' : 'localhost';
