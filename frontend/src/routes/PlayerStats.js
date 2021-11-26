@@ -14,8 +14,10 @@ function PlayerStats({ tab, players }) {
   const goalRows = players.sort(
     (a, b) => b.goals.for - b.goals.against - (a.goals.for - a.goals.against),
   );
+  const tournamentRows = players.sort(
+    (a, b) => b.tournaments_played.won - a.tournaments_played.won,
+  );
 
-  console.log(gameRows);
   return (
     <div>
       {tab === 'games' && (
@@ -41,7 +43,7 @@ function PlayerStats({ tab, players }) {
                     <TableCell>{won}</TableCell>
                     <TableCell>{drawn}</TableCell>
                     <TableCell>{lost}</TableCell>
-                    <TableCell>{Math.floor((won / total) * 100)}</TableCell>
+                    <TableCell>{Math.floor((won / total) * 100)}%</TableCell>
                   </TableRow>
                 );
               })}
@@ -89,7 +91,7 @@ function PlayerStats({ tab, players }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {goalRows.map((row, index) => {
+              {tournamentRows.map((row, index) => {
                 const { won, total } = row.tournaments_played;
                 return (
                   <TableRow key={`${row.name}_${index}`}>

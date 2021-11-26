@@ -33,4 +33,4 @@ export const deleteMethod = (url, id) => {
 };
 
 const debug = true;
-export const ip = debug ? '192.168.1.12' : 'localhost';
+export const ip = debug ? '192.168.1.4' : 'localhost';
