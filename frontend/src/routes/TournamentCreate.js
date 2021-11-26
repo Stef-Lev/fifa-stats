@@ -47,8 +47,6 @@ function TournamentCreate() {
       navigate(`/tournaments/${res._id}`),
     );
   };
-  console.log('PLAYER_LIST', playerList);
-  console.log('PARTICIPANT_LIST', participants);
 
   return (
     <div className="tournament-create-page">

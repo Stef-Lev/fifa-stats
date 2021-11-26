@@ -21,6 +21,7 @@ function Tournaments() {
         tournaments.map((item, index) => (
           <TournamentItem key={index + 1} tournament={item} />
         ))}
+      {!loading && !tournaments.length && <h2>No tournaments yet</h2>}
     </div>
   );
 }
