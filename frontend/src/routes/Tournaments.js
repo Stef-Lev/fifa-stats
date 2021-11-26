@@ -18,7 +18,9 @@ function Tournaments() {
     <div className="tournaments-list-page">
       {loading && <Loader />}
       {!loading &&
-        tournaments.map((item) => <TournamentItem tournament={item} />)}
+        tournaments.map((item, index) => (
+          <TournamentItem key={index + 1} tournament={item} />
+        ))}
     </div>
   );
 }

@@ -19,7 +19,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ paddingTop: '32px' }}>{children}</Box>}
+      {value === index && <Box sx={{ padding: '32px 0 16px' }}>{children}</Box>}
     </div>
   );
 }
@@ -35,6 +35,34 @@ function PlayerStatistics() {
   const [value, setValue] = React.useState(0);
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [facts, setFacts] = useState({
+    tournamentMaster: '',
+    topOffense: '',
+    topDefense: '',
+  });
+
+  const calculateTopTournament = (players) => {
+    if (players.length) {
+      let sortedTournaments = players.sort(
+        (a, b) => b.tournaments_played.won - a.tournaments_played.won,
+      );
+      return sortedTournaments[0].name;
+    }
+  };
+  const calculateTopOffense = (players) => {
+    if (players.length) {
+      let sortedOffense = players.sort((a, b) => b.goals.for - a.goals.for);
+      return sortedOffense[0].name;
+    }
+  };
+  const calculateTopDefense = (players) => {
+    if (players.length) {
+      let sortedDefense = players.sort(
+        (a, b) => a.goals.against - b.goals.against,
+      );
+      return sortedDefense[0].name;
+    }
+  };
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
@@ -46,6 +74,14 @@ function PlayerStatistics() {
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    setFacts({
+      tournamentMaster: calculateTopTournament(players),
+      topOffense: calculateTopOffense(players),
+      topDefense: calculateTopDefense(players),
+    });
+  }, [players]);
 
   return (
     <div className="players-stats-page">
@@ -119,6 +155,20 @@ function PlayerStatistics() {
               <PlayerStats players={players} tab="tournaments" />
             </TabPanel>
           </Box>
+          <div className="stat-facts">
+            <p>
+              Tournament Master:{' '}
+              <span className="fact-player">{facts.tournamentMaster}</span>
+            </p>
+            <p>
+              Top Offense:{' '}
+              <span className="fact-player">{facts.topOffense}</span>
+            </p>
+            <p>
+              Top Defense:{' '}
+              <span className="fact-player">{facts.topDefense}</span>
+            </p>
+          </div>
         </div>
       )}
     </div>

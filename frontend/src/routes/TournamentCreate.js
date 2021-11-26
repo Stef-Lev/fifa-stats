@@ -9,28 +9,33 @@ import PlayerSelection from '../components/PlayerSelection';
 import Participant from '../components/Participant';
 
 function TournamentCreate() {
-  const [participants, setParticipants] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState(1);
   const [players, setPlayers] = useState([]);
+  const [playerList, setPlayerList] = useState([]);
+  const [participants, setParticipants] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     getAllMethod(`http://${ip}:8888/players`).then((data) => {
       setPlayers(data);
+      setPlayerList(data);
       setLoading(false);
     });
   }, []);
 
   const playerAdd = (item) => {
     setParticipants([...participants, item]);
-    setPlayers(players.filter((player) => player.name !== item.name));
+    setPlayerList((prevState) =>
+      prevState.filter((player) => player._id !== item.id),
+    );
   };
 
   const playerRemove = (item) => {
-    setParticipants(participants.filter((player) => player.name !== item.name));
-    setPlayers([...players, item]);
+    setParticipants(participants.filter((player) => player.id !== item.id));
+    setPlayerList((prevState) =>
+      [...prevState, players.filter((player) => player._id === item.id)].flat(),
+    );
   };
 
   const handleSubmit = () => {
@@ -42,6 +47,8 @@ function TournamentCreate() {
       navigate(`/tournaments/${res._id}`),
     );
   };
+  console.log('PLAYER_LIST', playerList);
+  console.log('PARTICIPANT_LIST', participants);
 
   return (
     <div className="tournament-create-page">
@@ -62,7 +69,7 @@ function TournamentCreate() {
             />
           </div>
           <Typography>Participants</Typography>
-          <PlayerSelection playerList={players} addAction={playerAdd} />
+          <PlayerSelection playerList={playerList} addAction={playerAdd} />
 
           {participants.map((item, index) => (
             <Participant
@@ -72,16 +79,17 @@ function TournamentCreate() {
             />
           ))}
 
-          <div className="flex-centered">
-            <Button
-              className="brand-btn"
-              variant="contained"
-              onClick={handleSubmit}
-              disabled={participants.length < 2}
-            >
-              Start Tournament
-            </Button>
-          </div>
+          {participants.length >= 2 && (
+            <div className="flex-centered">
+              <Button
+                className="brand-btn"
+                variant="contained"
+                onClick={handleSubmit}
+              >
+                Start Tournament
+              </Button>
+            </div>
+          )}
         </>
       )}
     </div>
