@@ -67,174 +67,176 @@ function TournamentGamesContainer({ tournament }) {
 
   return (
     <div>
-      {!allGamesPlayed() && (<div className="container game-submit with-shadow">
-        <div className="side-by-side">
-          <FormControl style={{ width: '55%' }}>
-            <InputLabel
-              id="select-label"
-              shrink
-              sx={{
-                color: '#fff',
-                '&.Mui-focused': {
-                  color: '#c2f158',
-                },
-              }}
-            >
-              Player
-            </InputLabel>
-            <Select
-              labelId="select-label"
-              id="select"
-              value={game.home.participant}
-              label="Player"
-              input={
-                <OutlinedInput
-                  notched
-                  label="Player"
-                  sx={{
-                    '&.MuiOutlinedInput-root': {
-                      color: '#fff',
-                      '& fieldset': { borderColor: '#fff' },
-                      '&.Mui-focused fieldset': { borderColor: '#c2f158' },
-                    },
-                  }}
-                />
-              }
-              onChange={(ev) => handlePlayerChange(ev, 'home')}
-            >
-              {tournament.participants.map((item, index) => (
-                <MenuItem key={index + 1} value={item.player.name}>
-                  {item.player.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className="goal-input">
-            <TextField
-              type="number"
-              id="outlined-basic"
-              label="Goals"
-              variant="outlined"
-              autoComplete="off"
-              InputLabelProps={{ shrink: true }}
-              value={game.home.goals}
-              onChange={(ev) => handleGoalsChange(ev, 'home')}
-              sx={{
-                '& .MuiOutlinedInput-root': {
+      {!allGamesPlayed() && (
+        <div className="container game-submit with-shadow">
+          <div className="side-by-side">
+            <FormControl style={{ width: '55%' }}>
+              <InputLabel
+                id="select-label"
+                shrink
+                sx={{
                   color: '#fff',
-                  '& fieldset': {
-                    borderColor: '#fff',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#c2f158',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: '#c2f158',
-                  },
-                },
-                '& label': {
-                  color: 'white',
                   '&.Mui-focused': {
                     color: '#c2f158',
                   },
-                },
-              }}
-            />
-            <FormHelperText />
-          </FormControl>
-          <div className="flex-centered">
-            <Chip label="Home" color="primary" />
-          </div>
-        </div>
-        <div className="side-by-side">
-          <FormControl style={{ width: '55%' }}>
-            <InputLabel
-              id="select-label"
-              shrink
-              sx={{
-                color: '#fff',
-                '&.Mui-focused': {
-                  color: '#c2f158',
-                },
-              }}
-            >
-              Player
-            </InputLabel>
-            <Select
-              labelId="select-label"
-              id="select"
-              value={game.away.participant}
-              label="Player"
-              input={
-                <OutlinedInput
-                  notched
-                  label="Player"
-                  sx={{
-                    '&.MuiOutlinedInput-root': {
-                      color: '#fff',
-                      '& fieldset': { borderColor: '#fff' },
-                      '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                }}
+              >
+                Player
+              </InputLabel>
+              <Select
+                labelId="select-label"
+                id="select"
+                value={game.home.participant}
+                label="Player"
+                input={
+                  <OutlinedInput
+                    notched
+                    label="Player"
+                    sx={{
+                      '&.MuiOutlinedInput-root': {
+                        color: '#fff',
+                        '& fieldset': { borderColor: '#fff' },
+                        '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                      },
+                    }}
+                  />
+                }
+                onChange={(ev) => handlePlayerChange(ev, 'home')}
+              >
+                {tournament.participants.map((item, index) => (
+                  <MenuItem key={index + 1} value={item.player.name}>
+                    {item.player.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl className="goal-input">
+              <TextField
+                type="number"
+                id="outlined-basic"
+                label="Goals"
+                variant="outlined"
+                autoComplete="off"
+                InputLabelProps={{ shrink: true }}
+                value={game.home.goals}
+                onChange={(ev) => handleGoalsChange(ev, 'home')}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    color: '#fff',
+                    '& fieldset': {
+                      borderColor: '#fff',
                     },
-                  }}
-                />
-              }
-              onChange={(ev) => handlePlayerChange(ev, 'away')}
-            >
-              {tournament.participants.map((item, index) => (
-                <MenuItem key={index + 1} value={item.player.name}>
-                  {item.player.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className="goal-input">
-            <TextField
-              type="number"
-              id="outlined-basic"
-              label="Goals"
-              variant="outlined"
-              autoComplete="off"
-              InputLabelProps={{ shrink: true }}
-              value={game.away.goals}
-              onChange={(ev) => handleGoalsChange(ev, 'away')}
-              sx={{
-                '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      borderColor: '#c2f158',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#c2f158',
+                    },
+                  },
+                  '& label': {
+                    color: 'white',
+                    '&.Mui-focused': {
+                      color: '#c2f158',
+                    },
+                  },
+                }}
+              />
+              <FormHelperText />
+            </FormControl>
+            <div className="flex-centered">
+              <Chip label="Home" color="primary" />
+            </div>
+          </div>
+          <div className="side-by-side">
+            <FormControl style={{ width: '55%' }}>
+              <InputLabel
+                id="select-label"
+                shrink
+                sx={{
                   color: '#fff',
-                  '& fieldset': {
-                    borderColor: '#fff',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#c2f158',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: '#c2f158',
-                  },
-                },
-                '& label': {
-                  color: 'white',
                   '&.Mui-focused': {
                     color: '#c2f158',
                   },
-                },
-              }}
-            />
-            <FormHelperText />
-          </FormControl>
+                }}
+              >
+                Player
+              </InputLabel>
+              <Select
+                labelId="select-label"
+                id="select"
+                value={game.away.participant}
+                label="Player"
+                input={
+                  <OutlinedInput
+                    notched
+                    label="Player"
+                    sx={{
+                      '&.MuiOutlinedInput-root': {
+                        color: '#fff',
+                        '& fieldset': { borderColor: '#fff' },
+                        '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                      },
+                    }}
+                  />
+                }
+                onChange={(ev) => handlePlayerChange(ev, 'away')}
+              >
+                {tournament.participants.map((item, index) => (
+                  <MenuItem key={index + 1} value={item.player.name}>
+                    {item.player.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl className="goal-input">
+              <TextField
+                type="number"
+                id="outlined-basic"
+                label="Goals"
+                variant="outlined"
+                autoComplete="off"
+                InputLabelProps={{ shrink: true }}
+                value={game.away.goals}
+                onChange={(ev) => handleGoalsChange(ev, 'away')}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    color: '#fff',
+                    '& fieldset': {
+                      borderColor: '#fff',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#c2f158',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#c2f158',
+                    },
+                  },
+                  '& label': {
+                    color: 'white',
+                    '&.Mui-focused': {
+                      color: '#c2f158',
+                    },
+                  },
+                }}
+              />
+              <FormHelperText />
+            </FormControl>
+            <div className="flex-centered">
+              <Chip label="Away" color="error" />
+            </div>
+          </div>
           <div className="flex-centered">
-            <Chip label="Away" color="error" />
+            <Button
+              className="brand-btn"
+              variant="contained"
+              onClick={handleGameSubmit}
+              disabled={allGamesPlayed()}
+            >
+              Submit game
+            </Button>
           </div>
         </div>
-        <div className="flex-centered">
-          <Button
-            className="brand-btn"
-            variant="contained"
-            onClick={handleGameSubmit}
-            disabled={allGamesPlayed()}
-          >
-            Submit game
-          </Button>
-        </div>
-      </div>)}
+      )}
       <div style={{ marginBottom: '1.5rem' }}>
         {!!tournament.games.length &&
           tournament.games.map((game, index) => (

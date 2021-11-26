@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Loader from '../components/Loader';
 import { getAllMethod, ip } from '../helpers/httpService';
 // import PlayerDataItem from '../components/PlayerDataItem';
-import PlayerStats from './PlayerStats';
+import PlayerStats from '../components/PlayersTables';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -31,7 +31,7 @@ function a11yProps(index) {
   };
 }
 
-function Players() {
+function PlayerStatistics() {
   const [value, setValue] = React.useState(0);
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -125,4 +125,4 @@ function Players() {
   );
 }
 
-export default Players;
+export default PlayerStatistics;

@@ -35,7 +35,7 @@ function Standings({ tournament }) {
     <div>
       <TableContainer component={Paper}>
         <Table aria-label="simple table" size="small">
-          <TableHead>
+          <TableHead sx={{ borderBottom: '1px solid white' }}>
             <TableRow>
               <TableCell>Player</TableCell>
               <TableCell>Points</TableCell>

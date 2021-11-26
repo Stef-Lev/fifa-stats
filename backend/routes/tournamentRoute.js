@@ -89,6 +89,7 @@ exports.finalize = catchAsync(async (req, res) => {
   tournament.participants.forEach((player) =>
     updatePlayerData(player, tournament),
   );
+  tournament.status = 'Completed';
 
   await tournament.save();
 

@@ -1,14 +1,24 @@
-import React from 'react';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-// import Button from '@mui/material/Button';
+import React, { useState, useEffect } from 'react';
+import { getAllMethod, ip } from '../helpers/httpService';
+import TournamentItem from '../components/TournamentItem';
+import Loader from '../components/Loader';
 
 function Tournaments() {
+  const [tournaments, setTournaments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllMethod(`http://${ip}:8888/tournaments`).then((data) => {
+      setTournaments(data);
+      setLoading(false);
+    });
+  }, []);
+
   return (
-    <div>
-      <h2>Tournaments</h2>
+    <div className="tournaments-list-page">
+      {loading && <Loader />}
+      {!loading &&
+        tournaments.map((item) => <TournamentItem tournament={item} />)}
     </div>
   );
 }

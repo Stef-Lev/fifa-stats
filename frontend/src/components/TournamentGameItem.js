@@ -13,9 +13,11 @@ function TournamentGameItem({ game, tournament }) {
     ).then(() => window.location.reload());
   };
 
+  const itemWidth = tournament.status !== 'Completed' ? '80%' : '100%';
+
   return (
     <div className="game-item flex-between with-shadow">
-      <div className="flex-between" style={{ width: '80%' }}>
+      <div className="flex-between" style={{ width: itemWidth }}>
         <div className="flex-between">
           <Chip label={home.goals} color="primary" size="small" />
           <div className="score">{home.team}</div>
@@ -25,9 +27,11 @@ function TournamentGameItem({ game, tournament }) {
           <Chip label={away.goals} color="error" size="small" />
         </div>
       </div>
-      <div className="flex-centered">
-        <HighlightOffIcon onClick={removeGame} />
-      </div>
+      {tournament.status !== 'Completed' && (
+        <div className="flex-centered">
+          <HighlightOffIcon onClick={removeGame} />
+        </div>
+      )}
     </div>
   );
 }

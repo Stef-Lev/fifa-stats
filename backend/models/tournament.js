@@ -13,7 +13,7 @@ const TournamentSchema = new Schema({
       player: {
         id: String,
         name: String,
-        team: String
+        team: String,
       },
       team: String,
       goals: {
@@ -25,6 +25,11 @@ const TournamentSchema = new Schema({
       _id: false,
     },
   ],
+  status: {
+    type: String,
+    enum: ['In progress', 'Completed'],
+    default: 'In progress',
+  },
   winner: { type: Schema.Types.ObjectId, ref: 'Player' },
 });
 

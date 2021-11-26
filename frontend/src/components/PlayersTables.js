@@ -23,7 +23,7 @@ function PlayerStats({ tab, players }) {
       {tab === 'games' && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table" size="medium">
-            <TableHead>
+            <TableHead sx={{ borderBottom: '1px solid white' }}>
               <TableRow>
                 <TableCell>Player</TableCell>
                 <TableCell>Won</TableCell>
@@ -43,7 +43,9 @@ function PlayerStats({ tab, players }) {
                     <TableCell>{won}</TableCell>
                     <TableCell>{drawn}</TableCell>
                     <TableCell>{lost}</TableCell>
-                    <TableCell>{Math.floor((won / total) * 100)}%</TableCell>
+                    <TableCell>
+                      {Math.floor((won / total) * 100) || 0}%
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -54,7 +56,7 @@ function PlayerStats({ tab, players }) {
       {tab === 'goals' && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table" size="medium">
-            <TableHead>
+            <TableHead sx={{ borderBottom: '1px solid white' }}>
               <TableRow>
                 <TableCell>Player</TableCell>
                 <TableCell>For</TableCell>
@@ -82,7 +84,7 @@ function PlayerStats({ tab, players }) {
       {tab === 'tournaments' && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table" size="medium">
-            <TableHead>
+            <TableHead sx={{ borderBottom: '1px solid white' }}>
               <TableRow>
                 <TableCell>Player</TableCell>
                 <TableCell>Won</TableCell>
@@ -100,7 +102,9 @@ function PlayerStats({ tab, players }) {
                     </TableCell>
                     <TableCell>{won}</TableCell>
                     <TableCell>{total}</TableCell>
-                    <TableCell>{Math.floor((won / total) * 100)}%</TableCell>
+                    <TableCell>
+                      {Math.floor((won / total) * 100) || 0}%
+                    </TableCell>
                   </TableRow>
                 );
               })}

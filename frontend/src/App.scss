@@ -97,9 +97,6 @@
     width: 120px !important;
     height: 120px !important;
   }
-  .MuiRating-root {
-    font-size: 4rem;
-  }
   .MuiTableContainer-root {
     background-color: transparent;
     margin-bottom: 1rem;
@@ -180,7 +177,6 @@
     padding: 6px;
     color: $white;
     border: none;
-    // border-color: $brandLightGreen;
     background-color: $brandDarkGrey;
   }
   .tournament-create-page {
@@ -188,12 +184,33 @@
     label span .MuiSvgIcon-root {
       color: $brandLightGreen;
     }
+    .MuiRating-root {
+      font-size: 4rem;
+    }
   }
   .tournament-play-page {
     color: $white;
   }
   .player-stats-page {
     color: $white;
+  }
+  .tournaments-list-page {
+    color: $white;
+  }
+  .tournament-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .MuiSvgIcon-root {
+      color: $brandLightGreen;
+    }
+    #chart-icon {
+      color: $white;
+    }
+    .MuiRating-root {
+      font-size: 1.5rem;
+    }
   }
 }
 #modal {

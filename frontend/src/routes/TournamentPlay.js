@@ -52,24 +52,26 @@ function TournamentPlay() {
           <div>
             <Standings tournament={tournament} />
             <TournamentGamesContainer tournament={tournament} />
-            <div className="flex-centered">
-              <Button
-                variant="contained"
-                className="finalize-btn"
-                onClick={() => setOpenFinalModal(true)}
-                style={{ marginRight: '20px' }}
-              >
-                Finalize tournament
-              </Button>
-              <Button
-                variant="outlined"
-                color="error"
-                onClick={() => setOpenCancelModal(true)}
-                sx={{ color: '#c2f158', borderColor: '#c2f158' }}
-              >
-                Quit
-              </Button>
-            </div>
+            {tournament.status !== 'Completed' && (
+              <div className="flex-centered">
+                <Button
+                  variant="contained"
+                  className="finalize-btn"
+                  onClick={() => setOpenFinalModal(true)}
+                  style={{ marginRight: '20px' }}
+                >
+                  Finalize tournament
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => setOpenCancelModal(true)}
+                  sx={{ color: '#c2f158', borderColor: '#c2f158' }}
+                >
+                  Quit
+                </Button>
+              </div>
+            )}
             <MessageModal
               open={openCancelModal}
               onClose={() => setOpenCancelModal(false)}
