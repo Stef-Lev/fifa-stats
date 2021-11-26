@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // Players
 app.post('/players', player.add);
 app.get('/players', player.list);
+app.post('/players/clear', player.clear);
 
 // Tournaments
 app.post('/tournaments', tournament.add);

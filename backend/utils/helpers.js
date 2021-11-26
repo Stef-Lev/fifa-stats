@@ -75,19 +75,20 @@ const updatePlayerData = async (participant, tournament) => {
   }
   player.games_played.statistics.total += playerGames.length;
 
+  // console.log(tournament.games)
   //Update goals and stats
-  player.games_played.list.map((item) => {
+  tournament.games.map((item) => {
     const { home, away } = item.opponents;
     if (home.player == player.id) {
       player.goals.for += home.goals;
       player.goals.against += away.goals;
       calculateResults(home.points, player);
-    } else {
+    } else if (away.player == player.id) {
       player.goals.for += away.goals;
       player.goals.against += home.goals;
       calculateResults(away.points, player);
     }
-  });
+  })
 
   player.tournaments_played.total += 1;
   const champ = tournament.participants[0];

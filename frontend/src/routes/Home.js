@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeGridItem from '../components/HomeGridItem';
+// import {postMethod,ip} from '../helpers/httpService'
 
 const links = [
   { label: 'Tournaments', link: '/tournaments' },
@@ -7,6 +8,13 @@ const links = [
   { label: 'New tournament', link: '/tournaments/new' },
   { label: 'Add player', link: '/player/add' },
 ];
+
+// Button to clear players data
+// function clearPlayers () {
+//   postMethod(`http://${ip}:8888/players/clear`, {}).then((res) =>
+//       console.log(res)
+//     );
+// }
 
 function Home() {
   return (
@@ -24,6 +32,7 @@ function Home() {
           />
         ))}
       </div>
+      {/* <button onClick={() => clearPlayers()}>CLICK TO CLEAR!</button> */}
     </div>
   );
 }
