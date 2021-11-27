@@ -8,7 +8,7 @@ function TournamentGameItem({ game, tournament }) {
 
   const removeGame = () => {
     deleteMethod(
-      `http://${ip}:8888/tournaments/${tournament._id}/game/${game._id}`,
+      `/tournaments/${tournament._id}/game/${game._id}`,
       '',
     ).then(() => window.location.reload());
   };

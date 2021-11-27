@@ -7,8 +7,7 @@ function Tournaments() {
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getAllMethod(`http://${ip}:8888/tournaments`).then((data) => {
+  useEffect(() => `/tournaments`).then((data) => {
       setTournaments(data);
       setLoading(false);
     });

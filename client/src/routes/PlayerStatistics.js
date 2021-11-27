@@ -69,7 +69,7 @@ function PlayerStatistics() {
   };
 
   useEffect(() => {
-    getAllMethod(`http://${ip}:8888/players/`).then((data) => {
+    getAllMethod(`/players/`).then((data) => {
       setPlayers(data);
       setLoading(false);
     });

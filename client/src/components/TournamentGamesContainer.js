@@ -60,7 +60,7 @@ function TournamentGamesContainer({ tournament }) {
   };
 
   const handleGameSubmit = () => {
-    updateMethod(`http://${ip}:8888/tournaments/`, tournament._id, game).then(
+    updateMethod(`/tournaments/`, tournament._id, game).then(
       () => window.location.reload(),
     );
   };
