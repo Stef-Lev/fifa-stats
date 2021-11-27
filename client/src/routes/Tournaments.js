@@ -7,7 +7,7 @@ function Tournaments() {
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => `/tournaments`).then((data) => {
+  useEffect(() => { getAllMethod(`/tournaments`).then((data) => {
       setTournaments(data);
       setLoading(false);
     });
