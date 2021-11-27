@@ -7,16 +7,9 @@ const mongoose = require('mongoose');
 const player = require('./routes/playerRoute');
 const game = require('./routes/gameRoute');
 const tournament = require('./routes/tournamentRoute');
-const { path } = require('express/lib/application');
+const path = require('path');
 
 mongoose.connect(process.env.MONGODB_URI);
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build/'));
-  app.get('*', (req,res) => {
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
-  });
-}
 
 const db = mongoose.connection;
 db.on('error', () => console.error('Error'));
@@ -46,6 +39,17 @@ app.post('/games', game.add);
 app.get('/games', game.list);
 app.get('/games/:id', game.getOne);
 app.delete('/tournaments/:tid/game/:gid', game.delete);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname,'/client/build')));
+  app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname,'client','build','index.html'));
+  });
+} else {
+  app.get('/',(req,res) => {
+    res.send('API running')
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
