@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
-import { updateMethod, ip } from '../helpers/httpService';
+import { updateMethod } from '../helpers/httpService';
 
 function TournamentGamesContainer({ tournament }) {
   const [game, setGame] = useState({
@@ -60,7 +60,7 @@ function TournamentGamesContainer({ tournament }) {
   };
 
   const handleGameSubmit = () => {
-    updateMethod(`http://${ip}:8888/tournaments/`, tournament._id, game).then(
+    updateMethod(`/tournaments/`, tournament._id, game).then(
       () => window.location.reload(),
     );
   };

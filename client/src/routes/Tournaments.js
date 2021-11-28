@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllMethod, ip } from '../helpers/httpService';
+import { getAllMethod } from '../helpers/httpService';
 import TournamentItem from '../components/TournamentItem';
 import Loader from '../components/Loader';
 
@@ -8,7 +8,7 @@ function Tournaments() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllMethod(`http://${ip}:8888/tournaments`).then((data) => {
+    getAllMethod(`/tournaments`).then((data) => {
       setTournaments(data);
       setLoading(false);
     });

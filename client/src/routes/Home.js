@@ -11,7 +11,7 @@ const links = [
 
 // Button to clear players data
 // function clearPlayers () {
-//   postMethod(`http://${ip}:8888/players/clear`, {}).then((res) =>
+//   postMethod(`/players/clear`, {}).then((res) =>
 //       console.log(res)
 //     );
 // }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from '../components/Loader';
-import { getAllMethod, ip } from '../helpers/httpService';
+import { getAllMethod } from '../helpers/httpService';
 // import PlayerDataItem from '../components/PlayerDataItem';
 import PlayerStats from '../components/PlayersTables';
 import Typography from '@mui/material/Typography';
@@ -69,7 +69,7 @@ function PlayerStatistics() {
   };
 
   useEffect(() => {
-    getAllMethod(`http://${ip}:8888/players/`).then((data) => {
+    getAllMethod(`/players/`).then((data) => {
       setPlayers(data);
       setLoading(false);
     });

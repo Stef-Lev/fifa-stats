@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { getAllMethod, postMethod, ip } from '../helpers/httpService';
+import { getAllMethod, postMethod } from '../helpers/httpService';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import PlayerSelection from '../components/PlayerSelection';
@@ -17,7 +17,7 @@ function TournamentCreate() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllMethod(`http://${ip}:8888/players`).then((data) => {
+    getAllMethod(`/players`).then((data) => {
       setPlayers(data);
       setPlayerList(data);
       setLoading(false);
@@ -43,7 +43,7 @@ function TournamentCreate() {
       teams_rating: rating,
       participants,
     };
-    postMethod(`http://${ip}:8888/tournaments`, reqBody).then((res) =>
+    postMethod(`/tournaments`, reqBody).then((res) =>
       navigate(`/tournaments/${res._id}`),
     );
   };

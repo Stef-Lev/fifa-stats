@@ -2,18 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const PORT = 8888;
+const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
+const database = process.env.NODE_ENV === 'production' ?  process.env.MONGODB_URI: process.env.MONGO_DEV_URI;
+const databaseName = database.split('/')[3].split('?')[0].toUpperCase();
 const player = require('./routes/playerRoute');
 const game = require('./routes/gameRoute');
 const tournament = require('./routes/tournamentRoute');
+const path = require('path');
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(database);
 
 const db = mongoose.connection;
 db.on('error', () => console.error('Error'));
 db.once('open', () => {
-  console.log('Database connected...');
+  console.log(`Database ${databaseName} connected...`);
 });
 
 app.use(cors());
@@ -38,6 +41,17 @@ app.post('/games', game.add);
 app.get('/games', game.list);
 app.get('/games/:id', game.getOne);
 app.delete('/tournaments/:tid/game/:gid', game.delete);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname,'/client/build')));
+  app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname,'client','build','index.html'));
+  });
+} else {
+  app.get('/',(req,res) => {
+    res.send('API running')
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Serving on port ${PORT}`);
