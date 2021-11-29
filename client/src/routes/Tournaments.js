@@ -8,7 +8,7 @@ function Tournaments() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllMethod(`/tournaments`).then((data) => {
+    getAllMethod(`/api/tournaments`).then((data) => {
       setTournaments(data);
       setLoading(false);
     });

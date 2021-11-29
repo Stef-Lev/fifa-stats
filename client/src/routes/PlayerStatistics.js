@@ -69,7 +69,7 @@ function PlayerStatistics() {
   };
 
   useEffect(() => {
-    getAllMethod(`/players/`).then((data) => {
+    getAllMethod(`/api/players/`).then((data) => {
       setPlayers(data);
       setLoading(false);
     });

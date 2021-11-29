@@ -18,21 +18,21 @@ function TournamentPlay() {
   const [openFinalModal, setOpenFinalModal] = useState(false);
 
   useEffect(() => {
-    getOneMethod(`/tournaments/`, id).then((data) => {
+    getOneMethod(`/api/tournaments/`, id).then((data) => {
       setTournament(data);
       setLoading(false);
     });
   }, [id]);
 
   const finalizeTournament = () => {
-    getOneMethod(`/tournaments/complete/`, id).then(() => {
+    getOneMethod(`/api/tournaments/complete/`, id).then(() => {
       setOpenFinalModal(false);
       navigate('/');
     });
   };
 
   const cancelTournament = () => {
-    deleteMethod(`/tournaments/`, id)
+    deleteMethod(`/api/tournaments/`, id)
       .then(() => {
         setOpenCancelModal(false);
         navigate('/');

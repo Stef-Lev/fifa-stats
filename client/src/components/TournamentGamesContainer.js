@@ -60,7 +60,7 @@ function TournamentGamesContainer({ tournament }) {
   };
 
   const handleGameSubmit = () => {
-    updateMethod(`/tournaments/`, tournament._id, game).then(
+    updateMethod(`/api/tournaments/`, tournament._id, game).then(
       () => window.location.reload(),
     );
   };

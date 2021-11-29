@@ -17,7 +17,7 @@ function TournamentCreate() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllMethod(`/players`).then((data) => {
+    getAllMethod(`/api/players`).then((data) => {
       setPlayers(data);
       setPlayerList(data);
       setLoading(false);
@@ -43,7 +43,7 @@ function TournamentCreate() {
       teams_rating: rating,
       participants,
     };
-    postMethod(`/tournaments`, reqBody).then((res) =>
+    postMethod(`/api/tournaments`, reqBody).then((res) =>
       navigate(`/tournaments/${res._id}`),
     );
   };

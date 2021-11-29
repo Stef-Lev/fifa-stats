@@ -24,23 +24,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Players
-app.post('/players', player.add);
-app.get('/players', player.list);
-app.post('/players/clear', player.clear);
+app.post('/api/players', player.add);
+app.get('/api/players', player.list);
+app.post('/api/players/clear', player.clear);
 
 // Tournaments
-app.post('/tournaments', tournament.add);
-app.get('/tournaments/complete/:id', tournament.finalize);
-app.get('/tournaments/:id', tournament.show);
-app.get('/tournaments', tournament.list);
-app.put('/tournaments/:id', tournament.update);
-app.delete('/tournaments/:id', tournament.cancel);
+app.post('/api/tournaments', tournament.add);
+app.get('/api/tournaments/complete/:id', tournament.finalize);
+app.get('/api/tournaments/:id', tournament.show);
+app.get('/api/tournaments', tournament.list);
+app.put('/api/tournaments/:id', tournament.update);
+app.delete('/api/tournaments/:id', tournament.cancel);
 
 // Games
-app.post('/games', game.add);
-app.get('/games', game.list);
-app.get('/games/:id', game.getOne);
-app.delete('/tournaments/:tid/game/:gid', game.delete);
+app.post('/api/games', game.add);
+app.get('/api/games', game.list);
+app.get('/api/games/:id', game.getOne);
+app.delete('/api/tournaments/:tid/game/:gid', game.delete);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname,'/client/build')));
