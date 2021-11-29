@@ -67,7 +67,7 @@ function TournamentGamesContainer({ tournament }) {
 
   return (
     <div>
-      {!allGamesPlayed() && (
+      {!allGamesPlayed() && tournament.status !== 'Completed' && (
         <div className="container game-submit with-shadow">
           <div className="side-by-side">
             <FormControl style={{ width: '55%' }}>
