@@ -2,6 +2,7 @@ import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import ErrorPage from './routes/ErrorPage';
+import LoginPage from './routes/LoginPage';
 import Tournaments from './routes/Tournaments';
 import PlayerStatistics from './routes/PlayerStatistics';
 import TournamentPlay from './routes/TournamentPlay';
@@ -15,6 +16,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
+            <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/" element={<Home />} />
             <Route
               exact
@@ -35,6 +37,7 @@ function App() {
 export default App;
 
 // @TODO
+// Change personal statistics
 // Style desktop navbar
 // Players overall comparison page
 // Tournaments list page with chip that indicates if it is completed or not an leads to the read-only tournament page.
