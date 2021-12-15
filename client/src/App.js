@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import ErrorPage from './routes/ErrorPage';
 import LoginPage from './routes/LoginPage';
+import RegisterPage from './routes/RegisterPage';
 import Tournaments from './routes/Tournaments';
 import PlayerStatistics from './routes/PlayerStatistics';
 import TournamentPlay from './routes/TournamentPlay';
@@ -16,7 +17,6 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/" element={<Home />} />
             <Route
               exact
@@ -26,6 +26,8 @@ function App() {
             <Route exact path="/tournaments/:id" element={<TournamentPlay />} />
             <Route exact path="/tournaments" element={<Tournaments />} />
             <Route exact path="/players" element={<PlayerStatistics />} />
+            <Route exact path="/login" element={<LoginPage />} />
+            <Route exact path="/register" element={<RegisterPage />} />
             <Route element={<ErrorPage />} />
           </Routes>
         </Router>

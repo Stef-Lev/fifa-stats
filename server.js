@@ -4,13 +4,14 @@ const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
+const verifyJWT = require('./utils/verifyJWT');
+const bodyParser = require('body-parser');
 const database =
   process.env.NODE_ENV === 'production'
     ? process.env.MONGODB_URI
     : process.env.MONGO_DEV_URI;
 const databaseName = database.split('/')[3].split('?')[0].toUpperCase();
 const player = require('./routes/playerRoute');
-const user = require('./routes/userRoute');
 const game = require('./routes/gameRoute');
 const tournament = require('./routes/tournamentRoute');
 const path = require('path');
@@ -18,6 +19,7 @@ const path = require('path');
 mongoose.connect(database);
 
 const db = mongoose.connection;
+const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 db.on('error', () => console.error('Error'));
 db.once('open', () => {
   console.log(`Database ${databaseName} connected...`);
@@ -26,9 +28,12 @@ db.once('open', () => {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json(), urlEncodedParser);
 
 // Authentication
-app.post('/api/register', user.register);
+app.post('/api/register', player.register);
+app.post('/api/login', player.login);
+app.get('/api/getplayername', verifyJWT, player.getPlayerName);
 
 // Players
 app.post('/api/players', player.add);
