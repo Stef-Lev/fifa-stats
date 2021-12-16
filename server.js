@@ -5,6 +5,7 @@ const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const verifyJWT = require('./utils/verifyJWT');
+const auth = require('./utils/auth');
 const bodyParser = require('body-parser');
 const database =
   process.env.NODE_ENV === 'production'
@@ -33,7 +34,8 @@ app.use(bodyParser.json(), urlEncodedParser);
 // Authentication
 app.post('/api/register', player.register);
 app.post('/api/login', player.login);
-app.get('/api/getplayername', verifyJWT, player.getPlayerName);
+app.post('/api/tokenValid', player.validateToken);
+app.get('/api/', auth, player.getPlayerData);
 
 // Players
 app.post('/api/players', player.add);

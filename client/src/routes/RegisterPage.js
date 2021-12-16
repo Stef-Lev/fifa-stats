@@ -10,7 +10,7 @@ function RegisterPage() {
     fullname: '',
     username: '',
     password: '',
-    confirmPassword: '',
+    passwordCheck: '',
   });
   const [error, setError] = useState({ type: '', status: false, msg: '' });
 
@@ -18,7 +18,7 @@ function RegisterPage() {
     if (error.status) {
       setError({ type: '', status: false, msg: '' });
     }
-  }, [user.password, user.confirmPassword]);
+  }, [user.password, user.passwordCheck]);
 
   useEffect(() => {
     fetch('/isUserAuth', {
@@ -30,7 +30,7 @@ function RegisterPage() {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    if (user.password !== user.confirmPassword) {
+    if (user.password !== user.passwordCheck) {
       setError({
         type: 'password',
         status: true,
@@ -59,8 +59,8 @@ function RegisterPage() {
     setUser({ ...user, password: event.target.value });
   };
 
-  const handleConfirmPasswordChange = (event) => {
-    setUser({ ...user, confirmPassword: event.target.value });
+  const handlepasswordCheckChange = (event) => {
+    setUser({ ...user, passwordCheck: event.target.value });
   };
 
   return (
@@ -169,10 +169,10 @@ function RegisterPage() {
           error={
             error.status &&
             error.type === 'password' &&
-            user.confirmPassword !== ''
+            user.passwordCheck !== ''
           }
           helperText={
-            error.type === 'password' && user.confirmPassword !== ''
+            error.type === 'password' && user.passwordCheck !== ''
               ? error.msg
               : ''
           }
@@ -180,8 +180,8 @@ function RegisterPage() {
           label="Confirm password"
           variant="outlined"
           autoComplete="off"
-          value={user.confirmPassword}
-          onChange={handleConfirmPasswordChange}
+          value={user.passwordCheck}
+          onChange={handlepasswordCheckChange}
           fullWidth
           sx={{
             marginBottom: '16px',

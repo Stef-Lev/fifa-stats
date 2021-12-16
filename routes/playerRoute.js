@@ -36,62 +36,84 @@ exports.clear = catchAsync(async (req, res) => {
 });
 
 exports.register = catchAsync(async (req, res) => {
-  const player = req.body;
-  const takenUsername = await Player.findOne({
-    username: player.username,
-  });
-
-  if (takenUsername) {
-    res.json({ message: 'Username is being used by another player' });
-  } else {
-    player.password = await bcrypt.hash(req.body.password, 10);
-
-    const dbPlayer = new Player({
-      name: player.name,
-      username: player.username.toLowerCase(),
-      password: player.password,
+  try {
+    let { fullname, username, password, passwordCheck } = req.body;
+    // password
+    if (!fullname || !username || !password || !passwordCheck)
+      return res.status(400).json({ msg: 'Not all fields have been entered.' });
+    if (password.length < 5)
+      return res.status(400).json({
+        msg: 'The password needs to be at least 5 characters long.',
+      });
+    if (password !== passwordCheck)
+      return res
+        .status(400)
+        .json({ msg: 'Enter the same password twice for verification.' });
+    const existingUser = await User.findOne({ username });
+    if (existingUser)
+      return res
+        .status(400)
+        .json({ msg: 'A player with this username already exists.' });
+    if (!fullname) fullname = username;
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+    const newPlayer = new Player({
+      username,
+      password: passwordHash,
+      fullname,
     });
-    dbPlayer.save();
-    res.json({ message: 'Success' });
+    const savedUser = await newPlayer.save();
+    res.json(savedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
 exports.login = catchAsync(async (req, res) => {
-  const userLoggingIn = req.body;
-
-  Player.findOne({ username: userLoggingIn.username }).then((dbUser) => {
-    if (!dbUser) {
-      return res.json({ message: 'Invalid Username or Password' });
-    }
-    bcrypt
-      .compare(userLoggingIn.password, dbUser.password)
-      .then((isCorrect) => {
-        if (isCorrect) {
-          const payload = {
-            id: dbUser._id,
-            username: dbUser.username,
-          };
-          jwt.sign(
-            payload,
-            process.env.JWT_SECRET,
-            { expiresIn: 86400 },
-            (err, token) => {
-              if (err) return res.json({ message: err });
-              return res.json({
-                message: 'success',
-                token: `Bearer ${token}`,
-              });
-            },
-          );
-        } else {
-          return res.json({
-            message: 'Invalid Username or Password',
-          });
-        }
-      });
-  });
+  try {
+    const { username, password } = req.body;
+    // validate
+    if (!username || !password)
+      return res.status(400).json({ msg: 'Not all fields have been entered.' });
+    const player = await Player.findOne({ username });
+    if (!player)
+      return res
+        .status(400)
+        .json({ msg: 'No player with this username has been registered.' });
+    const isMatch = await bcrypt.compare(password, player.password);
+    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials.' });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        fullname: user.fullname,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-exports.getPlayerName = catchAsync(async (req, res) => {
-  res.json({ isLoggedIn: true, username: req.user.username });
+exports.validateToken = catchAsync(async (req, res) => {
+  try {
+    const token = req.header('x-auth-token');
+    if (!token) return res.json(false);
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.json(false);
+    const player = await Player.findById(verified.id);
+    if (!player) return res.json(false);
+    return res.json(true);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+exports.getPlayerData = catchAsync(async (req, res) => {
+  const player = await Player.findById(req.user);
+  res.json({
+    fullname: player.fullname,
+    username: player.username,
+    id: player._id,
+  });
 });

@@ -41,6 +41,8 @@ function App() {
 export default App;
 
 // @TODO
+// Create a user context
+// Refactor unnecessary code
 // Change personal statistics
 // Style desktop navbar
 // Players overall comparison page
