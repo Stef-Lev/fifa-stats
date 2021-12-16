@@ -20,7 +20,7 @@ function Home() {
   return (
     <div>
       <div className="home-image-container">
-        <img src="/fifa22.jpeg" className="fifa-image" alt="fifa" />
+        <div className="fifa-image" alt="fifa"></div>
       </div>
       <div className="home-grid">
         {links.map((item, index) => (

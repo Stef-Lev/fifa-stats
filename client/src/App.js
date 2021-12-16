@@ -6,6 +6,7 @@ import LoginPage from './routes/LoginPage';
 import RegisterPage from './routes/RegisterPage';
 import Tournaments from './routes/Tournaments';
 import PlayerStatistics from './routes/PlayerStatistics';
+import ProfilePage from './routes/ProfilePage';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 import Header from './components/Header';
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/players" element={<PlayerStatistics />} />
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/register" element={<RegisterPage />} />
+            <Route exact path="/profile/:playerId" element={<ProfilePage />} />
             <Route element={<ErrorPage />} />
           </Routes>
         </Router>
