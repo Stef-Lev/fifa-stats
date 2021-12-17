@@ -105,7 +105,7 @@ function LoginPage() {
             },
           }}
         />
-        <Button fullWidth className="finalize-btn" onClick={handleLogin}>
+        <Button fullWidth className="auth-btn" onClick={handleLogin}>
           LOGIN
         </Button>
       </div>

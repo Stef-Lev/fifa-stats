@@ -9,13 +9,6 @@ const links = [
   { label: 'Add player', link: '/player/add' },
 ];
 
-// Button to clear players data
-// function clearPlayers () {
-//   postMethod(`/players/clear`, {}).then((res) =>
-//       console.log(res)
-//     );
-// }
-
 function Home() {
   return (
     <div>
@@ -32,7 +25,6 @@ function Home() {
           />
         ))}
       </div>
-      {/* <button onClick={() => clearPlayers()}>CLICK TO CLEAR!</button> */}
     </div>
   );
 }
