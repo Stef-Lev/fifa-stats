@@ -15,6 +15,8 @@ const player = require('./routes/playerRoute');
 const game = require('./routes/gameRoute');
 const tournament = require('./routes/tournamentRoute');
 const userAuth = require('./routes/authRoute');
+const cookieParser = require('cookie-parser');
+const jwtSecret = process.env.JWT_SECRET;
 const path = require('path');
 
 mongoose.connect(database);
@@ -30,6 +32,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json(), urlEncodedParser);
+app.use(cookieParser(jwtSecret));
 
 // Authentication
 app.post('/api/auth/register', userAuth.registerPlayer);

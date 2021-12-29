@@ -4,23 +4,24 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import useAuth from '../hooks/useAuth';
-import useForm from '../hooks/useForm';
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const { registerUser, error } = useAuth();
-  const { values, handleChange } = useForm({
-    initialValues: {
-      fullname: '',
-      username: '',
-      password: '',
-      passwordCheck: '',
-    },
+  const { registerPlayer, error } = useAuth();
+  const [player, setPlayer] = useState({
+    fullname: '',
+    username: '',
+    password: '',
+    passwordCheck: '',
   });
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await registerUser(values);
+    await registerPlayer(player);
+  };
+
+  const handleInputChange = (event, field) => {
+    setPlayer({ ...player, [field]: event.target.value });
   };
 
   return (
@@ -32,8 +33,8 @@ function RegisterPage() {
           label="Full name"
           variant="outlined"
           autoComplete="off"
-          value={values.fullname}
-          onChange={handleChange}
+          value={player.fullname}
+          onChange={(e) => handleInputChange(e, 'fullname')}
           fullWidth
           sx={{
             marginBottom: '16px',
@@ -62,8 +63,8 @@ function RegisterPage() {
           label="Username"
           variant="outlined"
           autoComplete="off"
-          value={values.username}
-          onChange={handleChange}
+          value={player.username}
+          onChange={(e) => handleInputChange(e, 'username')}
           fullWidth
           sx={{
             marginBottom: '16px',
@@ -93,8 +94,8 @@ function RegisterPage() {
           label="Password"
           variant="outlined"
           autoComplete="off"
-          value={values.password}
-          onChange={handleChange}
+          value={player.password}
+          onChange={(e) => handleInputChange(e, 'password')}
           fullWidth
           sx={{
             marginBottom: '16px',
@@ -124,8 +125,8 @@ function RegisterPage() {
           label="Confirm password"
           variant="outlined"
           autoComplete="off"
-          value={values.passwordCheck}
-          onChange={handleChange}
+          value={player.passwordCheck}
+          onChange={(e) => handleInputChange(e, 'passwordCheck')}
           fullWidth
           sx={{
             marginBottom: '16px',

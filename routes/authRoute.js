@@ -73,6 +73,7 @@ exports.loginPlayer = catchAsync(async (req, res, next) => {
 
 exports.checkPlayer = catchAsync(async (req, res, next) => {
   let currentPlayer;
+  console.log('cookies!!!', req.cookies.jwt);
   if (req.cookies.jwt) {
     const token = req.cookies.jwt;
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);

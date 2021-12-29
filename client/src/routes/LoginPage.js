@@ -6,17 +6,17 @@ import Link from '@mui/material/Link';
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState({ username: '', password: '' });
+  const [player, setPlayer] = useState({ username: '', password: '' });
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(user);
+    console.log(player);
     fetch('/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(player),
     })
       .then((res) => res.json())
       .then((data) => localStorage.setItem('token', data.token));
@@ -32,12 +32,8 @@ function LoginPage() {
       .then((data) => (data.isLoggedIn ? navigate('/') : null));
   }, [navigate]);
 
-  const handleUsernameChange = (event) => {
-    setUser({ ...user, username: event.target.value });
-  };
-
-  const handlePasswordChange = (event) => {
-    setUser({ ...user, password: event.target.value });
+  const handleInputChange = (event, field) => {
+    setPlayer({ ...player, [field]: event.target.value });
   };
 
   return (
@@ -49,8 +45,8 @@ function LoginPage() {
           label="Username"
           variant="outlined"
           autoComplete="off"
-          value={user.username}
-          onChange={handleUsernameChange}
+          value={player.username}
+          onChange={(e) => handleInputChange(e, 'username')}
           fullWidth
           sx={{
             marginBottom: '26px',
@@ -80,8 +76,8 @@ function LoginPage() {
           label="Password"
           variant="outlined"
           autoComplete="off"
-          value={user.password}
-          onChange={handlePasswordChange}
+          value={player.password}
+          onChange={(e) => handleInputChange(e, 'password')}
           fullWidth
           sx={{
             marginBottom: '26px',

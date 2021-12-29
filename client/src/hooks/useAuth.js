@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { PlayerContext } from '../context/PlayerContext';
 
 export default function useAuth() {
@@ -8,7 +9,8 @@ export default function useAuth() {
   const [error, setError] = useState(null);
 
   const setPlayerContext = async () => {
-    return await fetch('/api/auth/player')
+    return await axios
+      .get('/api/auth/player')
       .then((res) => {
         setPlayer(res.data.currentPlayer);
         navigate('/home');
@@ -22,15 +24,13 @@ export default function useAuth() {
     console.log(data);
     const { username, fullname, password, passwordCheck } = data;
 
-    return fetch('/api/auth/register', {
-      method: 'POST',
-      body: {
+    return axios
+      .post('/api/auth/register', {
         username,
         fullname,
         password,
         passwordCheck,
-      },
-    })
+      })
       .then(async () => {
         await setPlayerContext();
       })
@@ -42,13 +42,11 @@ export default function useAuth() {
   //login user
   const loginPlayer = async (data) => {
     const { username, password } = data;
-    return fetch('/api/auth/login', {
-      method: 'POST',
-      body: {
+    return axios
+      .post('/api/auth/login', {
         username,
         password,
-      },
-    })
+      })
       .then(async () => {
         await setPlayerContext();
       })
