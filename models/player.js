@@ -1,10 +1,20 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 const PlayerSchema = new Schema({
   name: String,
   username: { type: String, required: true },
   password: { type: String, required: true },
+  passwordCheck:{
+    type: String, 
+    required: true,
+    validate: {
+      validator: function(el) {
+          return el === this.password;
+      }, message: 'Passwords don\'t match.'
+  }
+  },
   role: {
     type: String,
     enum: ['user', 'admin'],
@@ -28,5 +38,21 @@ const PlayerSchema = new Schema({
     against: { type: Number, default: 0 },
   },
 });
+
+//schema middleware to apply before saving 
+PlayerSchema.pre('save', async function(next) {
+     
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordCheck = undefined; 
+  next();
+});
+
+//check password at login
+PlayerSchema.methods.correctPassword = async function(
+  candidatePassword,
+  userPassword
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
 module.exports = mongoose.model('Player', PlayerSchema);

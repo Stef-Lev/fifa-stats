@@ -10,13 +10,25 @@ import ProfilePage from './routes/ProfilePage';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 import Header from './components/Header';
+import useFindPlayer from './hooks/useFindPlayer';
+import { PlayerContext } from './context/PlayerContext'
 
 function App() {
+    
+  const { 
+    player, 
+    setPlayer, 
+    isLoading } = useFindPlayer();
+
+    console.log(player, isLoading)
+
   return (
     <div className="App">
       <div>
         <Router>
+        <PlayerContext.Provider value={{ player, setPlayer, isLoading }}>
           <Header />
+          <div style={{color:'red'}}>{isLoading}</div>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route
@@ -32,6 +44,7 @@ function App() {
             <Route exact path="/profile/:playerId" element={<ProfilePage />} />
             <Route element={<ErrorPage />} />
           </Routes>
+          </PlayerContext.Provider>
         </Router>
       </div>
     </div>

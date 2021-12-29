@@ -53,6 +53,7 @@ exports.registerPlayer = async (req, res, next) => {
       fullname: fullname,
       username: username,
       password: password,
+      passwordCheck: passwordCheck
     });
     createPlayerToken(newPlayer, 201, req, res);
   } catch (err) {
@@ -76,7 +77,6 @@ exports.loginPlayer = catchAsync(async (req, res, next) => {
 
 exports.checkPlayer = catchAsync(async (req, res, next) => {
   let currentPlayer;
-  console.log('cookies!!!', req.cookies.jwt_token);
   if (req.cookies.jwt_token) {
     const token = req.cookies.jwt_token;
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);

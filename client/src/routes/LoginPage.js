@@ -11,7 +11,7 @@ function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(player);
-    fetch('/login', {
+    fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -21,16 +21,6 @@ function LoginPage() {
       .then((res) => res.json())
       .then((data) => localStorage.setItem('token', data.token));
   };
-
-  useEffect(() => {
-    fetch('/isUserAuth', {
-      headers: {
-        'x-access-token': localStorage.getItem('token'),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? navigate('/') : null));
-  }, [navigate]);
 
   const handleInputChange = (event, field) => {
     setPlayer({ ...player, [field]: event.target.value });

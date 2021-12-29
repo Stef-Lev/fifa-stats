@@ -16,7 +16,8 @@ export default function useAuth() {
         navigate('/home');
       })
       .catch((err) => {
-        setError(err.response.data);
+        console.error(err)
+        // setError(err.response.data);
       });
   };
 
