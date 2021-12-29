@@ -16,10 +16,13 @@ const createPlayerToken = async (player, code, req, res) => {
   let d = new Date();
   d.setDate(d.getDate() + 30);
 
-  res.cookie('jwt', token, {
+  res.cookie('jwt_token', token, {
     expires: d,
     httpOnly: true,
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    secure:
+      req.secure ||
+      req.headers['x-forwarded-proto'] === 'https' ||
+      req.headers['x-forwarded-proto'] === 'http',
     sameSite: 'none',
   });
 
@@ -73,9 +76,9 @@ exports.loginPlayer = catchAsync(async (req, res, next) => {
 
 exports.checkPlayer = catchAsync(async (req, res, next) => {
   let currentPlayer;
-  console.log('cookies!!!', req.cookies.jwt);
-  if (req.cookies.jwt) {
-    const token = req.cookies.jwt;
+  console.log('cookies!!!', req.cookies.jwt_token);
+  if (req.cookies.jwt_token) {
+    const token = req.cookies.jwt_token;
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     currentPlayer = await Player.findById(decoded.id);
   } else {
