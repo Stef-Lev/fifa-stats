@@ -12,17 +12,18 @@ export default function useAuth() {
     return await axios
       .get('/api/auth/player')
       .then((res) => {
+        console.log('BEFORE setPlayer', res);
         setPlayer(res.data.currentPlayer);
-        navigate('/home');
+        console.log('AFTER setPlayer', res);
+        navigate('/');
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err);
         // setError(err.response.data);
       });
   };
 
   const registerPlayer = async (data) => {
-    console.log(data);
     const { username, fullname, password, passwordCheck } = data;
 
     return axios
@@ -36,7 +37,8 @@ export default function useAuth() {
         await setPlayerContext();
       })
       .catch((err) => {
-        return setError(err.response.data);
+        console.error(err);
+        // return setError(err.response.data);
       });
   };
 

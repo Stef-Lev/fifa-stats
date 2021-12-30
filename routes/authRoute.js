@@ -53,7 +53,7 @@ exports.registerPlayer = async (req, res, next) => {
       fullname: fullname,
       username: username,
       password: password,
-      passwordCheck: passwordCheck
+      passwordCheck: passwordCheck,
     });
     createPlayerToken(newPlayer, 201, req, res);
   } catch (err) {
@@ -88,7 +88,7 @@ exports.checkPlayer = catchAsync(async (req, res, next) => {
 });
 //log user out
 exports.logoutPlayer = catchAsync(async (req, res) => {
-  res.cookie('jwt', 'loggedout', {
+  res.cookie('jwt_token', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });

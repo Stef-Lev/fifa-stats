@@ -75,7 +75,6 @@ const updatePlayerData = async (participant, tournament) => {
   }
   player.games_played.statistics.total += playerGames.length;
 
-  // console.log(tournament.games)
   //Update goals and stats
   tournament.games.map((item) => {
     const { home, away } = item.opponents;
@@ -88,7 +87,7 @@ const updatePlayerData = async (participant, tournament) => {
       player.goals.against += home.goals;
       calculateResults(away.points, player);
     }
-  })
+  });
 
   player.tournaments_played.total += 1;
   const champ = tournament.participants[0];
