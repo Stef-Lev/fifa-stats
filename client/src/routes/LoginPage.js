@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { loginPlayer, error } = useAuth();
   const [player, setPlayer] = useState({ username: '', password: '' });
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(player);
-    fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(player),
-    })
-      .then((res) => res.json())
-      .then((data) => localStorage.setItem('token', data.token));
+    await loginPlayer(player);
   };
 
   const handleInputChange = (event, field) => {

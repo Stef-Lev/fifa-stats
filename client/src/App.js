@@ -16,7 +16,7 @@ import { PlayerContext } from './context/PlayerContext';
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
 
-  console.log(player, isLoading, setPlayer);
+  console.log(player, isLoading);
 
   return (
     <div className="App">

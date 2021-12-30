@@ -9,12 +9,12 @@ export default function useAuth() {
   const [error, setError] = useState(null);
 
   const setPlayerContext = async () => {
+    console.log('SET');
     return await axios
       .get('/api/auth/player')
       .then((res) => {
-        console.log('BEFORE setPlayer', res);
         setPlayer(res.data.currentPlayer);
-        console.log('AFTER setPlayer', res);
+        console.log(res);
         navigate('/');
       })
       .catch((err) => {
