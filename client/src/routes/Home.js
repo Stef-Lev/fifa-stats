@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import HomeGridItem from '../components/HomeGridItem';
-// import {postMethod,ip} from '../helpers/httpService'
+import { PlayerContext } from '../context/PlayerContext';
+import Loader from '../components/Loader';
 
 const links = [
   { label: 'Tournaments', link: '/tournaments' },
@@ -10,8 +11,16 @@ const links = [
 ];
 
 function Home() {
+  const { player, isLoading } = useContext(PlayerContext);
+
   return (
     <div>
+      {isLoading ? <Loader /> : (<>
+      {player && (
+        <div className="greeting">
+          <p>Welcome {player.fullname}!</p>
+        </div>
+        )}
       <div className="home-image-container">
         <div className="fifa-image" alt="fifa"></div>
       </div>
@@ -25,6 +34,7 @@ function Home() {
           />
         ))}
       </div>
+      </>)}
     </div>
   );
 }

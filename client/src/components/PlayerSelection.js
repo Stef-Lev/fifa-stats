@@ -17,7 +17,7 @@ function PlayerSelection({ playerList, addAction }) {
   };
 
   const filterPlayer = (list, selected) => {
-    return list.filter((player) => player.name === selected)[0];
+    return list.filter((player) => player.fullname === selected)[0];
   };
 
   const handleSubmit = () => {
@@ -29,12 +29,13 @@ function PlayerSelection({ playerList, addAction }) {
 
   const handlePlayerChange = (event) => {
     const selectedPlayer = filterPlayer(playerList, event.target.value);
-    setPlayer({ ...player, name: selectedPlayer.name, id: selectedPlayer._id });
+    setPlayer({ ...player, name: selectedPlayer.fullname, id: selectedPlayer._id });
   };
 
   const handleTeamChange = (event) => {
     setPlayer({ ...player, team: event.target.value });
   };
+  console.log(playerList)
 
   return (
     <div className="flex-between container">
@@ -70,8 +71,8 @@ function PlayerSelection({ playerList, addAction }) {
           onChange={handlePlayerChange}
         >
           {playerList.map((player, index) => (
-            <MenuItem key={index + 1} value={player.name}>
-              {player.name}
+            <MenuItem key={index + 1} value={player.fullname}>
+              {player.fullname}
             </MenuItem>
           ))}
         </Select>

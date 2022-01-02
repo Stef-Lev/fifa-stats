@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const headerData = [
   {
@@ -32,6 +33,10 @@ const headerData = [
     label: 'Add player',
     href: '/player/add',
   },
+  {
+    label: 'Logout',
+    href: '/logout',
+  }
 ];
 
 const Header = () => {

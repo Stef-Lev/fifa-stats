@@ -8,7 +8,6 @@ const PlayerSchema = new Schema({
   password: { type: String, required: true },
   passwordCheck: {
     type: String,
-    required: true,
     validate: {
       validator: function (el) {
         return el === this.password;

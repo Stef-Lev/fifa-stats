@@ -46,13 +46,13 @@ function PlayerStatistics() {
       let sortedTournaments = players.sort(
         (a, b) => b.tournaments_played.won - a.tournaments_played.won,
       );
-      return sortedTournaments[0].name;
+      return sortedTournaments[0].fullname;
     }
   };
   const calculateTopOffense = (players) => {
     if (players.length) {
       let sortedOffense = players.sort((a, b) => b.goals.for - a.goals.for);
-      return sortedOffense[0].name;
+      return sortedOffense[0].fullname;
     }
   };
   const calculateTopDefense = (players) => {
@@ -60,7 +60,7 @@ function PlayerStatistics() {
       let sortedDefense = players.sort(
         (a, b) => a.goals.against - b.goals.against,
       );
-      return sortedDefense[0].name;
+      return sortedDefense[0].fullname;
     }
   };
 

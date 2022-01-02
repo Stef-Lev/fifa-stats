@@ -151,7 +151,7 @@ function RegisterPage() {
           }}
         />
         <Button fullWidth className="auth-btn" onClick={handleRegister}>
-          SIGN UP
+          REGISTER
         </Button>
       </div>
       <div className="bottom-msg">

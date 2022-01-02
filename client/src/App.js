@@ -79,9 +79,10 @@ function App() {
 export default App;
 
 // @TODO
-// Create a user context
-// Refactor unnecessary code
-// Change personal statistics
+// Move home to /home and create landing page to /
+// Remove unneccessary  grid items
+// Add personal statistics
 // Style desktop navbar
-// Players overall comparison page
-// Tournaments list page with chip that indicates if it is completed or not an leads to the read-only tournament page.
+// Handle logout
+// If player logged in redirect to home if goes to /login page
+// Add graphs to personal data

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { PlayerContext } from '../context/PlayerContext';
 import Loader from '../components/Loader';
 
