@@ -2,16 +2,21 @@ import React, { useContext } from 'react';
 import HomeGridItem from '../components/HomeGridItem';
 import { PlayerContext } from '../context/PlayerContext';
 import Loader from '../components/Loader';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const links = [
   { label: 'Tournaments', link: '/tournaments' },
-  { label: 'Player statistics', link: '/players' },
-  { label: 'New tournament', link: '/tournaments/new' },
+  { label: 'Players data', link: '/players' },
+  { label: 'My data', link: '/mydata' },
   { label: 'Add player', link: '/player/add' },
 ];
 
 function Home() {
   const { player, isLoading } = useContext(PlayerContext);
+  const navigate = useNavigate();
+
+  //new tournament route /tournaments/new
 
   return (
     <div>
@@ -34,6 +39,9 @@ function Home() {
           />
         ))}
       </div>
+      {player.role === 'admin' && (<Button fullWidth className="brand-btn" onClick={() => navigate('/tournaments/new')}>
+          New Tournament
+        </Button>)}
       </>)}
     </div>
   );
