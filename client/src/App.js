@@ -80,7 +80,6 @@ export default App;
 
 // @TODO
 // Move home to /home and create landing page to /
-// Remove unneccessary  grid items
 // Add personal statistics
 // Style desktop navbar
 // Handle logout

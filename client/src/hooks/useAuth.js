@@ -9,7 +9,6 @@ export default function useAuth() {
   const [error, setError] = useState(null);
 
   const setPlayerContext = async () => {
-    console.log('SET');
     return await axios
       .get('/api/auth/player')
       .then((res) => {
@@ -42,7 +41,7 @@ export default function useAuth() {
       });
   };
 
-  //login user
+  //login player
   const loginPlayer = async (data) => {
     const { username, password } = data;
     return axios
