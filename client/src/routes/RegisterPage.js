@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import useAuth from '../hooks/useAuth';
 
 function RegisterPage() {
-  const navigate = useNavigate();
-  const { registerPlayer, error } = useAuth();
+  const { registerPlayer } = useAuth();
   const [player, setPlayer] = useState({
     fullname: '',
     username: '',

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 
 function LoginPage() {
-  const navigate = useNavigate();
-  const { loginPlayer, error } = useAuth();
+  const { loginPlayer } = useAuth();
   const [player, setPlayer] = useState({ username: '', password: '' });
 
   const handleLogin = async (e) => {

@@ -12,6 +12,7 @@ import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { PlayerContext } from '../context/PlayerContext';
+import useLogout from '../hooks/useLogout';
 
 const headerData = [
   {
@@ -50,8 +51,9 @@ const Header = () => {
     drawerOpen: false,
   });
 
-  const { player, isLoading } = useContext(PlayerContext);
+  const { player } = useContext(PlayerContext);
   const { mobileView, drawerOpen } = state;
+  const { logoutPlayer } = useLogout();
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -72,6 +74,38 @@ const Header = () => {
     return headerData.map(({ label, href }) => {
       if (player?.role !== 'admin' && label === 'New tournament') {
         return null;
+      } else if (label === 'Logout') {
+        return (
+          <MenuItem
+            key={`_${label}__`}
+            className="app-item"
+            sx={{
+              fontSize: '1.6rem',
+              '&:hover': {
+                backgroundColor: '#c2f158',
+                color: '#1b2433',
+              },
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                height: '2px',
+                width: '90%',
+                backgroundColor: '#c2f158',
+                margin: '0 auto',
+                left: '0',
+                right: '0',
+                bottom: '0',
+              },
+            }}
+            onClick={() => {
+              mobileView &&
+                setState((prevState) => ({ ...prevState, drawerOpen: false }));
+              logoutPlayer();
+            }}
+          >
+            <LogoutIcon style={{ marginRight: '12px' }} /> {label}
+          </MenuItem>
+        );
       } else {
         return (
           <Link
@@ -107,11 +141,6 @@ const Header = () => {
                 },
               }}
             >
-              {label === 'Logout' ? (
-                <LogoutIcon style={{ marginRight: '12px' }} />
-              ) : (
-                ''
-              )}{' '}
               {label}
             </MenuItem>
           </Link>
