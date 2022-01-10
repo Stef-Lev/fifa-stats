@@ -43,7 +43,7 @@ app.get('/api/auth/player', userAuth.checkPlayer);
 // Players
 app.post('/api/players', player.add);
 app.get('/api/players', player.list);
-app.post('/api/players/clear', player.clear);
+app.get('/api/players/stats/:id', player.stats);
 
 // Tournaments
 app.post('/api/tournaments', tournament.add);

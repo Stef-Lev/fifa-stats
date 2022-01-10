@@ -9,6 +9,7 @@ import PlayerStatistics from './routes/PlayerStatistics';
 import ProfilePage from './routes/ProfilePage';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
+import MyData from './routes/MyData';
 import Header from './components/Header';
 import useFindPlayer from './hooks/useFindPlayer';
 import { PlayerContext } from './context/PlayerContext';
@@ -65,6 +66,15 @@ function App() {
                 element={
                   <PrivateRoute>
                     <TournamentCreate />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                exact
+                path="/mydata"
+                element={
+                  <PrivateRoute>
+                    <MyData />
                   </PrivateRoute>
                 }
               ></Route>
