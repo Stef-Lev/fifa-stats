@@ -223,13 +223,28 @@
   .tournaments-list-page {
     color: $white;
   }
-  .players-stats-page {
+  .players-stats-page,
+  .my-data-page {
     color: $white;
     font-size: 1.7rem;
+  }
+  .stat {
+    color: $brandLightGreen;
+  }
+  .players-stats-page {
     text-align: center;
-    .fact-player {
-      color: $brandLightGreen;
-    }
+  }
+  .my-data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 22px;
+  }
+  .my-data-item {
+    text-align: center;
+    border: 1px solid $brandLightGreen;
+    border-radius: $radius;
+    padding: 8px;
   }
   .login-page {
     color: $white;

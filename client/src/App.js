@@ -93,6 +93,7 @@ export default App;
 // Error handling to register, login, logout
 // Add personal statistics
 // Style desktop navbar
+// Create Settingd Page
 // Handle logout
 // If player logged in redirect to home if goes to /login page
 // Add graphs to personal data

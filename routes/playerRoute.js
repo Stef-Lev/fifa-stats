@@ -28,8 +28,13 @@ exports.stats = catchAsync(async (req, res) => {
     }))
     .sort((a, b) => b.diff - a.diff)[0];
   const topWin = games.find((item) => item._id === sortedWins.id);
+  const topWinAgainst = Object.values(topWin.opponents).find(
+    (player) => player !== topWin.winner[0],
+  ).player;
+  const opponent = await Player.findById(topWinAgainst);
 
   dataObj.name = player.fullname;
+  dataObj.id = player.id;
   dataObj.games_played = player.games_played.statistics.total;
   dataObj.games_won = player.games_played.statistics.games_won;
   dataObj.games_drawn = player.games_played.statistics.drawn;
@@ -42,6 +47,10 @@ exports.stats = catchAsync(async (req, res) => {
   dataObj.av_goals_conceived_per_game = +(
     player.goals.against / player.games_played.statistics.total
   ).toFixed(2);
-  dataObj.biggest_win = topWin;
+  dataObj.biggest_win = {
+    score: topWin.score,
+    against: opponent.fullname,
+    teams: topWin.opponents,
+  };
   res.json(dataObj);
 });

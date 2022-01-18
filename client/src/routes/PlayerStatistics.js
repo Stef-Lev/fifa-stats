@@ -158,15 +158,13 @@ function PlayerStatistics() {
           <div className="stat-facts">
             <p>
               Tournament Master:{' '}
-              <span className="fact-player">{facts.tournamentMaster}</span>
+              <span className="stat">{facts.tournamentMaster}</span>
             </p>
             <p>
-              Top Offense:{' '}
-              <span className="fact-player">{facts.topOffense}</span>
+              Top Offense: <span className="stat">{facts.topOffense}</span>
             </p>
             <p>
-              Top Defense:{' '}
-              <span className="fact-player">{facts.topDefense}</span>
+              Top Defense: <span className="stat">{facts.topDefense}</span>
             </p>
           </div>
         </div>
