@@ -39,7 +39,7 @@ exports.stats = catchAsync(async (req, res) => {
   dataObj.games_won = player.games_played.statistics.games_won;
   dataObj.games_drawn = player.games_played.statistics.drawn;
   dataObj.games_lost = player.games_played.statistics.lost;
-  dataObj.tournaments_played = player.tournaments_played.won;
+  dataObj.tournaments_played = player.tournaments_played.total;
   dataObj.tournaments_won = player.tournaments_played.won;
   dataObj.av_goals_scored_per_game = +(
     player.goals.for / player.games_played.statistics.total
