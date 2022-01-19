@@ -249,9 +249,11 @@
   }
   .my-data-item {
     text-align: center;
-    border: 1px solid $brandLightGreen;
-    border-radius: $radius;
     padding: 8px;
+    &.outlined {
+      border: 1px solid $brandLightGreen;
+      border-radius: $radius;
+    }
   }
   .login-page {
     color: $white;
@@ -282,6 +284,20 @@
   }
   .my-data {
     color: $white;
+  }
+  .game-donut-container {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 1rem;
+    }
+  }
+  .Donut-multiple__subtitle {
+    display: flex;
+    align-items: center;
   }
 }
 #modal {

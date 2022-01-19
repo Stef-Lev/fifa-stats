@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '../context/PlayerContext';
 import Loader from '../components/Loader';
+import DonutChartGame from '../components/DonutChartGame';
+import DonutChartTournament from '../components/DonutChartTournament';
 import { getOneMethod } from '../helpers/httpService';
 
 function MyData() {
@@ -17,7 +19,7 @@ function MyData() {
         console.log(res);
       });
     }
-  }, [player._id]);
+  }, [player._id, player]);
 
   return (
     <div className="my-data-page">
@@ -26,19 +28,19 @@ function MyData() {
         <div>
           <h4>Average goals per game</h4>
           <div className="my-data-container">
-            <div className="my-data-item">
+            <div className="my-data-item outlined">
               <p>Scored</p>
               <hr />
               <p className="stat">{data.av_goals_scored_per_game}</p>
             </div>
-            <div className="my-data-item">
+            <div className="my-data-item outlined">
               <p>Conceived</p>
               <hr />
               <p className="stat">{data.av_goals_conceived_per_game}</p>
             </div>
           </div>
           <h4>Biggest win</h4>
-          <div className="my-data-item">
+          <div className="my-data-item outlined">
             <p>
               {data.biggest_win.teams.home.team} -{' '}
               {data.biggest_win.teams.away.team}{' '}
@@ -48,7 +50,21 @@ function MyData() {
               Against: <span className="stat">{data.biggest_win.against}</span>
             </p>
           </div>
-          <h4></h4>
+          <div className="my-data-container">
+            <DonutChartGame
+              values={[
+                { status: 'won', value: data.games_won },
+                { status: 'drawn', value: data.games_drawn },
+                { status: 'lost', value: data.games_lost },
+              ]}
+            />
+            <DonutChartTournament
+              values={[
+                { status: 'won', value: data.tournaments_won },
+                { status: 'lost', value: data.tournaments_played },
+              ]}
+            />
+          </div>
         </div>
       )}
     </div>
