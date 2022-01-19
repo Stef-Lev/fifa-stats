@@ -13,7 +13,6 @@ export default function useAuth() {
       .get('/api/auth/player')
       .then((res) => {
         setPlayer(res.data.currentPlayer);
-        console.log(res);
         navigate('/');
       })
       .catch((err) => {

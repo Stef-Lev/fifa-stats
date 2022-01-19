@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { calcAverage } from '../helpers/calcAverage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,21 +45,29 @@ function PlayerStatistics() {
   const calculateTopTournament = (players) => {
     if (players.length) {
       let sortedTournaments = players.sort(
-        (a, b) => b.tournaments_played.won - a.tournaments_played.won,
+        (a, b) =>
+          calcAverage(b.tournaments_played.won, b.tournaments_played.total) -
+          calcAverage(a.tournaments_played.won, a.tournaments_played.total),
       );
       return sortedTournaments[0].fullname;
     }
   };
   const calculateTopOffense = (players) => {
     if (players.length) {
-      let sortedOffense = players.sort((a, b) => b.goals.for - a.goals.for);
+      let sortedOffense = players.sort(
+        (a, b) =>
+          calcAverage(b.goals.for, b.games_played.statistics.total) -
+          calcAverage(a.goals.for, a.games_played.statistics.total),
+      );
       return sortedOffense[0].fullname;
     }
   };
   const calculateTopDefense = (players) => {
     if (players.length) {
       let sortedDefense = players.sort(
-        (a, b) => a.goals.against - b.goals.against,
+        (a, b) =>
+          calcAverage(a.goals.against, a.games_played.statistics.total) -
+          calcAverage(b.goals.against, b.games_played.statistics.total),
       );
       return sortedDefense[0].fullname;
     }
@@ -82,6 +91,8 @@ function PlayerStatistics() {
       topDefense: calculateTopDefense(players),
     });
   }, [players]);
+
+  console.log(players);
 
   return (
     <div className="players-stats-page">

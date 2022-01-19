@@ -35,7 +35,6 @@ function PlayerSelection({ playerList, addAction }) {
   const handleTeamChange = (event) => {
     setPlayer({ ...player, team: event.target.value });
   };
-  console.log(playerList)
 
   return (
     <div className="flex-between container">

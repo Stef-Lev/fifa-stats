@@ -9,14 +9,12 @@ function MyData() {
   const { player } = useContext(PlayerContext);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  // Add a minimal library for donut chart
 
   useEffect(() => {
     if (player) {
       getOneMethod(`/api/players/stats/`, player._id).then((res) => {
         setData(res);
         setLoading(false);
-        console.log(res);
       });
     }
   }, [player._id, player]);

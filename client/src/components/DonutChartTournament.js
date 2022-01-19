@@ -4,7 +4,6 @@ import { DonutMultiple, DonutElement } from 'react-donut-component';
 function DonutChartTournament(props) {
   const { values } = props;
   const colorsArr = ['#b834c6', '#1077c3'];
-  console.log(values);
 
   return (
     <div className="game-donut-container">

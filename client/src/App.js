@@ -18,8 +18,6 @@ import PrivateRoute from './routes/PrivateRoute';
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
 
-  console.log(player, isLoading);
-
   return (
     <div className="App">
       <div>
@@ -91,9 +89,6 @@ export default App;
 // @TODO
 // Move home to /home and create landing page to /
 // Error handling to register, login, logout
-// Add personal statistics
-// Style desktop navbar
-// Create Settingd Page
-// Handle logout
-// If player logged in redirect to home if goes to /login page
-// Add graphs to personal data
+// Style desktop
+// Create Settings Page
+// Create language context
