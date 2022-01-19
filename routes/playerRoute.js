@@ -36,7 +36,7 @@ exports.stats = catchAsync(async (req, res) => {
   dataObj.name = player.fullname;
   dataObj.id = player.id;
   dataObj.games_played = player.games_played.statistics.total;
-  dataObj.games_won = player.games_played.statistics.games_won;
+  dataObj.games_won = player.games_played.statistics.won;
   dataObj.games_drawn = player.games_played.statistics.drawn;
   dataObj.games_lost = player.games_played.statistics.lost;
   dataObj.tournaments_played = player.tournaments_played.total;
