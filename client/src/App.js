@@ -91,4 +91,5 @@ export default App;
 // Error handling to register, login, logout
 // Style desktop
 // Create Settings Page
-// Create language context
+// Add avatar
+// Replace settings with something else
