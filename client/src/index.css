@@ -1,10 +1,17 @@
+html {
+  background: rgb(10, 16, 24);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 16, 24, 1) 0%,
+    rgba(10, 16, 24, 1) 34%,
+    rgba(20, 32, 48, 1) 100%
+  );
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Oswald', sans-serif !important;
-  background: #0a1018;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: auto;
 }
 
 code {
@@ -12,8 +19,8 @@ code {
     monospace;
 }
 
-@media screen and (min-width: 992px) {
+/* @media screen and (min-width: 992px) {
   body {
     background-size: cover;
   }
-}
+} */

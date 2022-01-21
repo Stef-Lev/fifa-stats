@@ -9,7 +9,7 @@ const links = [
   { label: 'Tournaments', link: '/tournaments' },
   { label: 'Players data', link: '/players' },
   { label: 'My data', link: '/mydata' },
-  { label: 'Settings', link: '/settings' },
+  { label: 'Profile', link: '/profile' },
 ];
 
 function Home() {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from '../components/Loader';
 import { getAllMethod } from '../helpers/httpService';
-// import PlayerDataItem from '../components/PlayerDataItem';
 import PlayerStats from '../components/PlayersTables';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';

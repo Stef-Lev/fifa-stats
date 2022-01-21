@@ -36,8 +36,8 @@ const headerData = [
     href: '/mydata',
   },
   {
-    label: 'Settings',
-    href: '/settings',
+    label: 'Profile',
+    href: '/profile',
   },
   {
     label: 'Logout',

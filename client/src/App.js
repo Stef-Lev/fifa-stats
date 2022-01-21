@@ -36,8 +36,12 @@ function App() {
               <Route exact path="/register" element={<RegisterPage />} />
               <Route
                 exact
-                path="/profile/:playerId"
-                element={<ProfilePage />}
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <ProfilePage />
+                  </PrivateRoute>
+                }
               />
               <Route element={<ErrorPage />} />
               <Route
@@ -48,7 +52,7 @@ function App() {
                     <Tournaments />
                   </PrivateRoute>
                 }
-              ></Route>
+              />
               <Route
                 exact
                 path="/players"
@@ -57,7 +61,7 @@ function App() {
                     <PlayerStatistics />
                   </PrivateRoute>
                 }
-              ></Route>
+              />
               <Route
                 exact
                 path="/tournaments/new"
@@ -66,7 +70,7 @@ function App() {
                     <TournamentCreate />
                   </PrivateRoute>
                 }
-              ></Route>
+              />
               <Route
                 exact
                 path="/mydata"
@@ -75,7 +79,7 @@ function App() {
                     <MyData />
                   </PrivateRoute>
                 }
-              ></Route>
+              />
             </Routes>
           </PlayerContext.Provider>
         </Router>
@@ -90,6 +94,5 @@ export default App;
 // Move home to /home and create landing page to /
 // Error handling to register, login, logout
 // Style desktop
-// Create Settings Page
 // Add avatar
 // Replace settings with something else
