@@ -1,14 +1,3 @@
-html {
-  background: rgb(10, 16, 24);
-  background: linear-gradient(
-    180deg,
-    rgba(10, 16, 24, 1) 0%,
-    rgba(10, 16, 24, 1) 34%,
-    rgba(20, 32, 48, 1) 100%
-  );
-  height: 100%;
-}
-
 body {
   margin: 0;
   font-family: 'Oswald', sans-serif !important;

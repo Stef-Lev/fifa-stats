@@ -1,10 +1,16 @@
 @import '../utilities/mainTheme.scss';
+@import '../utilities/themeMixin.scss';
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Oswald', sans-serif !important;
+}
+
+body {
+  @include theme-aware('background', 'background');
+  transition: all 250ms ease-in-out;
 }
 
 .App {
@@ -18,7 +24,8 @@
     flex-direction: row;
     justify-content: space-between;
     color: $brandDarkBlue;
-    background: $brandLightGreen;
+    @include theme-aware('color', 'brand-dark');
+    @include theme-aware('background', 'brand-light');
     position: absolute;
   }
 
@@ -34,8 +41,8 @@
     padding: 10px;
 
     &.colored {
-      background-color: $brandLight;
-      color: $white;
+      background-color: $brandLightGreen;
+      color: $colorBasic;
     }
   }
   .game-submit {
@@ -104,7 +111,7 @@
 
   .brand-btn {
     background-color: $brandPurple;
-    color: $white;
+    color: $colorBasic;
     font-weight: 700;
 
     &:hover {
@@ -128,7 +135,7 @@
   }
   .auth-btn {
     background-color: $brandPurple;
-    color: $white;
+    color: $colorBasic;
     font-weight: 700;
     font-size: 1.2rem;
     border-radius: 20px;
@@ -201,12 +208,12 @@
   }
   .MuiTableCell-root {
     padding: 6px;
-    color: $white;
+    color: $colorBasic;
     border: none;
     background-color: $brandDarkGrey;
   }
   .tournament-create-page {
-    color: $white;
+    color: $colorBasic;
     label span .MuiSvgIcon-root {
       color: $brandLightGreen;
     }
@@ -215,17 +222,17 @@
     }
   }
   .tournament-play-page {
-    color: $white;
+    color: $colorBasic;
   }
   .player-stats-page {
-    color: $white;
+    color: $colorBasic;
   }
   .tournaments-list-page {
-    color: $white;
+    color: $colorBasic;
   }
   .players-stats-page,
   .my-data-page {
-    color: $white;
+    color: $colorBasic;
     font-size: 1.5rem;
     h4 {
       text-align: center;
@@ -256,7 +263,7 @@
     }
   }
   .login-page {
-    color: $white;
+    color: $colorBasic;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -270,7 +277,7 @@
       color: $brandLightGreen;
     }
     #chart-icon {
-      color: $white;
+      color: $colorBasic;
     }
     .MuiRating-root {
       font-size: 1.5rem;
@@ -283,7 +290,7 @@
     font-size: 1.2rem;
   }
   .my-data {
-    color: $white;
+    color: $colorBasic;
   }
   .game-donut-container {
     margin: 10px 0;
@@ -300,7 +307,7 @@
     align-items: center;
   }
   .profile-page {
-    color: $white;
+    color: $colorBasic;
     display: flex;
     flex-direction: column;
     align-items: center;

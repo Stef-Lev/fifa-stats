@@ -94,5 +94,4 @@ export default App;
 // Move home to /home and create landing page to /
 // Error handling to register, login, logout
 // Style desktop
-// Add avatar
-// Replace settings with something else
+// Add theme switch to profile

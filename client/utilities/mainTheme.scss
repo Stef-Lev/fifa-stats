@@ -1,14 +1,33 @@
-$white: #ffffff;
+$colorBasic: #fff;
 $error: #e93c42;
-$brandLight: #49bce3;
-$brandDark: #1077c3;
-$brandYellow: #fec310;
-$brandScarlett: #56042c;
 $radius: 8px;
-$container-bcg: rgb(227, 248, 246);
 $brandLightGreen: #c2f158;
 $brandDarkBlue: #1b2433;
 $brandTeal: #64d2da;
 $brandPurple: #b834c6;
 $brandDarkGrey: #283043;
-$brandLightBlue: #82aac5;
+
+$themes: (
+  light: (
+    background: #fff,
+    font-color: #000,
+    error: #e93c42,
+    radius: 8px,
+    brand-light: #1b2433,
+    brand-dark: #c2f158,
+    cta-primary: #b834c6,
+    cta-secondary: #64d2da,
+    item: #283043,
+  ),
+  dark: (
+    background: #000,
+    font-color: #fff,
+    error: #e93c42,
+    radius: 8px,
+    brand-light: #c2f158,
+    brand-dark: #1b2433,
+    cta-primary: #b834c6,
+    cta-secondary: #64d2da,
+    item: #283043,
+  ),
+);
