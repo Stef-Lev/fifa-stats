@@ -111,7 +111,7 @@ function PlayerStatistics() {
               <Tabs
                 value={value}
                 onChange={handleTabChange}
-                aria-label="basic tabs example"
+                aria-label="tournament tabs"
                 sx={{
                   '& .MuiTabs-indicator': {
                     backgroundColor: '#c2f158',

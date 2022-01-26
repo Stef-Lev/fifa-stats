@@ -24,8 +24,8 @@ body {
     flex-direction: row;
     justify-content: space-between;
     color: $brandDarkBlue;
-    @include theme-aware('color', 'brand-dark');
-    @include theme-aware('background', 'brand-light');
+    @include theme-aware('color', 'secondary');
+    @include theme-aware('background', 'primary');
     position: absolute;
   }
 
@@ -42,7 +42,7 @@ body {
 
     &.colored {
       background-color: $brandLightGreen;
-      color: $colorBasic;
+      @include theme-aware('color', 'font-color');
     }
   }
   .game-submit {
@@ -100,7 +100,7 @@ body {
     margin: 33% auto;
   }
   .loader {
-    color: $brandLightGreen;
+    @include theme-aware('color', 'font-color');
     width: 120px !important;
     height: 120px !important;
   }
@@ -111,7 +111,7 @@ body {
 
   .brand-btn {
     background-color: $brandPurple;
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     font-weight: 700;
 
     &:hover {
@@ -135,7 +135,7 @@ body {
   }
   .auth-btn {
     background-color: $brandPurple;
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     font-weight: 700;
     font-size: 1.2rem;
     border-radius: 20px;
@@ -183,6 +183,8 @@ body {
       height: 100px;
       color: $brandTeal;
       background-color: $brandDarkGrey;
+      @include theme-aware('color', 'home-item-frg');
+      @include theme-aware('background-color', 'home-item-bcg');
       padding: 0.5rem;
       font-size: 1.3rem;
       border-radius: $radius;
@@ -208,12 +210,12 @@ body {
   }
   .MuiTableCell-root {
     padding: 6px;
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     border: none;
-    background-color: $brandDarkGrey;
+    @include theme-aware('background-color', 'table-bcg');
   }
   .tournament-create-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     label span .MuiSvgIcon-root {
       color: $brandLightGreen;
     }
@@ -222,17 +224,17 @@ body {
     }
   }
   .tournament-play-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
   }
   .player-stats-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
   }
   .tournaments-list-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
   }
   .players-stats-page,
   .my-data-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     font-size: 1.5rem;
     h4 {
       text-align: center;
@@ -241,7 +243,7 @@ body {
     }
   }
   .stat {
-    color: $brandLightGreen;
+    @include theme-aware('color', 'highlight');
   }
   .players-stats-page {
     text-align: center;
@@ -258,12 +260,12 @@ body {
     text-align: center;
     padding: 8px;
     &.outlined {
-      border: 1px solid $brandLightGreen;
+      @include theme-aware('border', 'border-highlight');
       border-radius: $radius;
     }
   }
   .login-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -277,7 +279,7 @@ body {
       color: $brandLightGreen;
     }
     #chart-icon {
-      color: $colorBasic;
+      @include theme-aware('color', 'font-color');
     }
     .MuiRating-root {
       font-size: 1.5rem;
@@ -285,12 +287,12 @@ body {
   }
   .greeting {
     text-align: center;
-    color: white;
+    @include theme-aware('color', 'font-color');
     margin-bottom: 20px;
     font-size: 1.2rem;
   }
   .my-data {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
   }
   .game-donut-container {
     margin: 10px 0;
@@ -307,7 +309,7 @@ body {
     align-items: center;
   }
   .profile-page {
-    color: $colorBasic;
+    @include theme-aware('color', 'font-color');
     display: flex;
     flex-direction: column;
     align-items: center;
