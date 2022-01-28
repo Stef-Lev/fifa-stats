@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -11,6 +12,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 function PlayerSelection({ playerList, addAction }) {
   const [player, setPlayer] = useState({ name: '', id: '', team: '' });
+  const { theme } = useContext(ThemeContext);
 
   const clearFields = () => {
     setPlayer({ name: '', id: '', team: '' });
@@ -29,7 +31,11 @@ function PlayerSelection({ playerList, addAction }) {
 
   const handlePlayerChange = (event) => {
     const selectedPlayer = filterPlayer(playerList, event.target.value);
-    setPlayer({ ...player, name: selectedPlayer.fullname, id: selectedPlayer._id });
+    setPlayer({
+      ...player,
+      name: selectedPlayer.fullname,
+      id: selectedPlayer._id,
+    });
   };
 
   const handleTeamChange = (event) => {
@@ -42,9 +48,9 @@ function PlayerSelection({ playerList, addAction }) {
         <InputLabel
           id="select-label"
           sx={{
-            color: '#fff',
+            color: theme === 'dark' ? '#fff' : '#1b2433',
             '&.Mui-focused': {
-              color: '#c2f158',
+              color: theme === 'dark' ? '#c2f158' : '#b834c6',
             },
           }}
         >
@@ -60,9 +66,13 @@ function PlayerSelection({ playerList, addAction }) {
               label="Player"
               sx={{
                 '&.MuiOutlinedInput-root': {
-                  color: '#fff',
-                  '& fieldset': { borderColor: '#fff' },
-                  '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  '& fieldset': {
+                    borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  },
                 },
               }}
             />
@@ -87,21 +97,21 @@ function PlayerSelection({ playerList, addAction }) {
           onChange={handleTeamChange}
           sx={{
             '& .MuiOutlinedInput-root': {
-              color: '#fff',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '& fieldset': {
-                borderColor: '#fff',
+                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
               },
               '&:hover fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
             '& label': {
-              color: 'white',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '&.Mui-focused': {
-                color: '#c2f158',
+                color: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
           }}

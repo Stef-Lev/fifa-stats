@@ -113,6 +113,7 @@ body {
     background-color: $brandPurple;
     @include theme-aware('color', 'font-color');
     font-weight: 700;
+    color: #fff !important;
 
     &:hover {
       background-color: $brandPurple;
@@ -124,6 +125,8 @@ body {
   .finalize-btn {
     background-color: $brandLightGreen;
     color: $brandDarkBlue;
+    @include theme-aware('color', 'secondary');
+    @include theme-aware('background-color', 'primary');
     font-weight: 700;
 
     &:hover {

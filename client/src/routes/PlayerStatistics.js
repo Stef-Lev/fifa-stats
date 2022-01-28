@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Loader from '../components/Loader';
+import { ThemeContext } from '../context/ThemeContext';
 import { getAllMethod } from '../helpers/httpService';
 import PlayerStats from '../components/PlayersTables';
 import Typography from '@mui/material/Typography';
@@ -40,6 +41,7 @@ function PlayerStatistics() {
     topOffense: '',
     topDefense: '',
   });
+  const { theme } = useContext(ThemeContext);
 
   const calculateTopTournament = (players) => {
     if (players.length) {
@@ -98,14 +100,17 @@ function PlayerStatistics() {
       {loading && <Loader />}
       {!loading && (
         <div>
-          <Typography className="main-title" style={{ color: '#fff' }}>
+          <Typography
+            className="main-title"
+            style={{ color: theme === 'dark' ? '#fff' : '#1b2433' }}
+          >
             Player Statistics
           </Typography>
           <Box sx={{ width: '100%' }}>
             <Box
               sx={{
                 borderBottom: 1,
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
               }}
             >
               <Tabs
@@ -114,7 +119,7 @@ function PlayerStatistics() {
                 aria-label="tournament tabs"
                 sx={{
                   '& .MuiTabs-indicator': {
-                    backgroundColor: '#c2f158',
+                    backgroundColor: theme === 'dark' ? '#c2f158' : '#1b2433',
                     height: '4px',
                   },
                   '& .MuiTabs-flexContainer': {
@@ -126,10 +131,13 @@ function PlayerStatistics() {
                   label="Games"
                   {...a11yProps(0)}
                   sx={{
-                    color: '#fff',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '&.MuiButtonBase-root.Mui-selected': {
-                      color: '#c2f158',
-                      '&.MuiTouchRipple-root': { color: 'white' },
+                      color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                      fontWeight: theme === 'dark' ? '400' : '700',
+                      '&.MuiTouchRipple-root': {
+                        color: theme === 'dark' ? '#fff' : '#1b2433',
+                      },
                     },
                   }}
                 />
@@ -137,9 +145,10 @@ function PlayerStatistics() {
                   label="Goals"
                   {...a11yProps(1)}
                   sx={{
-                    color: '#fff',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '&.MuiButtonBase-root.Mui-selected': {
-                      color: '#c2f158',
+                      color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                      fontWeight: theme === 'dark' ? '400' : '700',
                     },
                   }}
                 />
@@ -147,9 +156,10 @@ function PlayerStatistics() {
                   label="Tournaments"
                   {...a11yProps(2)}
                   sx={{
-                    color: '#fff',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '&.MuiButtonBase-root.Mui-selected': {
-                      color: '#c2f158',
+                      color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                      fontWeight: theme === 'dark' ? '400' : '700',
                     },
                   }}
                 />

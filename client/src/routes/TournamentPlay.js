@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 import { getOneMethod, deleteMethod } from '../helpers/httpService';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
@@ -16,6 +17,7 @@ function TournamentPlay() {
   const [loading, setLoading] = useState(true);
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const [openFinalModal, setOpenFinalModal] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     getOneMethod(`/api/tournaments/`, id).then((data) => {
@@ -66,7 +68,10 @@ function TournamentPlay() {
                   variant="outlined"
                   color="error"
                   onClick={() => setOpenCancelModal(true)}
-                  sx={{ color: '#c2f158', borderColor: '#c2f158' }}
+                  sx={{
+                    color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                    borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                  }}
                 >
                   Quit
                 </Button>
