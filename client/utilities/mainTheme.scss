@@ -23,6 +23,8 @@ $themes: (
     tab: #1b2433,
     highlight: #b834c6,
     border-highlight: 1px solid #1b2433,
+    set-item: #cbcbcb,
+    input-autocomplete: 0 0 0 30px #fff inset,
   ),
   dark: (
     background: rgb(2, 14, 32),
@@ -39,5 +41,7 @@ $themes: (
     tab: #c2f158,
     highlight: #c2f158,
     border-highlight: 1px solid #c2f158,
+    set-item: #283043,
+    input-autocomplete: 0 0 0 30px rgb(2, 14, 32) inset,
   ),
 );

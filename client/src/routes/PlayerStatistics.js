@@ -93,8 +93,6 @@ function PlayerStatistics() {
     });
   }, [players]);
 
-  console.log(players);
-
   return (
     <div className="players-stats-page">
       {loading && <Loader />}

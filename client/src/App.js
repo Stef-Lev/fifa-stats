@@ -1,5 +1,4 @@
 import './App.scss';
-import { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import ErrorPage from './routes/ErrorPage';
@@ -14,13 +13,11 @@ import MyData from './routes/MyData';
 import Header from './components/Header';
 import useFindPlayer from './hooks/useFindPlayer';
 import { PlayerContext } from './context/PlayerContext';
-import { ThemeContext } from './context/ThemeContext';
 import ThemeContextProvider from './context/ThemeContextProvider';
 import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
-  const { theme, getTheme, updateTheme } = useContext(ThemeContext);
 
   return (
     <div className="App">
@@ -100,4 +97,3 @@ export default App;
 // Move home to /home and create landing page to /
 // Error handling to register, login, logout
 // Style desktop
-// Add theme switch to profile

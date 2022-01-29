@@ -13,6 +13,14 @@ body {
   transition: all 250ms ease-in-out;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  @include theme-aware('-webkit-box-shadow', 'input-autocomplete');
+  @include theme-aware('-webkit-text-fill-color', 'font-color');
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -111,7 +119,6 @@ body {
 
   .brand-btn {
     background-color: $brandPurple;
-    @include theme-aware('color', 'font-color');
     font-weight: 700;
     color: #fff !important;
 
@@ -124,7 +131,6 @@ body {
   }
   .finalize-btn {
     background-color: $brandLightGreen;
-    color: $brandDarkBlue;
     @include theme-aware('color', 'secondary');
     @include theme-aware('background-color', 'primary');
     font-weight: 700;
@@ -138,7 +144,7 @@ body {
   }
   .auth-btn {
     background-color: $brandPurple;
-    @include theme-aware('color', 'font-color');
+    color: #fff !important;
     font-weight: 700;
     font-size: 1.2rem;
     border-radius: 20px;
@@ -313,9 +319,25 @@ body {
   }
   .profile-page {
     @include theme-aware('color', 'font-color');
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .settings {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .set-item {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 32px;
+      @include theme-aware('background-color', 'set-item');
+      padding: 5px 12px;
+      margin-bottom: 12px;
+    }
   }
 }
 #modal {
