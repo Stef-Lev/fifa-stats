@@ -103,7 +103,12 @@ input:-webkit-autofill:active {
   .goal-input {
     width: 60px;
   }
-
+  .about-msg {
+    bottom: 20px;
+    position: absolute;
+    text-align: center;
+    width: 92%;
+  }
   .loader-container {
     margin: 33% auto;
   }

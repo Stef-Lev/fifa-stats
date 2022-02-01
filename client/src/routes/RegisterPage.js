@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import useAuth from '../hooks/useAuth';
+import { ThemeContext } from '../context/ThemeContext';
 
 function RegisterPage() {
   const { registerPlayer } = useAuth();
+  const { theme } = useContext(ThemeContext);
   const [player, setPlayer] = useState({
     fullname: '',
     username: '',
@@ -37,21 +39,21 @@ function RegisterPage() {
           sx={{
             marginBottom: '16px',
             '& .MuiOutlinedInput-root': {
-              color: '#fff',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '& fieldset': {
-                borderColor: '#fff',
+                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
               },
               '&:hover fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
             '& label': {
-              color: 'white',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '&.Mui-focused': {
-                color: '#c2f158',
+                color: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
           }}
@@ -67,21 +69,21 @@ function RegisterPage() {
           sx={{
             marginBottom: '16px',
             '& .MuiOutlinedInput-root': {
-              color: '#fff',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '& fieldset': {
-                borderColor: '#fff',
+                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
               },
               '&:hover fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
             '& label': {
-              color: 'white',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '&.Mui-focused': {
-                color: '#c2f158',
+                color: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
           }}
@@ -98,21 +100,21 @@ function RegisterPage() {
           sx={{
             marginBottom: '16px',
             '& .MuiOutlinedInput-root': {
-              color: '#fff',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '& fieldset': {
-                borderColor: '#fff',
+                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
               },
               '&:hover fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
             '& label': {
-              color: 'white',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '&.Mui-focused': {
-                color: '#c2f158',
+                color: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
           }}

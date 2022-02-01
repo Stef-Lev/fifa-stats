@@ -51,6 +51,9 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
+          <div className="about-msg">
+            <p>Developed by Stefanos Leventis. &copy; 2021</p>
+          </div>
         </div>
       )}
     </div>
