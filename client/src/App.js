@@ -97,3 +97,5 @@ export default App;
 // Move home to /home and create landing page to /
 // Error handling to register, login, logout
 // Style desktop
+// On color picker close, make a call to change color to database
+// Create endpoint to change player color
