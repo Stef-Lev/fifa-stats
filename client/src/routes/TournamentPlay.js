@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
-import { getOneMethod, deleteMethod } from '../helpers/httpService';
+import {
+  getOneMethod,
+  deleteMethod,
+  getAllMethod,
+} from '../helpers/httpService';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Standings from '../components/Standings';
@@ -14,16 +18,26 @@ function TournamentPlay() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tournament, setTournament] = useState(null);
+  const [colors, setColors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const [openFinalModal, setOpenFinalModal] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    getOneMethod(`/api/tournaments/`, id).then((data) => {
-      setTournament(data);
-      setLoading(false);
-    });
+    getOneMethod(`/api/tournaments/`, id)
+      .then((data) => {
+        setTournament(data);
+      })
+      .then(() => getAllMethod('/api/players/'))
+      .then((res) => {
+        const colorArr = res.map((item) => ({
+          id: item._id,
+          color: item.color,
+        }));
+        setColors(colorArr);
+      })
+      .then(() => setLoading(false));
   }, [id]);
 
   const finalizeTournament = () => {
@@ -53,7 +67,7 @@ function TournamentPlay() {
           </Typography>
           <div>
             <Standings tournament={tournament} />
-            <TournamentGamesContainer tournament={tournament} />
+            <TournamentGamesContainer tournament={tournament} colors={colors} />
             {tournament.status !== 'Completed' && (
               <div className="flex-centered">
                 <Button

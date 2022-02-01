@@ -15,6 +15,10 @@ const PlayerSchema = new Schema({
       message: "Passwords don't match.",
     },
   },
+  color: {
+    type: 'String',
+    default: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+  },
   role: {
     type: String,
     enum: ['user', 'admin'],

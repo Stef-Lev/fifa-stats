@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import { updateMethod } from '../helpers/httpService';
 import useFindPlayer from '../hooks/useFindPlayer';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
@@ -27,14 +28,14 @@ const ProfilePage = () => {
     setPickerOpen((prev) => !prev);
   };
 
-  useEffect(() => {
-    if (player) {
-      setColor(player.color);
-    }
-  }, []);
-
-  console.log(player);
-  // console.log('COLOR', color, player.color);
+  const handleUpdateColor = () => {
+    const obj = { id: player._id, color };
+    updateMethod(`/api/players/`, player._id, obj)
+      .then((res) => {
+        handleShowColorSelect();
+      })
+      .then(() => window.location.reload());
+  };
 
   return (
     <div className="profile-page">
@@ -83,7 +84,7 @@ const ProfilePage = () => {
             </div>
             <ColorSelect
               open={pickerOpen}
-              onClose={() => handleShowColorSelect()}
+              onClose={() => handleUpdateColor()}
               color={player.color}
               onChange={(e) => setColor(e)}
             />

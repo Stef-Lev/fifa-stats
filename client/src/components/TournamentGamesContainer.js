@@ -12,7 +12,7 @@ import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
 import { updateMethod } from '../helpers/httpService';
 
-function TournamentGamesContainer({ tournament }) {
+function TournamentGamesContainer({ tournament, colors }) {
   const [game, setGame] = useState({
     home: { participant: '', id: '', team: '', goals: '' },
     away: { participant: '', id: '', team: '', goals: '' },
@@ -254,6 +254,7 @@ function TournamentGamesContainer({ tournament }) {
               key={index + 1}
               game={game}
               tournament={tournament}
+              colors={colors}
             />
           ))}
       </div>

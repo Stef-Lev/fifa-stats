@@ -52,5 +52,12 @@ exports.stats = catchAsync(async (req, res) => {
     against: opponent.fullname,
     teams: topWin.opponents,
   };
-  res.json(dataObj);
+  res.status(200).json(dataObj);
+});
+
+exports.update = catchAsync(async (req, res) => {
+  const player = await Player.findById(req.body.id);
+  player.color = req.body.color;
+  await player.save();
+  res.status(200).json(player);
 });
