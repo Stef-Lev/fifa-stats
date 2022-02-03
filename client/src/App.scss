@@ -378,6 +378,17 @@ input:-webkit-autofill:active {
       margin-right: 10px;
     }
   }
+  .generic-error {
+    border-radius: $radius;
+    background-color: $error;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 30px;
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 #modal {
   position: absolute;

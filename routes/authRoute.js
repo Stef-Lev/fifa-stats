@@ -1,5 +1,4 @@
 const Player = require('../models/player');
-const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
@@ -65,12 +64,18 @@ exports.loginPlayer = catchAsync(async (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return next(new AppError('Please provide a username and password!', 400));
+    return res
+      .status(400)
+      .send({ msg: 'Please provide a username and password!' });
   }
 
   const player = await Player.findOne({ username }).select('+password');
-  if (!player || !(await player.correctPassword(password, player.password))) {
-    return next(new AppError('Incorrect username or password', 401));
+  let correctPassword;
+  if (player) {
+    correctPassword = await player.correctPassword(password, player.password);
+  }
+  if (!player || !correctPassword) {
+    return res.status(401).send({ msg: 'Incorrect username or password' });
   }
   createPlayerToken(player, 200, req, res);
 });

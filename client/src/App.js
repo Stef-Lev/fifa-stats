@@ -15,6 +15,7 @@ import useFindPlayer from './hooks/useFindPlayer';
 import { PlayerContext } from './context/PlayerContext';
 import ThemeContextProvider from './context/ThemeContextProvider';
 import PrivateRoute from './routes/PrivateRoute';
+import RedirectLoggedIn from './routes/RedirectLoggedIn';
 
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
@@ -46,8 +47,24 @@ function App() {
                     </PrivateRoute>
                   }
                 />
-                <Route exact path="/login" element={<LoginPage />} />
-                <Route exact path="/register" element={<RegisterPage />} />
+                <Route
+                  exact
+                  path="/login"
+                  element={
+                    <RedirectLoggedIn>
+                      <LoginPage />
+                    </RedirectLoggedIn>
+                  }
+                />
+                <Route
+                  exact
+                  path="/register"
+                  element={
+                    <RedirectLoggedIn>
+                      <RegisterPage />
+                    </RedirectLoggedIn>
+                  }
+                />
                 <Route
                   exact
                   path="/profile"

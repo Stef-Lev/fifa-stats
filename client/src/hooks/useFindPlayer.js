@@ -4,6 +4,7 @@ import axios from 'axios';
 export default function useFindPlayer() {
   const [player, setPlayer] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function findPlayer() {
@@ -15,6 +16,7 @@ export default function useFindPlayer() {
         })
         .catch((err) => {
           console.error(err);
+          setError(err);
           setLoading(false);
         });
     }
@@ -23,6 +25,8 @@ export default function useFindPlayer() {
   return {
     player,
     setPlayer,
+    error,
+    setError,
     isLoading,
   };
 }

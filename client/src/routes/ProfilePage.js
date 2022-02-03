@@ -3,7 +3,6 @@ import { updateMethod } from '../helpers/httpService';
 import useFindPlayer from '../hooks/useFindPlayer';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
-import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Switch from '@mui/material/Switch';
 import Loader from '../components/Loader';
