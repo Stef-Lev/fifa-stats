@@ -119,7 +119,7 @@ function TournamentGamesContainer({ tournament, colors }) {
             <FormControl className="goal-input">
               <TextField
                 type="number"
-                id="outlined-basic"
+                id="home-goals"
                 label="Goals"
                 variant="outlined"
                 autoComplete="off"
@@ -201,7 +201,7 @@ function TournamentGamesContainer({ tournament, colors }) {
             <FormControl className="goal-input">
               <TextField
                 type="number"
-                id="outlined-basic"
+                id="away-goals"
                 label="Goals"
                 variant="outlined"
                 autoComplete="off"

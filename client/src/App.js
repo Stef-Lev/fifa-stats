@@ -18,6 +18,7 @@ import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
+  console.log(player);
 
   return (
     <div className="App">
@@ -25,14 +26,25 @@ function App() {
         <Router>
           <ThemeContextProvider>
             <PlayerContext.Provider value={{ player, setPlayer, isLoading }}>
-              <Header />
+              {player && <Header />}
               <Routes>
-                <Route exact path="/" element={<Home />} />
-                {/* Protect route from others except admin */}
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <PrivateRoute>
+                      <Home />
+                    </PrivateRoute>
+                  }
+                />
                 <Route
                   exact
                   path="/tournaments/:id"
-                  element={<TournamentPlay />}
+                  element={
+                    <PrivateRoute>
+                      <TournamentPlay />
+                    </PrivateRoute>
+                  }
                 />
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />

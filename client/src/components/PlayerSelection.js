@@ -89,7 +89,7 @@ function PlayerSelection({ playerList, addAction }) {
       </FormControl>
       <FormControl style={{ width: '40%' }}>
         <TextField
-          id="outlined-basic"
+          id="team"
           label="Team"
           variant="outlined"
           autoComplete="off"

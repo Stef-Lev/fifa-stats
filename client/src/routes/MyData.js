@@ -22,7 +22,10 @@ function MyData() {
   return (
     <div className="my-data-page">
       {loading && <Loader />}
-      {!loading && (
+      {!loading && data.errorMsg && (
+        <div className="data-err-msg">{data.errorMsg}</div>
+      )}
+      {!loading && !data.errorMsg && (
         <div>
           <h4>Average goals per game</h4>
           <div className="my-data-container">

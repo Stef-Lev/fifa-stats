@@ -8,7 +8,7 @@ import { ThemeContext } from '../context/ThemeContext';
 function RegisterPage() {
   const { registerPlayer } = useAuth();
   const { theme } = useContext(ThemeContext);
-  const [player, setPlayer] = useState({
+  const [user, setUser] = useState({
     fullname: '',
     username: '',
     password: '',
@@ -17,11 +17,11 @@ function RegisterPage() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await registerPlayer(player);
+    await registerPlayer(user);
   };
 
   const handleInputChange = (event, field) => {
-    setPlayer({ ...player, [field]: event.target.value });
+    setUser({ ...user, [field]: event.target.value });
   };
 
   return (
@@ -29,11 +29,11 @@ function RegisterPage() {
       <h3 style={{ marginBottom: '20px' }}>SIGN UP</h3>
       <div>
         <TextField
-          id="outlined-basic"
+          id="signup-fullname"
           label="Full name"
           variant="outlined"
           autoComplete="off"
-          value={player.fullname}
+          value={user.fullname}
           onChange={(e) => handleInputChange(e, 'fullname')}
           fullWidth
           sx={{
@@ -59,11 +59,11 @@ function RegisterPage() {
           }}
         />
         <TextField
-          id="outlined-basic"
+          id="signup-username"
           label="Username"
           variant="outlined"
           autoComplete="off"
-          value={player.username}
+          value={user.username}
           onChange={(e) => handleInputChange(e, 'username')}
           fullWidth
           sx={{
@@ -89,12 +89,12 @@ function RegisterPage() {
           }}
         />
         <TextField
-          id="outlined-basic"
+          id="signup-password"
           type="password"
           label="Password"
           variant="outlined"
           autoComplete="off"
-          value={player.password}
+          value={user.password}
           onChange={(e) => handleInputChange(e, 'password')}
           fullWidth
           sx={{
@@ -120,32 +120,32 @@ function RegisterPage() {
           }}
         />
         <TextField
-          id="outlined-basic"
+          id="signup-confirm"
           type="password"
           label="Confirm password"
           variant="outlined"
           autoComplete="off"
-          value={player.passwordCheck}
+          value={user.passwordCheck}
           onChange={(e) => handleInputChange(e, 'passwordCheck')}
           fullWidth
           sx={{
             marginBottom: '16px',
             '& .MuiOutlinedInput-root': {
-              color: '#fff',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '& fieldset': {
-                borderColor: '#fff',
+                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
               },
               '&:hover fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#c2f158',
+                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
             '& label': {
-              color: 'white',
+              color: theme === 'dark' ? '#fff' : '#1b2433',
               '&.Mui-focused': {
-                color: '#c2f158',
+                color: theme === 'dark' ? '#c2f158' : '#b834c6',
               },
             },
           }}

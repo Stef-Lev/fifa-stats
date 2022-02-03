@@ -59,18 +59,13 @@ const ProfilePage = () => {
             <div className="set-item" style={withButton}>
               <div style={setItemStyle}>
                 <ColorLensIcon style={iconStyle} />
-                <Typography>Player color</Typography>{' '}
-                <span
-                  className="color-circle"
-                  style={{ backgroundColor: player.color }}
-                ></span>
+                <Typography>Player color</Typography>
               </div>
-              <Button
-                className="auth-btn"
+              <div
+                className="color-circle"
+                style={{ backgroundColor: player.color }}
                 onClick={() => handleShowColorSelect()}
-              >
-                Change
-              </Button>
+              ></div>
             </div>
             <div
               style={withPadding}
