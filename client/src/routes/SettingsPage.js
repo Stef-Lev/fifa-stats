@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import useLogout from '../hooks/useLogout';
 import { ThemeContext } from '../context/ThemeContext';
 
-const ProfilePage = () => {
+const SettingsPage = () => {
   const { player, isLoading } = useFindPlayer();
   const { theme, updateTheme } = useContext(ThemeContext);
   const { logoutPlayer } = useLogout();
@@ -37,7 +37,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-page">
+    <div className="settings-page">
       {isLoading && <Loader />}
       {!isLoading && player && (
         <div>
@@ -92,4 +92,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default SettingsPage;

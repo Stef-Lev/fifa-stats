@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeContext } from './ThemeContext';
 
 const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
 
-  const setThemeClass = () => {
+  const setThemeClass = useCallback(() => {
     document.documentElement.className = '';
     document.documentElement.classList.add(`theme-${theme}`);
-  };
+  }, [theme]);
 
-  const getTheme = () => {
+  const getTheme = useCallback(() => {
     const storedTheme = localStorage.getItem('fifa-theme');
     if (storedTheme) {
       setTheme(storedTheme);
@@ -18,7 +18,7 @@ const ThemeContextProvider = ({ children }) => {
       setTheme('light');
       setThemeClass();
     }
-  };
+  }, [setThemeClass]);
 
   const updateTheme = (e) => {
     localStorage.setItem('fifa-theme', e.target.checked ? 'dark' : 'light');
@@ -28,7 +28,7 @@ const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     getTheme();
-  }, [theme]);
+  }, [theme, getTheme]);
 
   return (
     <ThemeContext.Provider value={{ theme, getTheme, updateTheme }}>

@@ -6,7 +6,7 @@ import LoginPage from './routes/LoginPage';
 import RegisterPage from './routes/RegisterPage';
 import Tournaments from './routes/Tournaments';
 import PlayerStatistics from './routes/PlayerStatistics';
-import ProfilePage from './routes/ProfilePage';
+import SettingsPage from './routes/SettingsPage';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 import MyData from './routes/MyData';
@@ -66,10 +66,10 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/profile"
+                  path="/settings"
                   element={
                     <PrivateRoute>
-                      <ProfilePage />
+                      <SettingsPage />
                     </PrivateRoute>
                   }
                 />
