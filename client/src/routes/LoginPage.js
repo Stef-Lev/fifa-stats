@@ -3,6 +3,7 @@ import useAuth from '../hooks/useAuth';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
+import Container from '@mui/material/Container';
 import { ThemeContext } from '../context/ThemeContext';
 
 function LoginPage() {
@@ -22,7 +23,8 @@ function LoginPage() {
 
   return (
     <div className="login-page">
-      <h3 style={{ marginBottom: '20px' }}>LOGIN</h3>
+      <Container maxWidth="sm" style={{padding:0}}>
+      <h3 style={{ marginBottom: '20px' }} className='route-title'>LOGIN</h3>
       <div>
         <form>
           <TextField
@@ -99,6 +101,7 @@ function LoginPage() {
           </Button>
         </form>
       </div>
+      </Container>
       <div className="bottom-msg">
         <p>
           Are you a newbie?{' '}

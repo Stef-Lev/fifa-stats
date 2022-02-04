@@ -3,6 +3,7 @@ import { PlayerContext } from '../context/PlayerContext';
 import Loader from '../components/Loader';
 import DonutChartGame from '../components/DonutChartGame';
 import DonutChartTournament from '../components/DonutChartTournament';
+import Container from '@mui/material/Container';
 import { getOneMethod } from '../helpers/httpService';
 
 function MyData() {
@@ -26,6 +27,7 @@ function MyData() {
         <div className="data-err-msg">{data.errorMsg}</div>
       )}
       {!loading && !data.errorMsg && (
+        <Container maxWidth="sm" style={{padding:0}}>
         <div>
           <h4>Average goals per game</h4>
           <div className="my-data-container">
@@ -67,6 +69,7 @@ function MyData() {
             />
           </div>
         </div>
+        </Container>
       )}
     </div>
   );

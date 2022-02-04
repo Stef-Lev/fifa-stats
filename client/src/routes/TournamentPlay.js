@@ -14,6 +14,7 @@ import MessageModal from '../components/MessageModal';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import Container from '@mui/material/Container';
 
 function TournamentPlay() {
   const { id } = useParams();
@@ -62,7 +63,7 @@ function TournamentPlay() {
     <div className="tournament-play-page">
       {loading && <Loader />}
       {!loading && (
-        <>
+        <Container maxWidth="sm" style={{padding:0}}>
           <Typography className="main-title">
             {tournament.teams_rating} Stars -{' '}
             {new Date(tournament.date).toLocaleDateString()}
@@ -110,7 +111,7 @@ function TournamentPlay() {
               type="confirm"
             />
           </div>
-        </>
+        </Container>
       )}
     </div>
   );

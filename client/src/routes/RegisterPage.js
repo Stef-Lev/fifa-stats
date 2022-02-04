@@ -26,7 +26,7 @@ function RegisterPage() {
 
   return (
     <div className="login-page">
-      <h3 style={{ marginBottom: '20px' }}>SIGN UP</h3>
+      <h3 className='route-title'>SIGN UP</h3>
       <div>
         <form>
           <TextField

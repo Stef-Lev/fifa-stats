@@ -102,6 +102,9 @@ function TournamentGamesContainer({ tournament, colors }) {
                         '& fieldset': {
                           borderColor: theme === 'dark' ? '#fff' : '#1b2433',
                         },
+                        '&:hover fieldset': {
+                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                        },
                         '&.Mui-focused fieldset': {
                           borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
                         },
@@ -183,6 +186,9 @@ function TournamentGamesContainer({ tournament, colors }) {
                         color: theme === 'dark' ? '#fff' : '#1b2433',
                         '& fieldset': {
                           borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
                         },
                         '&.Mui-focused fieldset': {
                           borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',

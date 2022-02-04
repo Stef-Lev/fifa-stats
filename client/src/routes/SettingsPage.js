@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ColorSelect from '../components/ColorSelect';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import useLogout from '../hooks/useLogout';
 import { ThemeContext } from '../context/ThemeContext';
 
@@ -40,6 +41,7 @@ const SettingsPage = () => {
     <div className="settings-page">
       {isLoading && <Loader />}
       {!isLoading && player && (
+        <Container maxWidth="sm" style={{padding:0}}>
         <div>
           <div className="flex-centered" style={{ flexDirection: 'column' }}>
             <AccountCircleIcon
@@ -87,6 +89,7 @@ const SettingsPage = () => {
             <p>Developed by Stefanos Leventis. &copy; 2021</p>
           </div>
         </div>
+        </Container>
       )}
     </div>
   );

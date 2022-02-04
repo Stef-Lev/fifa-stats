@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Loader from '../components/Loader';
 import { ThemeContext } from '../context/ThemeContext';
+import Container from '@mui/material/Container';
 import { getAllMethod } from '../helpers/httpService';
 import PlayerStats from '../components/PlayersTables';
 import Typography from '@mui/material/Typography';
@@ -97,6 +98,7 @@ function PlayerStatistics() {
     <div className="players-stats-page">
       {loading && <Loader />}
       {!loading && (
+        <Container maxWidth="sm" style={{padding:0}}>
         <div>
           <Typography
             className="main-title"
@@ -186,6 +188,7 @@ function PlayerStatistics() {
             </p>
           </div>
         </div>
+        </Container>
       )}
     </div>
   );

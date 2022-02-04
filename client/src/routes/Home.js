@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import HomeGridItem from '../components/HomeGridItem';
 import { PlayerContext } from '../context/PlayerContext';
 import Loader from '../components/Loader';
+import Container from '@mui/material/Container';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,10 +17,9 @@ function Home() {
   const { player, isLoading } = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  //new tournament route /tournaments/new
-
   return (
     <div>
+      <Container maxWidth="sm" style={{padding:0}}>
       {isLoading ? (
         <Loader />
       ) : (
@@ -53,6 +53,7 @@ function Home() {
           )}
         </>
       )}
+      </Container>
     </div>
   );
 }

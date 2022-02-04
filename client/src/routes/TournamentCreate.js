@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import PlayerSelection from '../components/PlayerSelection';
 import Participant from '../components/Participant';
+import Container from '@mui/material/Container';
 
 function TournamentCreate() {
   const [loading, setLoading] = useState(true);
@@ -52,7 +53,7 @@ function TournamentCreate() {
     <div className="tournament-create-page">
       {loading && <Loader />}
       {!loading && (
-        <>
+        <Container maxWidth="sm" style={{padding:0}}>
           <Typography className="main-title">Create tournament</Typography>
           <Typography>Teams rating</Typography>
           <div className="flex-centered container">
@@ -88,7 +89,7 @@ function TournamentCreate() {
               </Button>
             </div>
           )}
-        </>
+        </Container>
       )}
     </div>
   );

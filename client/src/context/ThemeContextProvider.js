@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeContext } from './ThemeContext';
 
 const ThemeContextProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const setThemeClass = useCallback(() => {
     document.documentElement.className = '';
@@ -15,7 +15,7 @@ const ThemeContextProvider = ({ children }) => {
       setTheme(storedTheme);
       setThemeClass();
     } else {
-      setTheme('light');
+      setTheme('dark');
       setThemeClass();
     }
   }, [setThemeClass]);
