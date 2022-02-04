@@ -19,7 +19,6 @@ import RedirectLoggedIn from './routes/RedirectLoggedIn';
 
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
-  console.log(player);
 
   return (
     <div className="App">

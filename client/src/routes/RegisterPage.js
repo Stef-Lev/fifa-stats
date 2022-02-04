@@ -28,131 +28,138 @@ function RegisterPage() {
     <div className="login-page">
       <h3 style={{ marginBottom: '20px' }}>SIGN UP</h3>
       <div>
-        <TextField
-          id="signup-fullname"
-          label="Full name"
-          variant="outlined"
-          autoComplete="off"
-          value={user.fullname}
-          onChange={(e) => handleInputChange(e, 'fullname')}
-          fullWidth
-          sx={{
-            marginBottom: '16px',
-            '& .MuiOutlinedInput-root': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '& fieldset': {
-                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+        <form>
+          <TextField
+            id="signup-fullname"
+            label="Full name"
+            variant="outlined"
+            autoComplete="off"
+            value={user.fullname}
+            onChange={(e) => handleInputChange(e, 'fullname')}
+            fullWidth
+            sx={{
+              marginBottom: '16px',
+              '& .MuiOutlinedInput-root': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '& fieldset': {
+                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                },
+                '&:hover fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-              '&:hover fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+              '& label': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '&.Mui-focused': {
+                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-              '&.Mui-focused fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+            }}
+          />
+          <TextField
+            id="signup-username"
+            label="Username"
+            variant="outlined"
+            autoComplete="off"
+            value={user.username}
+            onChange={(e) => handleInputChange(e, 'username')}
+            fullWidth
+            sx={{
+              marginBottom: '16px',
+              '& .MuiOutlinedInput-root': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '& fieldset': {
+                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                },
+                '&:hover fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-            },
-            '& label': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '&.Mui-focused': {
-                color: theme === 'dark' ? '#c2f158' : '#b834c6',
+              '& label': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '&.Mui-focused': {
+                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-            },
-          }}
-        />
-        <TextField
-          id="signup-username"
-          label="Username"
-          variant="outlined"
-          autoComplete="off"
-          value={user.username}
-          onChange={(e) => handleInputChange(e, 'username')}
-          fullWidth
-          sx={{
-            marginBottom: '16px',
-            '& .MuiOutlinedInput-root': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '& fieldset': {
-                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+            }}
+          />
+          <TextField
+            id="signup-password"
+            type="password"
+            label="Password"
+            variant="outlined"
+            autoComplete="off"
+            value={user.password}
+            onChange={(e) => handleInputChange(e, 'password')}
+            fullWidth
+            sx={{
+              marginBottom: '16px',
+              '& .MuiOutlinedInput-root': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '& fieldset': {
+                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                },
+                '&:hover fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-              '&:hover fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+              '& label': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '&.Mui-focused': {
+                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-              '&.Mui-focused fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+            }}
+          />
+          <TextField
+            id="signup-confirm"
+            type="password"
+            label="Confirm password"
+            variant="outlined"
+            autoComplete="off"
+            value={user.passwordCheck}
+            onChange={(e) => handleInputChange(e, 'passwordCheck')}
+            fullWidth
+            sx={{
+              marginBottom: '16px',
+              '& .MuiOutlinedInput-root': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '& fieldset': {
+                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                },
+                '&:hover fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-            },
-            '& label': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '&.Mui-focused': {
-                color: theme === 'dark' ? '#c2f158' : '#b834c6',
+              '& label': {
+                color: theme === 'dark' ? '#fff' : '#1b2433',
+                '&.Mui-focused': {
+                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                },
               },
-            },
-          }}
-        />
-        <TextField
-          id="signup-password"
-          type="password"
-          label="Password"
-          variant="outlined"
-          autoComplete="off"
-          value={user.password}
-          onChange={(e) => handleInputChange(e, 'password')}
-          fullWidth
-          sx={{
-            marginBottom: '16px',
-            '& .MuiOutlinedInput-root': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '& fieldset': {
-                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
-              },
-              '&:hover fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
-              },
-            },
-            '& label': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '&.Mui-focused': {
-                color: theme === 'dark' ? '#c2f158' : '#b834c6',
-              },
-            },
-          }}
-        />
-        <TextField
-          id="signup-confirm"
-          type="password"
-          label="Confirm password"
-          variant="outlined"
-          autoComplete="off"
-          value={user.passwordCheck}
-          onChange={(e) => handleInputChange(e, 'passwordCheck')}
-          fullWidth
-          sx={{
-            marginBottom: '16px',
-            '& .MuiOutlinedInput-root': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '& fieldset': {
-                borderColor: theme === 'dark' ? '#fff' : '#1b2433',
-              },
-              '&:hover fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
-              },
-            },
-            '& label': {
-              color: theme === 'dark' ? '#fff' : '#1b2433',
-              '&.Mui-focused': {
-                color: theme === 'dark' ? '#c2f158' : '#b834c6',
-              },
-            },
-          }}
-        />
-        <Button fullWidth className="auth-btn" onClick={handleRegister}>
-          REGISTER
-        </Button>
+            }}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            className="auth-btn"
+            onClick={handleRegister}
+          >
+            REGISTER
+          </Button>
+        </form>
       </div>
       <div className="bottom-msg">
         <p>

@@ -56,9 +56,14 @@ export default function useAuth() {
       });
   };
 
+  const clearError = () => {
+    setError(null);
+  };
+
   return {
     registerPlayer,
     loginPlayer,
+    clearError,
     error,
   };
 }
