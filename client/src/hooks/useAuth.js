@@ -17,7 +17,7 @@ export default function useAuth() {
       })
       .catch((err) => {
         console.error(err);
-        // setError(err.response.data);
+        setError(err.response.data);
       });
   };
 
@@ -33,10 +33,11 @@ export default function useAuth() {
       })
       .then(async () => {
         await setPlayerContext();
+        navigate('/');
       })
       .catch((err) => {
         console.error(err);
-        // return setError(err.response.data);
+        setError(err.response.data);
       });
   };
 

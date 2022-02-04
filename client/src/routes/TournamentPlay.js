@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import { PlayerContext } from '../context/PlayerContext';
 import {
   getOneMethod,
   deleteMethod,
@@ -23,6 +24,7 @@ function TournamentPlay() {
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const [openFinalModal, setOpenFinalModal] = useState(false);
   const { theme } = useContext(ThemeContext);
+  const { player } = useContext(PlayerContext);
 
   useEffect(() => {
     getOneMethod(`/api/tournaments/`, id)
@@ -68,7 +70,7 @@ function TournamentPlay() {
           <div>
             <Standings tournament={tournament} />
             <TournamentGamesContainer tournament={tournament} colors={colors} />
-            {tournament.status !== 'Completed' && (
+            {player?.role !== 'admin' || tournament.status !== 'Completed' && (
               <div className="flex-centered">
                 <Button
                   variant="contained"

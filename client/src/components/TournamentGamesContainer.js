@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import { PlayerContext } from '../context/PlayerContext';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -18,6 +19,7 @@ function TournamentGamesContainer({ tournament, colors }) {
     away: { participant: '', id: '', team: '', goals: '' },
   });
   const { theme } = useContext(ThemeContext);
+  const { player } = useContext(PlayerContext);
 
   const getParticipantData = (list, attr, name) => {
     if (list.length) {
@@ -69,7 +71,7 @@ function TournamentGamesContainer({ tournament, colors }) {
 
   return (
     <div>
-      {!allGamesPlayed() && tournament.status !== 'Completed' && (
+      {player?.role !== 'admin' || (!allGamesPlayed() && tournament.status !== 'Completed') && (
         <div className="container game-submit with-shadow">
           <div className="side-by-side">
             <FormControl style={{ width: '55%' }}>

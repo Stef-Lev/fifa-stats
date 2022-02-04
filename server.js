@@ -6,10 +6,7 @@ const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const auth = require('./utils/auth');
 const bodyParser = require('body-parser');
-const database =
-  process.env.NODE_ENV === 'production'
-    ? process.env.MONGODB_URI
-    : process.env.MONGO_DEV_URI;
+const database = findDatabase(process.env.NODE_ENV);
 const databaseName = database.split('/')[3].split('?')[0].toUpperCase();
 const player = require('./routes/playerRoute');
 const game = require('./routes/gameRoute');
@@ -20,6 +17,20 @@ const jwtSecret = process.env.JWT_SECRET;
 const path = require('path');
 
 mongoose.connect(database);
+
+function findDatabase (env) {
+  switch (env) {
+    case 'production':
+      return process.env.MONGODB_URI;
+    case 'development':
+      return process.env.MONGO_DEV_URI;
+    case 'demo':
+      return process.env.MONGO_DEMO_URI;  
+    default:
+      return process.env.MONGO_DEV_URI;
+  }
+
+}
 
 const db = mongoose.connection;
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
