@@ -41,55 +41,55 @@ const SettingsPage = () => {
     <div className="settings-page">
       {isLoading && <Loader />}
       {!isLoading && player && (
-        <Container maxWidth="sm" style={{padding:0}}>
         <div>
-          <div className="flex-centered" style={{ flexDirection: 'column' }}>
-            <AccountCircleIcon
-              style={{ width: '120px', height: '120px', margin: '20px 0 0' }}
-            />
-            <h3>{player.fullname}</h3>
-          </div>
-          <div className="settings">
-            <div className="set-item">
-              <div style={setItemStyle}>
-                <DarkModeIcon style={iconStyle} />
-                <Typography>Dark mode</Typography>
-              </div>
-              <Switch checked={theme === 'dark'} onChange={updateTheme} />
+          <Container maxWidth="sm" style={{ padding: 0 }}>
+            <div className="flex-centered" style={{ flexDirection: 'column' }}>
+              <AccountCircleIcon
+                style={{ width: '120px', height: '120px', margin: '20px 0 0' }}
+              />
+              <h3>{player.fullname}</h3>
             </div>
-            <div className="set-item" style={withButton}>
-              <div style={setItemStyle}>
-                <ColorLensIcon style={iconStyle} />
-                <Typography>Player color</Typography>
+            <div className="settings">
+              <div className="set-item">
+                <div style={setItemStyle}>
+                  <DarkModeIcon style={iconStyle} />
+                  <Typography>Dark mode</Typography>
+                </div>
+                <Switch checked={theme === 'dark'} onChange={updateTheme} />
+              </div>
+              <div className="set-item" style={withButton}>
+                <div style={setItemStyle}>
+                  <ColorLensIcon style={iconStyle} />
+                  <Typography>Player color</Typography>
+                </div>
+                <div
+                  className="color-circle"
+                  style={{ backgroundColor: player.color }}
+                  onClick={() => handleShowColorSelect()}
+                ></div>
               </div>
               <div
-                className="color-circle"
-                style={{ backgroundColor: player.color }}
-                onClick={() => handleShowColorSelect()}
-              ></div>
-            </div>
-            <div
-              style={withPadding}
-              className="set-item"
-              onClick={() => logoutPlayer()}
-            >
-              <div style={setItemStyle}>
-                <LogoutIcon style={iconStyle} />
-                <Typography>Logout</Typography>
+                style={withPadding}
+                className="set-item"
+                onClick={() => logoutPlayer()}
+              >
+                <div style={setItemStyle}>
+                  <LogoutIcon style={iconStyle} />
+                  <Typography>Logout</Typography>
+                </div>
               </div>
+              <ColorSelect
+                open={pickerOpen}
+                onClose={() => handleUpdateColor()}
+                color={player.color}
+                onChange={(e) => setColor(e)}
+              />
             </div>
-            <ColorSelect
-              open={pickerOpen}
-              onClose={() => handleUpdateColor()}
-              color={player.color}
-              onChange={(e) => setColor(e)}
-            />
-          </div>
+          </Container>
           <div className="about-msg">
             <p>Developed by Stefanos Leventis. &copy; 2021</p>
           </div>
         </div>
-        </Container>
       )}
     </div>
   );

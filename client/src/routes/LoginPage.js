@@ -24,7 +24,7 @@ function LoginPage() {
   return (
     <div className="login-page">
       <Container maxWidth="sm" style={{padding:0}}>
-      <h3 style={{ marginBottom: '20px' }} className='route-title'>LOGIN</h3>
+      <h3 className='route-title'>LOGIN</h3>
       <div>
         <form>
           <TextField

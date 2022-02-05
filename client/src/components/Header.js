@@ -209,26 +209,45 @@ const Header = () => {
   const displayDesktop = () => {
     return (
       <Toolbar>
-        <Typography variant="h5">FIFA Tournaments</Typography>
-        <div>{getMenuButtons()}</div>
+        <div className="desktop-bar">
+          <div>
+            <Typography variant="h5">FIFA Tournaments</Typography>
+          </div>
+          <div>{getMenuButtons()}</div>
+        </div>
       </Toolbar>
     );
   };
 
   const getMenuButtons = () => {
     return headerData.map(({ label, href }) => {
-      return (
-        <Button
-          {...{
-            key: label,
-            color: 'inherit',
-            to: href,
-            component: RouterLink,
-          }}
-        >
-          {label}
-        </Button>
-      );
+      if (label === 'Logout') {
+        return (
+          <Button
+            {...{
+              key: label,
+              color: 'inherit',
+              onClick: logoutPlayer,
+              component: Button,
+            }}
+          >
+            {label}
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            {...{
+              key: label,
+              color: 'inherit',
+              to: href,
+              component: RouterLink,
+            }}
+          >
+            {label}
+          </Button>
+        );
+      }
     });
   };
 

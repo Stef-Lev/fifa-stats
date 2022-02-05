@@ -36,6 +36,11 @@ input:-webkit-autofill:active {
     @include theme-aware('background', 'primary');
     position: absolute;
   }
+  .desktop-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .main-title {
     text-align: center;

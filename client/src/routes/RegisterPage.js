@@ -6,7 +6,7 @@ import useAuth from '../hooks/useAuth';
 import { ThemeContext } from '../context/ThemeContext';
 
 function RegisterPage() {
-  const { registerPlayer } = useAuth();
+  const { registerPlayer, error, clearError } = useAuth();
   const { theme } = useContext(ThemeContext);
   const [user, setUser] = useState({
     fullname: '',
@@ -21,6 +21,7 @@ function RegisterPage() {
   };
 
   const handleInputChange = (event, field) => {
+    clearError();
     setUser({ ...user, [field]: event.target.value });
   };
 
@@ -30,6 +31,7 @@ function RegisterPage() {
       <div>
         <form>
           <TextField
+            error={error ? true : false}
             id="signup-fullname"
             label="Full name"
             variant="outlined"
@@ -60,6 +62,7 @@ function RegisterPage() {
             }}
           />
           <TextField
+            error={error ? true : false}
             id="signup-username"
             label="Username"
             variant="outlined"
@@ -90,6 +93,7 @@ function RegisterPage() {
             }}
           />
           <TextField
+            error={error ? true : false}
             id="signup-password"
             type="password"
             label="Password"
@@ -121,6 +125,8 @@ function RegisterPage() {
             }}
           />
           <TextField
+            error={error ? true : false}
+            helperText={error && error.msg}
             id="signup-confirm"
             type="password"
             label="Confirm password"
