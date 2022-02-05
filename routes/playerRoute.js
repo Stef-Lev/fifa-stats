@@ -60,8 +60,12 @@ exports.stats = catchAsync(async (req, res) => {
 });
 
 exports.update = catchAsync(async (req, res) => {
-  const player = await Player.findById(req.body.id);
-  player.color = req.body.color;
-  await player.save();
+  const player = await Player.findOneAndUpdate(
+    { _id: req.body.id },
+    { $set: { color: req.body.color } },
+    {
+      new: true,
+    },
+  );
   res.status(200).json(player);
 });
