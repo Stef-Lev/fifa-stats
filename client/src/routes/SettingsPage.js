@@ -41,7 +41,7 @@ const SettingsPage = () => {
     <div className="settings-page">
       {isLoading && <Loader />}
       {!isLoading && player && (
-        <div>
+        <>
           <Container maxWidth="sm" style={{ padding: 0 }}>
             <div className="flex-centered" style={{ flexDirection: 'column' }}>
               <AccountCircleIcon
@@ -86,10 +86,10 @@ const SettingsPage = () => {
               />
             </div>
           </Container>
-          <div className="about-msg">
+          <div className="bottom-msg">
             <p>Developed by Stefanos Leventis. &copy; 2021</p>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

@@ -28,9 +28,6 @@ input:-webkit-autofill:active {
   margin-top: 56px;
 
   .app-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     color: $brandDarkBlue;
     @include theme-aware('color', 'secondary');
     @include theme-aware('background', 'primary');
@@ -40,6 +37,7 @@ input:-webkit-autofill:active {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
   .main-title {
@@ -107,12 +105,6 @@ input:-webkit-autofill:active {
   }
   .goal-input {
     width: 60px;
-  }
-  .about-msg {
-    bottom: 20px;
-    position: absolute;
-    text-align: center;
-    width: 92%;
   }
   .loader-container {
     margin: 33% auto;
@@ -207,6 +199,9 @@ input:-webkit-autofill:active {
       padding: 0.5rem;
       font-size: 1.3rem;
       border-radius: $radius;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
