@@ -122,6 +122,6 @@ function App() {
 export default App;
 
 // @TODO
-// Move home to /home and create landing page to /
-// Error handling to register, login, logout
-// Style desktop
+// Create ErrorPage 404
+
+

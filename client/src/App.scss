@@ -250,9 +250,6 @@ input:-webkit-autofill:active {
   .my-data-page {
     @include theme-aware('color', 'font-color');
     font-size: 1.5rem;
-    .data-err-msg {
-      text-align: center;
-    }
     h4 {
       text-align: center;
       margin-top: 0.5rem;

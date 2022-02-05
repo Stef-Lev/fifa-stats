@@ -28,10 +28,8 @@ exports.stats = catchAsync(async (req, res) => {
         diff: Math.abs(item.scores[0] - item.scores[1]),
       }))
       .sort((a, b) => b.diff - a.diff)[0];
-    const topWin = games.find((item) => item._id === sortedWins.id);
-    const topWinAgainst = Object.values(topWin.opponents).find(
-      (player) => player !== topWin.winner[0],
-    ).player;
+    const topWin = await Game.findById(sortedWins.id.toJSON());
+    const topWinAgainst = (Object.values(topWin.opponents).find((item) => item.player._id.toJSON() !== player._id.toJSON()).player).toJSON()
     const opponent = await Player.findById(topWinAgainst);
 
     dataObj.name = player.fullname;

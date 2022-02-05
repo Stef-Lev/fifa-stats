@@ -4,6 +4,7 @@ import Loader from '../components/Loader';
 import DonutChartGame from '../components/DonutChartGame';
 import DonutChartTournament from '../components/DonutChartTournament';
 import Container from '@mui/material/Container';
+import GenericError from '../components/GenericError';
 import { getOneMethod } from '../helpers/httpService';
 
 function MyData() {
@@ -24,7 +25,7 @@ function MyData() {
     <div className="my-data-page">
       {loading && <Loader />}
       {!loading && data.errorMsg && (
-        <div className="data-err-msg">{data.errorMsg}</div>
+        <GenericError message={data.errorMsg}/>
       )}
       {!loading && !data.errorMsg && (
         <Container maxWidth="sm" style={{padding:0}}>
