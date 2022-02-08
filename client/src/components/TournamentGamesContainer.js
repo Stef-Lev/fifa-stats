@@ -71,10 +71,10 @@ function TournamentGamesContainer({ tournament, colors }) {
 
   return (
     <div>
-      {player?.role !== 'admin' || (!allGamesPlayed() && tournament.status !== 'Completed') && (
+      {(player?.role !== 'admin' || (!allGamesPlayed() && tournament.status !== 'Completed')) && (
         <div className="container game-submit with-shadow">
           <div className="side-by-side">
-            <FormControl style={{ width: '55%' }}>
+            <FormControl className='w-55'>
               <InputLabel
                 id="select-label"
                 shrink
@@ -159,7 +159,7 @@ function TournamentGamesContainer({ tournament, colors }) {
             </div>
           </div>
           <div className="side-by-side">
-            <FormControl style={{ width: '55%' }}>
+            <FormControl className='w-55'>
               <InputLabel
                 id="select-label"
                 shrink
@@ -255,7 +255,7 @@ function TournamentGamesContainer({ tournament, colors }) {
           </div>
         </div>
       )}
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div className='mb20'>
         {!!tournament.games.length &&
           tournament.games.map((game, index) => (
             <TournamentGameItem

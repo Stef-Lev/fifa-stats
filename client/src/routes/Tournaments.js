@@ -19,12 +19,15 @@ function Tournaments() {
   return (
     <div className="tournaments-list-page">
       {loading && <Loader />}
-      <Container maxWidth="sm" style={{ padding: 0 }}>
-        <h3 className="route-title">TOURNAMENTS</h3>
-        {!loading &&
-          tournaments.map((item, index) => (
-            <TournamentItem key={index + 1} tournament={item} />
-          ))}
+      <Container maxWidth="sm" className="main-container">
+        {!loading && (
+          <>
+            <h3 className="route-title">TOURNAMENTS</h3>
+            {tournaments.map((item, index) => (
+              <TournamentItem key={index + 1} tournament={item} />
+            ))}
+          </>
+        )}
         {!loading && !tournaments.length && (
           <GenericError message="No tournaments played" />
         )}

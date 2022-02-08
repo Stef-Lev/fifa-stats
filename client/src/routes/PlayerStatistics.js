@@ -98,7 +98,7 @@ function PlayerStatistics() {
     <div className="players-stats-page">
       {loading && <Loader />}
       {!loading && (
-        <Container maxWidth="sm" style={{padding:0}}>
+        <Container maxWidth="sm" className='main-container'>
         <div>
           <Typography
             className="main-title"

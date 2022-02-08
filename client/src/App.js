@@ -123,5 +123,7 @@ export default App;
 
 // @TODO
 // Create ErrorPage 404
+// Refactor scss
+// Refactor all code
 
 

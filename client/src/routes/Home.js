@@ -19,7 +19,7 @@ function Home() {
 
   return (
     <div>
-      <Container maxWidth="sm" style={{padding:0}}>
+      <Container maxWidth="sm" className='main-container'>
       {isLoading ? (
         <Loader />
       ) : (

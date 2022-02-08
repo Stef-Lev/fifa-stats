@@ -103,7 +103,7 @@ const Header = () => {
               logoutPlayer();
             }}
           >
-            <LogoutIcon style={{ marginRight: '12px' }} /> {label}
+            <LogoutIcon className='logout-icon' /> {label}
           </MenuItem>
         );
       } else {

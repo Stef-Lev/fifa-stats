@@ -19,10 +19,6 @@ const SettingsPage = () => {
   const { logoutPlayer } = useLogout();
   const [pickerOpen, setPickerOpen] = useState(false);
   const [color, setColor] = useState('#fff');
-  const iconStyle = { marginRight: '8px' };
-  const setItemStyle = { display: 'flex' };
-  const withPadding = { padding: '12px' };
-  const withButton = { padding: '9px' };
 
   const handleShowColorSelect = () => {
     setPickerOpen((prev) => !prev);
@@ -42,24 +38,24 @@ const SettingsPage = () => {
       {isLoading && <Loader />}
       {!isLoading && player && (
         <>
-          <Container maxWidth="sm" style={{ padding: 0 }}>
-            <div className="flex-centered" style={{ flexDirection: 'column' }}>
+          <Container maxWidth="sm" className='main-container'>
+            <div className="flex-centered flex-column">
               <AccountCircleIcon
-                style={{ width: '120px', height: '120px', margin: '20px 0 0' }}
+                id='account-avatar'
               />
               <h3>{player.fullname}</h3>
             </div>
             <div className="settings">
               <div className="set-item">
-                <div style={setItemStyle}>
-                  <DarkModeIcon style={iconStyle} />
+                <div className='flex'>
+                  <DarkModeIcon className='mr8' />
                   <Typography>Dark mode</Typography>
                 </div>
                 <Switch checked={theme === 'dark'} onChange={updateTheme} />
               </div>
-              <div className="set-item" style={withButton}>
-                <div style={setItemStyle}>
-                  <ColorLensIcon style={iconStyle} />
+              <div className="set-item p10">
+                <div className='flex'>
+                  <ColorLensIcon className='mr8' />
                   <Typography>Player color</Typography>
                 </div>
                 <div
@@ -69,12 +65,11 @@ const SettingsPage = () => {
                 ></div>
               </div>
               <div
-                style={withPadding}
-                className="set-item"
+                className="set-item p10"
                 onClick={() => logoutPlayer()}
               >
-                <div style={setItemStyle}>
-                  <LogoutIcon style={iconStyle} />
+                <div className='flex'>
+                  <LogoutIcon className='mr8' />
                   <Typography>Logout</Typography>
                 </div>
               </div>

@@ -44,7 +44,7 @@ function PlayerSelection({ playerList, addAction }) {
 
   return (
     <div className="flex-between container">
-      <FormControl style={{ width: '40%' }}>
+      <FormControl className='w-40'>
         <InputLabel
           id="select-label"
           sx={{
@@ -87,7 +87,7 @@ function PlayerSelection({ playerList, addAction }) {
         </Select>
         <FormHelperText />
       </FormControl>
-      <FormControl style={{ width: '40%' }}>
+      <FormControl className='w-40'>
         <TextField
           id="team"
           label="Team"
@@ -123,7 +123,7 @@ function PlayerSelection({ playerList, addAction }) {
         className="brand-btn round-btn"
         onClick={handleSubmit}
       >
-        <AddIcon style={{ width: '32px', height: '32px' }} />
+        <AddIcon className='square32' />
       </IconButton>
     </div>
   );

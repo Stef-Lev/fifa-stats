@@ -63,7 +63,7 @@ function TournamentPlay() {
     <div className="tournament-play-page">
       {loading && <Loader />}
       {!loading && (
-        <Container maxWidth="sm" style={{padding:0}}>
+        <Container maxWidth="sm" className='main-container'>
           <Typography className="main-title">
             {tournament.teams_rating} Stars -{' '}
             {new Date(tournament.date).toLocaleDateString()}
@@ -75,9 +75,8 @@ function TournamentPlay() {
               <div className="flex-centered">
                 <Button
                   variant="contained"
-                  className="finalize-btn"
+                  className="finalize-btn mr20"
                   onClick={() => setOpenFinalModal(true)}
-                  style={{ marginRight: '20px' }}
                 >
                   Finalize tournament
                 </Button>

@@ -53,7 +53,7 @@ function TournamentCreate() {
     <div className="tournament-create-page">
       {loading && <Loader />}
       {!loading && (
-        <Container maxWidth="sm" style={{padding:0}}>
+        <Container maxWidth="sm" className='main-container'>
           <Typography className="main-title">Create tournament</Typography>
           <Typography>Teams rating</Typography>
           <div className="flex-centered container">

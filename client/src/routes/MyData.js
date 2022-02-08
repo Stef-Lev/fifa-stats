@@ -28,7 +28,7 @@ function MyData() {
         <GenericError message={data.errorMsg}/>
       )}
       {!loading && !data.errorMsg && (
-        <Container maxWidth="sm" style={{padding:0}}>
+        <Container maxWidth="sm" className='main-container'>
         <div>
           <h4>Average goals per game</h4>
           <div className="my-data-container">

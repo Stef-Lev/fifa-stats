@@ -23,7 +23,7 @@ const MessageModal = ({
       >
         <Box id="modal">
           <div className="flex-centered">
-            <ErrorOutlineIcon style={{ width: '60px', height: '60px' }} />
+            <ErrorOutlineIcon id='warning-icon' />
           </div>
           <Typography id="modal-modal-title" variant="h5">
             {title}
@@ -32,11 +32,11 @@ const MessageModal = ({
             {msg}
           </Typography>
           {type === 'cancel' && (
-            <div className="flex-centered" style={{ marginTop: '20px' }}>
+            <div className="flex-centered mt20">
               <Button
                 variant="contained"
+                className='mr20'
                 color="primary"
-                style={{ marginRight: '20px' }}
                 onClick={onClose}
               >
                 No
@@ -47,11 +47,11 @@ const MessageModal = ({
             </div>
           )}
           {type === 'confirm' && (
-            <div className="flex-centered" style={{ marginTop: '20px' }}>
+            <div className="flex-centered mt20">
               <Button
                 variant="contained"
                 color="primary"
-                style={{ marginRight: '20px' }}
+                className='mr20'
                 onClick={buttonAction}
               >
                 Yes
