@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getAllMethod } from '../helpers/httpService';
 import TournamentItem from '../components/TournamentItem';
+import Container from '@mui/material/Container';
+import GenericError from '../components/GenericError';
 import Loader from '../components/Loader';
 
 function Tournaments() {
@@ -8,7 +10,7 @@ function Tournaments() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllMethod(`/api/tournaments`).then((data) => {
+    getAllMethod(`/api/tournaments/`).then((data) => {
       setTournaments(data);
       setLoading(false);
     });
@@ -17,11 +19,19 @@ function Tournaments() {
   return (
     <div className="tournaments-list-page">
       {loading && <Loader />}
-      {!loading &&
-        tournaments.map((item, index) => (
-          <TournamentItem key={index + 1} tournament={item} />
-        ))}
-      {!loading && !tournaments.length && <h2>No tournaments yet</h2>}
+      <Container maxWidth="sm" className="main-container">
+        {!loading && (
+          <>
+            <h3 className="route-title">TOURNAMENTS</h3>
+            {tournaments.map((item, index) => (
+              <TournamentItem key={index + 1} tournament={item} />
+            ))}
+          </>
+        )}
+        {!loading && !tournaments.length && (
+          <GenericError message="No tournaments played" />
+        )}
+      </Container>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -10,6 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { PlayerContext } from '../context/PlayerContext';
+import useLogout from '../hooks/useLogout';
 
 const headerData = [
   {
@@ -25,12 +28,20 @@ const headerData = [
     href: '/tournaments/new',
   },
   {
-    label: 'Players statistics',
+    label: 'Players data',
     href: '/players',
   },
   {
-    label: 'Add player',
-    href: '/player/add',
+    label: 'My data',
+    href: '/mydata',
+  },
+  {
+    label: 'Settings',
+    href: '/settings',
+  },
+  {
+    label: 'Logout',
+    href: '/logout',
   },
 ];
 
@@ -40,7 +51,9 @@ const Header = () => {
     drawerOpen: false,
   });
 
+  const { player } = useContext(PlayerContext);
   const { mobileView, drawerOpen } = state;
+  const { logoutPlayer } = useLogout();
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -59,20 +72,12 @@ const Header = () => {
 
   const getDrawerChoices = () => {
     return headerData.map(({ label, href }) => {
-      return (
-        <Link
-          {...{
-            component: RouterLink,
-            to: href,
-            color: 'inherit',
-            style: { textDecoration: 'none' },
-            key: label,
-            onClick: () =>
-              mobileView &&
-              setState((prevState) => ({ ...prevState, drawerOpen: false })),
-          }}
-        >
+      if (player?.role !== 'admin' && label === 'New tournament') {
+        return null;
+      } else if (label === 'Logout') {
+        return (
           <MenuItem
+            key={`_${label}__`}
             className="app-item"
             sx={{
               fontSize: '1.6rem',
@@ -92,11 +97,55 @@ const Header = () => {
                 bottom: '0',
               },
             }}
+            onClick={() => {
+              mobileView &&
+                setState((prevState) => ({ ...prevState, drawerOpen: false }));
+              logoutPlayer();
+            }}
           >
-            {label}
+            <LogoutIcon className='logout-icon' /> {label}
           </MenuItem>
-        </Link>
-      );
+        );
+      } else {
+        return (
+          <Link
+            {...{
+              component: RouterLink,
+              to: href,
+              color: 'inherit',
+              style: { textDecoration: 'none' },
+              key: label,
+              onClick: () =>
+                mobileView &&
+                setState((prevState) => ({ ...prevState, drawerOpen: false })),
+            }}
+          >
+            <MenuItem
+              className="app-item"
+              sx={{
+                fontSize: '1.6rem',
+                '&:hover': {
+                  backgroundColor: '#c2f158',
+                  color: '#1b2433',
+                },
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  height: '2px',
+                  width: '90%',
+                  backgroundColor: '#c2f158',
+                  margin: '0 auto',
+                  left: '0',
+                  right: '0',
+                  bottom: '0',
+                },
+              }}
+            >
+              {label}
+            </MenuItem>
+          </Link>
+        );
+      }
     });
   };
 
@@ -160,26 +209,45 @@ const Header = () => {
   const displayDesktop = () => {
     return (
       <Toolbar>
-        <Typography variant="h5">FIFA Tournaments</Typography>
-        <div>{getMenuButtons()}</div>
+        <div className="desktop-bar">
+          <div>
+            <Typography variant="h5">FIFA Tournaments</Typography>
+          </div>
+          <div>{getMenuButtons()}</div>
+        </div>
       </Toolbar>
     );
   };
 
   const getMenuButtons = () => {
     return headerData.map(({ label, href }) => {
-      return (
-        <Button
-          {...{
-            key: label,
-            color: 'inherit',
-            to: href,
-            component: RouterLink,
-          }}
-        >
-          {label}
-        </Button>
-      );
+      if (label === 'Logout') {
+        return (
+          <Button
+            {...{
+              key: label,
+              color: 'inherit',
+              onClick: logoutPlayer,
+              component: Button,
+            }}
+          >
+            {label}
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            {...{
+              key: label,
+              color: 'inherit',
+              to: href,
+              component: RouterLink,
+            }}
+          >
+            {label}
+          </Button>
+        );
+      }
     });
   };
 

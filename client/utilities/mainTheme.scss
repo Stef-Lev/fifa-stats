@@ -1,14 +1,47 @@
-$white: #ffffff;
+$colorBasic: #fff;
 $error: #e93c42;
-$brandLight: #49bce3;
-$brandDark: #1077c3;
-$brandYellow: #fec310;
-$brandScarlett: #56042c;
 $radius: 8px;
-$container-bcg: rgb(227, 248, 246);
 $brandLightGreen: #c2f158;
 $brandDarkBlue: #1b2433;
 $brandTeal: #64d2da;
 $brandPurple: #b834c6;
 $brandDarkGrey: #283043;
-$brandLightBlue: #82aac5;
+
+$themes: (
+  light: (
+    background: #fff,
+    font-color: #1b2433,
+    error: #e93c42,
+    radius: 8px,
+    primary: #1b2433,
+    secondary: #c2f158,
+    cta-primary: #b834c6,
+    cta-secondary: #64d2da,
+    home-item-bcg: #b6b6b6,
+    home-item-frg: #283043,
+    table-bcg: #e0e0e0,
+    tab: #1b2433,
+    highlight: #b834c6,
+    border-highlight: 1px solid #1b2433,
+    set-item: #cbcbcb,
+    input-autocomplete: 0 0 0 30px #fff inset,
+  ),
+  dark: (
+    background: rgb(2, 14, 32),
+    font-color: #fff,
+    error: #e93c42,
+    radius: 8px,
+    primary: #c2f158,
+    secondary: #1b2433,
+    cta-primary: #b834c6,
+    cta-secondary: #283043,
+    home-item-bcg: #283043,
+    home-item-frg: #64d2da,
+    table-bcg: #283043,
+    tab: #c2f158,
+    highlight: #c2f158,
+    border-highlight: 1px solid #c2f158,
+    set-item: #283043,
+    input-autocomplete: 0 0 0 30px rgb(2, 14, 32) inset,
+  ),
+);

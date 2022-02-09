@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { getOneMethod, deleteMethod } from '../helpers/httpService';
+import React, { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+import { PlayerContext } from '../context/PlayerContext';
+import {
+  getOneMethod,
+  deleteMethod,
+  getAllMethod,
+} from '../helpers/httpService';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Standings from '../components/Standings';
@@ -8,20 +14,33 @@ import MessageModal from '../components/MessageModal';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import Container from '@mui/material/Container';
 
 function TournamentPlay() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [tournament, setTournament] = useState(null);
+  const [colors, setColors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const [openFinalModal, setOpenFinalModal] = useState(false);
+  const { theme } = useContext(ThemeContext);
+  const { player } = useContext(PlayerContext);
 
   useEffect(() => {
-    getOneMethod(`/api/tournaments/`, id).then((data) => {
-      setTournament(data);
-      setLoading(false);
-    });
+    getOneMethod(`/api/tournaments/`, id)
+      .then((data) => {
+        setTournament(data);
+      })
+      .then(() => getAllMethod('/api/players/'))
+      .then((res) => {
+        const colorArr = res.map((item) => ({
+          id: item._id,
+          color: item.color,
+        }));
+        setColors(colorArr);
+      })
+      .then(() => setLoading(false));
   }, [id]);
 
   const finalizeTournament = () => {
@@ -44,21 +63,21 @@ function TournamentPlay() {
     <div className="tournament-play-page">
       {loading && <Loader />}
       {!loading && (
-        <>
+        <Container maxWidth="sm" className="main-container">
           <Typography className="main-title">
             {tournament.teams_rating} Stars -{' '}
             {new Date(tournament.date).toLocaleDateString()}
           </Typography>
           <div>
             <Standings tournament={tournament} />
-            <TournamentGamesContainer tournament={tournament} />
-            {tournament.status !== 'Completed' && (
+            <TournamentGamesContainer tournament={tournament} colors={colors} />
+            {(player?.role !== 'admin' ||
+              tournament.status !== 'Completed') && (
               <div className="flex-centered">
                 <Button
                   variant="contained"
-                  className="finalize-btn"
+                  className="finalize-btn mr20"
                   onClick={() => setOpenFinalModal(true)}
-                  style={{ marginRight: '20px' }}
                 >
                   Finalize tournament
                 </Button>
@@ -66,7 +85,10 @@ function TournamentPlay() {
                   variant="outlined"
                   color="error"
                   onClick={() => setOpenCancelModal(true)}
-                  sx={{ color: '#c2f158', borderColor: '#c2f158' }}
+                  sx={{
+                    color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                    borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                  }}
                 >
                   Quit
                 </Button>
@@ -89,7 +111,7 @@ function TournamentPlay() {
               type="confirm"
             />
           </div>
-        </>
+        </Container>
       )}
     </div>
   );

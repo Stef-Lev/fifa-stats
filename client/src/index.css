@@ -1,13 +1,15 @@
 body {
   margin: 0;
   font-family: 'Oswald', sans-serif !important;
-  background: url('https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg');
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: auto;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* @media screen and (min-width: 992px) {
+  body {
+    background-size: cover;
+  }
+} */

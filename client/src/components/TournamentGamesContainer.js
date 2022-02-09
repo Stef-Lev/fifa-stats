@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+import { PlayerContext } from '../context/PlayerContext';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -11,11 +13,13 @@ import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
 import { updateMethod } from '../helpers/httpService';
 
-function TournamentGamesContainer({ tournament }) {
+function TournamentGamesContainer({ tournament, colors }) {
   const [game, setGame] = useState({
     home: { participant: '', id: '', team: '', goals: '' },
     away: { participant: '', id: '', team: '', goals: '' },
   });
+  const { theme } = useContext(ThemeContext);
+  const { player } = useContext(PlayerContext);
 
   const getParticipantData = (list, attr, name) => {
     if (list.length) {
@@ -60,24 +64,24 @@ function TournamentGamesContainer({ tournament }) {
   };
 
   const handleGameSubmit = () => {
-    updateMethod(`/api/tournaments/`, tournament._id, game).then(
-      () => window.location.reload(),
+    updateMethod(`/api/tournaments/`, tournament._id, game).then(() =>
+      window.location.reload(),
     );
   };
 
   return (
     <div>
-      {!allGamesPlayed() && tournament.status !== 'Completed' && (
+      {(player?.role !== 'admin' || (!allGamesPlayed() && tournament.status !== 'Completed')) && (
         <div className="container game-submit with-shadow">
           <div className="side-by-side">
-            <FormControl style={{ width: '55%' }}>
+            <FormControl className='w-55'>
               <InputLabel
                 id="select-label"
                 shrink
                 sx={{
-                  color: '#fff',
+                  color: theme === 'dark' ? '#fff' : '#1b2433',
                   '&.Mui-focused': {
-                    color: '#c2f158',
+                    color: theme === 'dark' ? '#c2f158' : '#b834c6',
                   },
                 }}
               >
@@ -94,9 +98,16 @@ function TournamentGamesContainer({ tournament }) {
                     label="Player"
                     sx={{
                       '&.MuiOutlinedInput-root': {
-                        color: '#fff',
-                        '& fieldset': { borderColor: '#fff' },
-                        '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                        color: theme === 'dark' ? '#fff' : '#1b2433',
+                        '& fieldset': {
+                          borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                        },
                       },
                     }}
                   />
@@ -113,7 +124,7 @@ function TournamentGamesContainer({ tournament }) {
             <FormControl className="goal-input">
               <TextField
                 type="number"
-                id="outlined-basic"
+                id="home-goals"
                 label="Goals"
                 variant="outlined"
                 autoComplete="off"
@@ -122,21 +133,21 @@ function TournamentGamesContainer({ tournament }) {
                 onChange={(ev) => handleGoalsChange(ev, 'home')}
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    color: '#fff',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '& fieldset': {
-                      borderColor: '#fff',
+                      borderColor: theme === 'dark' ? '#fff' : '#1b2433',
                     },
                     '&:hover fieldset': {
-                      borderColor: '#c2f158',
+                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#c2f158',
+                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
                     },
                   },
                   '& label': {
-                    color: 'white',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '&.Mui-focused': {
-                      color: '#c2f158',
+                      color: theme === 'dark' ? '#c2f158' : '#b834c6',
                     },
                   },
                 }}
@@ -148,14 +159,14 @@ function TournamentGamesContainer({ tournament }) {
             </div>
           </div>
           <div className="side-by-side">
-            <FormControl style={{ width: '55%' }}>
+            <FormControl className='w-55'>
               <InputLabel
                 id="select-label"
                 shrink
                 sx={{
-                  color: '#fff',
+                  color: theme === 'dark' ? '#fff' : '#1b2433',
                   '&.Mui-focused': {
-                    color: '#c2f158',
+                    color: theme === 'dark' ? '#c2f158' : '#b834c6',
                   },
                 }}
               >
@@ -172,9 +183,16 @@ function TournamentGamesContainer({ tournament }) {
                     label="Player"
                     sx={{
                       '&.MuiOutlinedInput-root': {
-                        color: '#fff',
-                        '& fieldset': { borderColor: '#fff' },
-                        '&.Mui-focused fieldset': { borderColor: '#c2f158' },
+                        color: theme === 'dark' ? '#fff' : '#1b2433',
+                        '& fieldset': {
+                          borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                        },
                       },
                     }}
                   />
@@ -191,7 +209,7 @@ function TournamentGamesContainer({ tournament }) {
             <FormControl className="goal-input">
               <TextField
                 type="number"
-                id="outlined-basic"
+                id="away-goals"
                 label="Goals"
                 variant="outlined"
                 autoComplete="off"
@@ -200,21 +218,21 @@ function TournamentGamesContainer({ tournament }) {
                 onChange={(ev) => handleGoalsChange(ev, 'away')}
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    color: '#fff',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '& fieldset': {
-                      borderColor: '#fff',
+                      borderColor: theme === 'dark' ? '#fff' : '#1b2433',
                     },
                     '&:hover fieldset': {
-                      borderColor: '#c2f158',
+                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#c2f158',
+                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
                     },
                   },
                   '& label': {
-                    color: 'white',
+                    color: theme === 'dark' ? '#fff' : '#1b2433',
                     '&.Mui-focused': {
-                      color: '#c2f158',
+                      color: theme === 'dark' ? '#c2f158' : '#b834c6',
                     },
                   },
                 }}
@@ -237,13 +255,14 @@ function TournamentGamesContainer({ tournament }) {
           </div>
         </div>
       )}
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div className='mb20'>
         {!!tournament.games.length &&
           tournament.games.map((game, index) => (
             <TournamentGameItem
               key={index + 1}
               game={game}
               tournament={tournament}
+              colors={colors}
             />
           ))}
       </div>

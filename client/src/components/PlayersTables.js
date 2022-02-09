@@ -36,9 +36,9 @@ function PlayerStats({ tab, players }) {
               {gameRows.map((row, index) => {
                 const { total, won, drawn, lost } = row.games_played.statistics;
                 return (
-                  <TableRow key={`${row.name}_${index}`}>
+                  <TableRow key={`${row.fullname}_${index}`}>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.fullname}
                     </TableCell>
                     <TableCell>{won}</TableCell>
                     <TableCell>{drawn}</TableCell>
@@ -67,9 +67,9 @@ function PlayerStats({ tab, players }) {
             <TableBody>
               {goalRows.map((row, index) => {
                 return (
-                  <TableRow key={`${row.name}_${index}`}>
+                  <TableRow key={`${row.fullname}_${index}`}>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.fullname}
                     </TableCell>
                     <TableCell>{row.goals.for}</TableCell>
                     <TableCell>{row.goals.against}</TableCell>
@@ -96,9 +96,9 @@ function PlayerStats({ tab, players }) {
               {tournamentRows.map((row, index) => {
                 const { won, total } = row.tournaments_played;
                 return (
-                  <TableRow key={`${row.name}_${index}`}>
+                  <TableRow key={`${row.fullname}_${index}`}>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.fullname}
                     </TableCell>
                     <TableCell>{won}</TableCell>
                     <TableCell>{total}</TableCell>
