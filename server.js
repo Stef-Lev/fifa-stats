@@ -18,18 +18,17 @@ const path = require('path');
 
 mongoose.connect(database);
 
-function findDatabase (env) {
+function findDatabase(env) {
   switch (env) {
     case 'production':
       return process.env.MONGODB_URI;
     case 'development':
       return process.env.MONGO_DEV_URI;
     case 'demo':
-      return process.env.MONGO_DEMO_URI;  
+      return process.env.MONGO_DEMO_URI;
     default:
       return process.env.MONGO_DEV_URI;
   }
-
 }
 
 const db = mongoose.connection;
@@ -77,7 +76,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 } else {
-  app.get('/', (req, res) => {
+  app.get('/api/', (req, res) => {
     res.send('API running');
   });
 }
