@@ -63,7 +63,7 @@ function TournamentPlay() {
     <div className="tournament-play-page">
       {loading && <Loader />}
       {!loading && (
-        <Container maxWidth="sm" className='main-container'>
+        <Container maxWidth="sm" className="main-container">
           <Typography className="main-title">
             {tournament.teams_rating} Stars -{' '}
             {new Date(tournament.date).toLocaleDateString()}
@@ -71,7 +71,8 @@ function TournamentPlay() {
           <div>
             <Standings tournament={tournament} />
             <TournamentGamesContainer tournament={tournament} colors={colors} />
-            {(player?.role !== 'admin' || tournament.status !== 'Completed') && (
+            {(player?.role !== 'admin' ||
+              tournament.status !== 'Completed') && (
               <div className="flex-centered">
                 <Button
                   variant="contained"

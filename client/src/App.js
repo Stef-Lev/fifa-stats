@@ -126,5 +126,3 @@ export default App;
 // Refactor scss
 // Refactor all code
 // Add biggest loss in my data
-
-
