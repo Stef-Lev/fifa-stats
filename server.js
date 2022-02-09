@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 } else {
-  app.get('/api/', (req, res) => {
+  app.get('/', (req, res) => {
     res.send('API running');
   });
 }
