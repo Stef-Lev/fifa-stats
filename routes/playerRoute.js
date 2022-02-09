@@ -29,8 +29,29 @@ exports.stats = catchAsync(async (req, res) => {
       }))
       .sort((a, b) => b.diff - a.diff)[0];
     const topWin = await Game.findById(sortedWins.id.toJSON());
-    const topWinAgainst = (Object.values(topWin.opponents).find((item) => item.player._id.toJSON() !== player._id.toJSON()).player).toJSON()
-    const opponent = await Player.findById(topWinAgainst);
+    const topWinAgainst = Object.values(topWin.opponents)
+      .find((item) => item.player._id.toJSON() !== player._id.toJSON())
+      .player.toJSON();
+    const winOpponent = await Player.findById(topWinAgainst);
+    const sortedLosses = games
+      .filter(
+        (item) =>
+          item.winner.length < 2 &&
+          item.winner[0] != id &&
+          (item.opponents.home.player == id ||
+            item.opponents.away.player == id),
+      )
+      .map((item) => ({ id: item._id, scores: item.score.split(' - ') }))
+      .map((item) => ({
+        id: item.id,
+        diff: Math.abs(item.scores[0] - item.scores[1]),
+      }))
+      .sort((a, b) => b.diff - a.diff)[0];
+    const topLoss = await Game.findById(sortedLosses.id.toJSON());
+    const topLossAgainst = Object.values(topLoss.opponents)
+      .find((item) => item.player._id.toJSON() !== player._id.toJSON())
+      .player.toJSON();
+    const lossOpponent = await Player.findById(topLossAgainst);
 
     dataObj.name = player.fullname;
     dataObj.id = player.id;
@@ -48,8 +69,13 @@ exports.stats = catchAsync(async (req, res) => {
     ).toFixed(2);
     dataObj.biggest_win = {
       score: topWin.score,
-      against: opponent.fullname,
+      against: winOpponent.fullname,
       teams: topWin.opponents,
+    };
+    dataObj.biggest_loss = {
+      score: topLoss.score,
+      against: lossOpponent.fullname,
+      teams: topLoss.opponents,
     };
   } else {
     dataObj.errorMsg = 'No games played';

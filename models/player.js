@@ -42,23 +42,23 @@ const PlayerSchema = new Schema({
     against: { type: Number, default: 0 },
   },
 });
+
 PlayerSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
   }
   const user = this;
- 
 
-    bcrypt.hash(user.password, 12, null, function (err, hash) {
-      if (err) {
-        return next(err);
-      }
+  bcrypt.hash(user.password, 12, null, function (err, hash) {
+    if (err) {
+      return next(err);
+    }
 
-      user.passwordCheck = undefined;
-      user.password = hash;
-      next();
-    });
+    user.passwordCheck = undefined;
+    user.password = hash;
+    next();
   });
+});
 
 PlayerSchema.methods.correctPassword = async function (
   candidatePassword,
