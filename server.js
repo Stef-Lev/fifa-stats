@@ -70,6 +70,8 @@ app.get('/api/games', game.list);
 app.get('/api/games/:id', game.getOne);
 app.delete('/api/tournaments/:tid/game/:gid', game.delete);
 
+
+//fix login auth and blank page
 if (process.env.NODE_ENV === 'production') {
   const root = require('path').join(__dirname, 'client', 'build');
   app.use(express.static(root));
