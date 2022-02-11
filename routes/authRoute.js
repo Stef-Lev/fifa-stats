@@ -21,8 +21,7 @@ const createPlayerToken = async (player, code, req, res) => {
     secure:
       req.secure ||
       req.headers['x-forwarded-proto'] === 'https' ||
-      req.headers['x-forwarded-proto'] === 'http',
-    sameSite: 'none',
+      req.headers['x-forwarded-proto'] === 'http'
   });
 
   player.password = undefined;
