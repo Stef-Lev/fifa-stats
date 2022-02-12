@@ -18,8 +18,6 @@ const createPlayerToken = async (player, code, req, res) => {
   res.cookie('jwt_token', token, {
     expires: d,
     httpOnly: true,
-    secure: true,
-    sameSite: 'none',
   });
 
   player.password = undefined;
