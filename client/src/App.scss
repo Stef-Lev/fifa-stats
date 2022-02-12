@@ -267,11 +267,25 @@ input:-webkit-autofill:active {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
-    &:first-of-type {
-      margin-bottom: 120px;
-    }
     hr {
       margin: 8px 0;
+    }
+  }
+  .chart-item {
+    position: relative;
+    width: 100%;
+    &::after {
+      content: attr(data-title);
+      position: absolute;
+      border-radius: $radius;
+      top: 0;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      right: 0;
+      text-align: center;
+      font-size: 1.2rem;
+      @include theme-aware('color', 'font-color');
     }
   }
   .my-data-item {

@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '../context/PlayerContext';
 import Loader from '../components/Loader';
-import DonutChartGame from '../components/DonutChartGame';
-import DonutChartTournament from '../components/DonutChartTournament';
 import Container from '@mui/material/Container';
 import GenericError from '../components/GenericError';
 import { getOneMethod } from '../helpers/httpService';
@@ -31,25 +29,22 @@ function MyData() {
           <>
             <h4>Overall statistics</h4>
             <div className="my-data-container">
-              <DonutChartGame
-                values={[
-                  { status: 'won', value: data.games_won },
-                  { status: 'drawn', value: data.games_drawn },
-                  { status: 'lost', value: data.games_lost },
-                ]}
-              />
-              <DonutChartTournament
-                values={[
-                  { status: 'won', value: data.tournaments_won },
-                  { status: 'lost', value: data.tournaments_played },
-                ]}
-              />
               <TestDonut
                 values={[
                   { status: 'won', value: data.games_won },
                   { status: 'drawn', value: data.games_drawn },
                   { status: 'lost', value: data.games_lost },
                 ]}
+                colors={['#c2f158', '#82aac5', '#e93c42']}
+                title='Games'
+              />
+              <TestDonut
+                values={[
+                  { status: 'won', value: data.tournaments_won },
+                  { status: 'lost', value: data.tournaments_played },
+                ]}
+                colors={['#b834c6', '#1077c3']}
+                title='Tournaments'
               />
             </div>
             <h4>Average goals per game</h4>
