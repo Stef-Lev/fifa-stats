@@ -6,6 +6,7 @@ import DonutChartTournament from '../components/DonutChartTournament';
 import Container from '@mui/material/Container';
 import GenericError from '../components/GenericError';
 import { getOneMethod } from '../helpers/httpService';
+import TestDonut from '../components/TestDonut';
 
 function MyData() {
   const { player } = useContext(PlayerContext);
@@ -41,6 +42,13 @@ function MyData() {
                 values={[
                   { status: 'won', value: data.tournaments_won },
                   { status: 'lost', value: data.tournaments_played },
+                ]}
+              />
+              <TestDonut
+                values={[
+                  { status: 'won', value: data.games_won },
+                  { status: 'drawn', value: data.games_drawn },
+                  { status: 'lost', value: data.games_lost },
                 ]}
               />
             </div>
