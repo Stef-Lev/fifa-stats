@@ -18,10 +18,8 @@ const createPlayerToken = async (player, code, req, res) => {
   res.cookie('jwt_token', token, {
     expires: d,
     httpOnly: true,
-    secure:
-      req.secure ||
-      req.headers['x-forwarded-proto'] === 'https' ||
-      req.headers['x-forwarded-proto'] === 'http'
+    secure: true,
+    sameSite: 'none',
   });
 
   player.password = undefined;
