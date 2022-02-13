@@ -36,15 +36,12 @@ exports.registerPlayer = async (req, res, next) => {
     if (!username || !password || !passwordCheck)
       return res.status(400).json({ msg: 'Not all fields have been entered.' });
 
-    if (password !== passwordCheck) {
+    if (password !== passwordCheck)
       return res
         .status(400)
         .json({ msg: 'Enter the same password twice for verification.' });
-    }
 
-    if (!fullname) {
-      fullname = username;
-    }
+    if (!fullname) fullname = username;
 
     const newPlayer = await Player.create({
       fullname: fullname,

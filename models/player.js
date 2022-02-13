@@ -47,17 +47,10 @@ PlayerSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
   }
-  const user = this;
-
-  bcrypt.hash(user.password, 12, null, function (err, hash) {
-    if (err) {
-      return next(err);
-    }
-
-    user.passwordCheck = undefined;
-    user.password = hash;
-    next();
-  });
+  
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordCheck = undefined;
+  next();
 });
 
 PlayerSchema.methods.correctPassword = async function (
