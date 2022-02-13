@@ -27,7 +27,7 @@ function RegisterPage() {
 
   return (
     <div className="login-page">
-      <h3 className='route-title'>SIGN UP</h3>
+      <h3 className="route-title">SIGN UP</h3>
       <div>
         <form>
           <TextField
@@ -157,6 +157,14 @@ function RegisterPage() {
               },
             }}
           />
+          <p className="form-msg">
+            Are you already a member?{' '}
+            <span>
+              <Link href="/login" underline="none">
+                LOG IN
+              </Link>
+            </span>
+          </p>
           <Button
             type="submit"
             fullWidth
@@ -166,16 +174,6 @@ function RegisterPage() {
             REGISTER
           </Button>
         </form>
-      </div>
-      <div className="bottom-msg">
-        <p>
-          I am already a member{' '}
-          <span>
-            <Link href="/login" underline="none">
-              LOG IN
-            </Link>
-          </span>
-        </p>
       </div>
     </div>
   );

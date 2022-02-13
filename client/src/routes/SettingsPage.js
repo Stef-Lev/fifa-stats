@@ -82,7 +82,7 @@ const SettingsPage = () => {
             </div>
           </Container>
           <div className="bottom-msg">
-            <p>Developed by Stefanos Leventis. &copy; 2021</p>
+            <p>Developed by Stefanos Leventis. </p>
           </div>
         </>
       )}

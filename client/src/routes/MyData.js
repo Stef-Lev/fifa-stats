@@ -1,15 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '../context/PlayerContext';
+import { ThemeContext } from '../context/ThemeContext';
 import Loader from '../components/Loader';
+import Box from '@mui/material/Box';
+import TabPanel from '../components/TabPanel';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Container from '@mui/material/Container';
 import GenericError from '../components/GenericError';
+import MyOverall from '../components/MyOverall';
+import MyRecords from '../components/MyRecords';
 import { getOneMethod } from '../helpers/httpService';
-import TestDonut from '../components/TestDonut';
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 function MyData() {
   const { player } = useContext(PlayerContext);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [value, setValue] = React.useState(0);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (player) {
@@ -20,6 +35,10 @@ function MyData() {
     }
   }, [player._id, player]);
 
+  const handleTabChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className="my-data-page">
       {loading && <Loader />}
@@ -27,63 +46,61 @@ function MyData() {
       {!loading && !data.errorMsg && (
         <Container maxWidth="sm" className="main-container">
           <>
-            <h4>Overall statistics</h4>
-            <div className="my-data-container">
-              <TestDonut
-                values={[
-                  { status: 'won', value: data.games_won },
-                  { status: 'drawn', value: data.games_drawn },
-                  { status: 'lost', value: data.games_lost },
-                ]}
-                colors={['#c2f158', '#82aac5', '#e93c42']}
-                title='Games'
-              />
-              <TestDonut
-                values={[
-                  { status: 'won', value: data.tournaments_won },
-                  { status: 'lost', value: data.tournaments_played },
-                ]}
-                colors={['#b834c6', '#1077c3']}
-                title='Tournaments'
-              />
-            </div>
-            <h4>Average goals per game</h4>
-            <div className="my-data-container">
-              <div className="my-data-item outlined">
-                <p>Scored</p>
-                <hr />
-                <p className="stat">{data.av_goals_scored_per_game}</p>
-              </div>
-              <div className="my-data-item outlined">
-                <p>Conceived</p>
-                <hr />
-                <p className="stat">{data.av_goals_conceived_per_game}</p>
-              </div>
-            </div>
-            <h4>Biggest win</h4>
-            <div className="my-data-item outlined">
-              <p>
-                {data.biggest_win.teams.home.team} -{' '}
-                {data.biggest_win.teams.away.team}{' '}
-              </p>
-              <p className="stat">{data.biggest_win.score}</p>
-              <p>
-                Against:{' '}
-                <span className="stat">{data.biggest_win.against}</span>
-              </p>
-            </div>
-            <h4>Biggest loss</h4>
-            <div className="my-data-item outlined">
-              <p>
-                {data.biggest_loss.teams.home.team} -{' '}
-                {data.biggest_loss.teams.away.team}{' '}
-              </p>
-              <p className="stat">{data.biggest_loss.score}</p>
-              <p>
-                Against:{' '}
-                <span className="stat">{data.biggest_loss.against}</span>
-              </p>
-            </div>
+            <Box sx={{ width: '100%' }}>
+              <Box
+                sx={{
+                  borderBottom: 1,
+                  borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                }}
+              >
+                <Tabs
+                  value={value}
+                  onChange={handleTabChange}
+                  aria-label="tournament tabs"
+                  sx={{
+                    '& .MuiTabs-indicator': {
+                      backgroundColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                      height: '4px',
+                    },
+                    '& .MuiTabs-flexContainer': {
+                      justifyContent: 'space-between',
+                    },
+                  }}
+                >
+                  <Tab
+                    label="Overall"
+                    {...a11yProps(0)}
+                    sx={{
+                      color: theme === 'dark' ? '#fff' : '#1b2433',
+                      '&.MuiButtonBase-root.Mui-selected': {
+                        color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                        fontWeight: theme === 'dark' ? '400' : '700',
+                        '&.MuiTouchRipple-root': {
+                          color: theme === 'dark' ? '#fff' : '#1b2433',
+                        },
+                      },
+                    }}
+                  />
+                  <Tab
+                    label="Records"
+                    {...a11yProps(1)}
+                    sx={{
+                      color: theme === 'dark' ? '#fff' : '#1b2433',
+                      '&.MuiButtonBase-root.Mui-selected': {
+                        color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                        fontWeight: theme === 'dark' ? '400' : '700',
+                      },
+                    }}
+                  />
+                </Tabs>
+              </Box>
+              <TabPanel value={value} index={0} padding='16px 0 16px'>
+                <MyOverall data={data} />
+              </TabPanel>
+              <TabPanel value={value} index={1} padding='0 0 16px'>
+                <MyRecords data={data} />
+              </TabPanel>
+            </Box>
           </>
         </Container>
       )}

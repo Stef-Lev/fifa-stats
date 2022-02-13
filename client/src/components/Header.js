@@ -252,7 +252,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar className="app-bar" position="sticky">
+    <AppBar className="app-bar">
       {mobileView ? displayMobile() : displayDesktop()}
     </AppBar>
   );
