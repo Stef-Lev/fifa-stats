@@ -11,6 +11,7 @@ import Loader from '../components/Loader';
 import Standings from '../components/Standings';
 import Typography from '@mui/material/Typography';
 import MessageModal from '../components/MessageModal';
+// import PlayerToTeamInfo from '../components/PlayerToTeamInfo';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
@@ -59,6 +60,19 @@ function TournamentPlay() {
       .catch((err) => console.log(new Error(err)));
   };
 
+  const shouldShowButton = () => {
+    if (player && tournament) {
+      if (player.role === 'admin' && tournament.status !== 'Completed') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  };
+
+  console.log(tournament)
+
   return (
     <div className="tournament-play-page">
       {loading && <Loader />}
@@ -70,9 +84,11 @@ function TournamentPlay() {
           </Typography>
           <div>
             <Standings tournament={tournament} />
+            {/* <div className="container">
+              <PlayerToTeamInfo tournament={tournament} colors={colors}/>
+            </div> */}
             <TournamentGamesContainer tournament={tournament} colors={colors} />
-            {(player?.role !== 'admin' ||
-              tournament.status !== 'Completed') && (
+            {shouldShowButton() && (
               <div className="flex-centered">
                 <Button
                   variant="contained"

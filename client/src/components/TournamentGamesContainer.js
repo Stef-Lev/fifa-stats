@@ -69,9 +69,20 @@ function TournamentGamesContainer({ tournament, colors }) {
     );
   };
 
+  const shouldShowButton = () => {
+    if (player && tournament) {
+      if (player.role === 'admin' && tournament.status !== 'Completed' && !allGamesPlayed()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  };
+
   return (
     <div>
-      {(player?.role !== 'admin' || (!allGamesPlayed() && tournament.status !== 'Completed')) && (
+      {shouldShowButton() && (
         <div className="container game-submit with-shadow">
           <div className="side-by-side">
             <FormControl className='w-55'>

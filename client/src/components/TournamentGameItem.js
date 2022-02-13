@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PlayerContext } from '../context/PlayerContext';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
 import { deleteMethod } from '../helpers/httpService';
 
 function TournamentGameItem({ game, tournament, colors }) {
   const { home, away } = game.opponents;
+  const { player } = useContext(PlayerContext);
 
   const removeGame = () => {
     deleteMethod(
@@ -19,6 +22,17 @@ function TournamentGameItem({ game, tournament, colors }) {
   };
 
   const itemWidth = tournament.status !== 'Completed' ? '80%' : '100%';
+
+  const shouldShowButton = () => {
+    if (player && tournament) {
+      if (player.role === 'admin' && tournament.status !== 'Completed') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  };
 
   return (
     <div className="game-item flex-between with-shadow">
@@ -46,9 +60,14 @@ function TournamentGameItem({ game, tournament, colors }) {
           />
         </div>
       </div>
-      {tournament.status !== 'Completed' && (
+      {shouldShowButton() && (
         <div className="flex-centered">
           <HighlightOffIcon onClick={removeGame} />
+        </div>
+      )}
+      {!shouldShowButton() && (
+        <div className="flex-centered">
+          <DoneAllIcon />
         </div>
       )}
     </div>
