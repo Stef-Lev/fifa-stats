@@ -71,8 +71,6 @@ function TournamentPlay() {
     return false;
   };
 
-  console.log(tournament)
-
   return (
     <div className="tournament-play-page">
       {loading && <Loader />}
