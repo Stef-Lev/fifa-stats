@@ -8,8 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 function Standings({ tournament }) {
-  const createData = (player, points, goalsFor, goalsAg, goalDiff) => {
-    return { player, points, goalsFor, goalsAg, goalDiff };
+  const createData = (player, team, points, goalsFor, goalsAg, goalDiff) => {
+    return { player, team, points, goalsFor, goalsAg, goalDiff };
   };
 
   const { participants } = tournament;
@@ -18,6 +18,7 @@ function Standings({ tournament }) {
     .map((item) =>
       createData(
         item.player.name,
+        item.player.team,
         item.points,
         item.goals.for,
         item.goals.against,
@@ -38,7 +39,8 @@ function Standings({ tournament }) {
           <TableHead sx={{ borderBottom: '1px solid white' }}>
             <TableRow>
               <TableCell>Player</TableCell>
-              <TableCell>Points</TableCell>
+              <TableCell>Team</TableCell>
+              <TableCell>Pts</TableCell>
               <TableCell>G+</TableCell>
               <TableCell>G-</TableCell>
               <TableCell>G+/-</TableCell>
@@ -47,9 +49,8 @@ function Standings({ tournament }) {
           <TableBody>
             {rows.map((row, index) => (
               <TableRow key={`${row.name}_${index}`}>
-                <TableCell component="th" scope="row">
-                  {row.player}
-                </TableCell>
+                <TableCell>{row.player}</TableCell>
+                <TableCell>{row.team}</TableCell>
                 <TableCell>{row.points}</TableCell>
                 <TableCell>{row.goalsFor}</TableCell>
                 <TableCell>{row.goalsAg}</TableCell>
