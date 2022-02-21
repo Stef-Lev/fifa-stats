@@ -54,7 +54,8 @@ app.get('/api/auth/player', userAuth.checkPlayer);
 app.post('/api/players', player.add);
 app.get('/api/players', player.list);
 app.get('/api/players/stats/:id', player.stats);
-app.put('/api/players/:id', player.update);
+app.put('/api/players/color/:id', player.updateColor);
+app.put('/api/players/role/:id', player.updateRole);
 
 // Tournaments
 app.post('/api/tournaments', tournament.add);
@@ -69,7 +70,6 @@ app.post('/api/games', game.add);
 app.get('/api/games', game.list);
 app.get('/api/games/:id', game.getOne);
 app.delete('/api/tournaments/:tid/game/:gid', game.delete);
-
 
 //fix login auth and blank page
 if (process.env.NODE_ENV === 'production') {
