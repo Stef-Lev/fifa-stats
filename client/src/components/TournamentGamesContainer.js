@@ -71,7 +71,11 @@ function TournamentGamesContainer({ tournament, colors }) {
 
   const shouldShowButton = () => {
     if (player && tournament) {
-      if (player.role === 'admin' && tournament.status !== 'Completed' && !allGamesPlayed()) {
+      if (
+        player.role === 'admin' &&
+        tournament.status !== 'Completed' &&
+        !allGamesPlayed()
+      ) {
         return true;
       } else {
         return false;
@@ -85,7 +89,7 @@ function TournamentGamesContainer({ tournament, colors }) {
       {shouldShowButton() && (
         <div className="container game-submit with-shadow">
           <div className="side-by-side">
-            <FormControl className='w-55'>
+            <FormControl className="w-55">
               <InputLabel
                 id="select-label"
                 shrink
@@ -170,7 +174,7 @@ function TournamentGamesContainer({ tournament, colors }) {
             </div>
           </div>
           <div className="side-by-side">
-            <FormControl className='w-55'>
+            <FormControl className="w-55">
               <InputLabel
                 id="select-label"
                 shrink
@@ -266,7 +270,7 @@ function TournamentGamesContainer({ tournament, colors }) {
           </div>
         </div>
       )}
-      <div className='mb20'>
+      <div className="mb20">
         {!!tournament.games.length &&
           tournament.games.map((game, index) => (
             <TournamentGameItem

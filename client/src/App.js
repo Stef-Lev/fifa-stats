@@ -7,6 +7,7 @@ import RegisterPage from './routes/RegisterPage';
 import Tournaments from './routes/Tournaments';
 import PlayerStatistics from './routes/PlayerStatistics';
 import SettingsPage from './routes/SettingsPage';
+import RoleSelection from './routes/RoleSelection';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 import MyData from './routes/MyData';
@@ -15,6 +16,7 @@ import useFindPlayer from './hooks/useFindPlayer';
 import { PlayerContext } from './context/PlayerContext';
 import ThemeContextProvider from './context/ThemeContextProvider';
 import PrivateRoute from './routes/PrivateRoute';
+import AdminRoute from './routes/AdminRoute';
 import RedirectLoggedIn from './routes/RedirectLoggedIn';
 
 function App() {
@@ -96,9 +98,18 @@ function App() {
                   exact
                   path="/tournaments/new"
                   element={
-                    <PrivateRoute>
+                    <AdminRoute>
                       <TournamentCreate />
-                    </PrivateRoute>
+                    </AdminRoute>
+                  }
+                />
+                <Route
+                  exact
+                  path="/roles"
+                  element={
+                    <AdminRoute>
+                      <RoleSelection />
+                    </AdminRoute>
                   }
                 />
                 <Route

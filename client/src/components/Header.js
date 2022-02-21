@@ -28,6 +28,10 @@ const headerData = [
     href: '/tournaments/new',
   },
   {
+    label: 'Role management',
+    href: '/roles',
+  },
+  {
     label: 'Players data',
     href: '/players',
   },
@@ -72,7 +76,10 @@ const Header = () => {
 
   const getDrawerChoices = () => {
     return headerData.map(({ label, href }) => {
-      if (player?.role !== 'admin' && label === 'New tournament') {
+      if (
+        (player?.role !== 'admin' && label === 'New tournament') ||
+        (player?.role !== 'admin' && label === 'Role management')
+      ) {
         return null;
       } else if (label === 'Logout') {
         return (
@@ -103,7 +110,7 @@ const Header = () => {
               logoutPlayer();
             }}
           >
-            <LogoutIcon className='logout-icon' /> {label}
+            <LogoutIcon className="logout-icon" /> {label}
           </MenuItem>
         );
       } else {
