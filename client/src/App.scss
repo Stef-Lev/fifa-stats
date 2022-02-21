@@ -247,6 +247,14 @@ input:-webkit-autofill:active {
   .player-stats-page {
     @include theme-aware('color', 'font-color');
   }
+  .role-management {
+    @include theme-aware('color', 'font-color');
+    .title {
+      text-align: center;
+      font-size: large;
+      margin-bottom: 20px;
+    }
+  }
   .tournaments-list-page {
     @include theme-aware('color', 'font-color');
   }

@@ -26,7 +26,7 @@ const SettingsPage = () => {
 
   const handleUpdateColor = () => {
     const obj = { id: player._id, color };
-    updateMethod(`/api/players/`, player._id, obj)
+    updateMethod(`/api/players/color/`, player._id, obj)
       .then((res) => {
         handleShowColorSelect();
       })
@@ -38,24 +38,22 @@ const SettingsPage = () => {
       {isLoading && <Loader />}
       {!isLoading && player && (
         <>
-          <Container maxWidth="sm" className='main-container'>
+          <Container maxWidth="sm" className="main-container">
             <div className="flex-centered flex-column">
-              <AccountCircleIcon
-                id='account-avatar'
-              />
+              <AccountCircleIcon id="account-avatar" />
               <h3>{player.fullname}</h3>
             </div>
             <div className="settings">
               <div className="set-item">
-                <div className='flex'>
-                  <DarkModeIcon className='mr8' />
+                <div className="flex">
+                  <DarkModeIcon className="mr8" />
                   <Typography>Dark mode</Typography>
                 </div>
                 <Switch checked={theme === 'dark'} onChange={updateTheme} />
               </div>
               <div className="set-item p10">
-                <div className='flex'>
-                  <ColorLensIcon className='mr8' />
+                <div className="flex">
+                  <ColorLensIcon className="mr8" />
                   <Typography>Player color</Typography>
                 </div>
                 <div
@@ -64,12 +62,9 @@ const SettingsPage = () => {
                   onClick={() => handleShowColorSelect()}
                 ></div>
               </div>
-              <div
-                className="set-item p10"
-                onClick={() => logoutPlayer()}
-              >
-                <div className='flex'>
-                  <LogoutIcon className='mr8' />
+              <div className="set-item p10" onClick={() => logoutPlayer()}>
+                <div className="flex">
+                  <LogoutIcon className="mr8" />
                   <Typography>Logout</Typography>
                 </div>
               </div>
