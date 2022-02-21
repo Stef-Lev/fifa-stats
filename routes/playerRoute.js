@@ -83,10 +83,21 @@ exports.stats = catchAsync(async (req, res) => {
   res.status(200).json(dataObj);
 });
 
-exports.update = catchAsync(async (req, res) => {
+exports.updateColor = catchAsync(async (req, res) => {
   const player = await Player.findOneAndUpdate(
     { _id: req.body.id },
     { $set: { color: req.body.color } },
+    {
+      new: true,
+    },
+  );
+  res.status(200).json(player);
+});
+
+exports.updateRole = catchAsync(async (req, res) => {
+  const player = await Player.findOneAndUpdate(
+    { _id: req.body.id },
+    { $set: { role: req.body.role } },
     {
       new: true,
     },
