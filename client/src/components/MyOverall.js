@@ -1,7 +1,7 @@
 import React from 'react';
 import TestDonut from './TestDonut';
 
-function MyOverall({data}) {
+function MyOverall({ data }) {
   return (
     <>
       <div className="charts-container">
@@ -17,7 +17,10 @@ function MyOverall({data}) {
         <TestDonut
           values={[
             { status: 'won', value: data.tournaments_won },
-            { status: 'lost', value: data.tournaments_played },
+            {
+              status: 'lost',
+              value: data.tournaments_played - data.tournaments_won,
+            },
           ]}
           colors={['#b834c6', '#1077c3']}
           title="Tournaments"
