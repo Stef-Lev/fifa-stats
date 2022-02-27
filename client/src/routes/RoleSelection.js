@@ -14,11 +14,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { PlayerContext } from '../context/PlayerContext';
 
 function RoleSelection() {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
+  const { player } = useContext(PlayerContext);
 
   useEffect(() => {
     getAllMethod(`/api/players/`).then((data) => {
@@ -55,9 +57,11 @@ function RoleSelection() {
     }
   };
 
-  const rows = players.map((item) =>
-    createData(item.fullname, item.username, item.role, item._id),
-  );
+  const rows = players
+    .filter((item) => item._id !== player._id)
+    .map((player) =>
+      createData(player.fullname, player.username, player.role, player._id),
+    );
 
   return (
     <div className="role-management">

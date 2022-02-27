@@ -13,41 +13,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { PlayerContext } from '../context/PlayerContext';
 import useLogout from '../hooks/useLogout';
-
-const headerData = [
-  {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'Tournaments',
-    href: '/tournaments',
-  },
-  {
-    label: 'New tournament',
-    href: '/tournaments/new',
-  },
-  {
-    label: 'Role management',
-    href: '/roles',
-  },
-  {
-    label: 'Players data',
-    href: '/players',
-  },
-  {
-    label: 'My data',
-    href: '/mydata',
-  },
-  {
-    label: 'Settings',
-    href: '/settings',
-  },
-  {
-    label: 'Logout',
-    href: '/logout',
-  },
-];
+import { headerData } from '../helpers/headerData';
 
 const Header = () => {
   const [state, setState] = useState({
@@ -74,14 +40,19 @@ const Header = () => {
     };
   }, []);
 
+  const isAdmin = (player) => {
+    return player?.role === 'admin';
+  };
+
+  const isLogoutButton = (label) => {
+    return label === 'Logout';
+  };
+
   const getDrawerChoices = () => {
-    return headerData.map(({ label, href }) => {
-      if (
-        (player?.role !== 'admin' && label === 'New tournament') ||
-        (player?.role !== 'admin' && label === 'Role management')
-      ) {
+    return headerData.map(({ label, href, isPrivate }) => {
+      if (!isAdmin(player) && isPrivate) {
         return null;
-      } else if (label === 'Logout') {
+      } else if (isLogoutButton(label)) {
         return (
           <MenuItem
             key={`_${label}__`}
@@ -227,8 +198,10 @@ const Header = () => {
   };
 
   const getMenuButtons = () => {
-    return headerData.map(({ label, href }) => {
-      if (label === 'Logout') {
+    return headerData.map(({ label, href, isPrivate }) => {
+      if (!isAdmin(player) && isPrivate) {
+        return null;
+      } else if (isLogoutButton(label)) {
         return (
           <Button
             {...{
