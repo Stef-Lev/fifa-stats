@@ -1,4 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Loader from '../components/Loader';
+import Standings from '../components/Standings';
+import MessageModal from '../components/MessageModal';
+import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import { ThemeContext } from '../context/ThemeContext';
 import { PlayerContext } from '../context/PlayerContext';
 import {
@@ -6,16 +14,7 @@ import {
   deleteMethod,
   getAllMethod,
 } from '../helpers/httpService';
-import { useParams } from 'react-router-dom';
-import Loader from '../components/Loader';
-import Standings from '../components/Standings';
-import Typography from '@mui/material/Typography';
-import MessageModal from '../components/MessageModal';
-// import PlayerToTeamInfo from '../components/PlayerToTeamInfo';
-import TournamentGamesContainer from '../components/TournamentGamesContainer';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
-import Container from '@mui/material/Container';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function TournamentPlay() {
   const { id } = useParams();
@@ -100,8 +99,8 @@ function TournamentPlay() {
                   color="error"
                   onClick={() => setOpenCancelModal(true)}
                   sx={{
-                    color: theme === 'dark' ? '#c2f158' : '#1b2433',
-                    borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                    color: applyThemeColor(theme, '#c2f158', '#1b2433'),
+                    borderColor: applyThemeColor(theme, '#c2f158', '#1b2433'),
                   }}
                 >
                   Quit

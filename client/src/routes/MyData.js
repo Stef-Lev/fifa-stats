@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { PlayerContext } from '../context/PlayerContext';
-import { ThemeContext } from '../context/ThemeContext';
-import Loader from '../components/Loader';
 import Box from '@mui/material/Box';
-import TabPanel from '../components/TabPanel';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Container from '@mui/material/Container';
+import { PlayerContext } from '../context/PlayerContext';
+import { ThemeContext } from '../context/ThemeContext';
+import Loader from '../components/Loader';
+import TabPanel from '../components/TabPanel';
 import GenericError from '../components/GenericError';
 import MyOverall from '../components/MyOverall';
 import MyRecords from '../components/MyRecords';
 import { getOneMethod } from '../helpers/httpService';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function a11yProps(index) {
   return {
@@ -50,7 +51,7 @@ function MyData() {
               <Box
                 sx={{
                   borderBottom: 1,
-                  borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#1b2433'),
                 }}
               >
                 <Tabs
@@ -59,7 +60,11 @@ function MyData() {
                   aria-label="tournament tabs"
                   sx={{
                     '& .MuiTabs-indicator': {
-                      backgroundColor: theme === 'dark' ? '#c2f158' : '#1b2433',
+                      backgroundColor: applyThemeColor(
+                        theme,
+                        '#c2f158',
+                        '#1b2433',
+                      ),
                       height: '4px',
                     },
                     '& .MuiTabs-flexContainer': {
@@ -71,12 +76,12 @@ function MyData() {
                     label="Overall"
                     {...a11yProps(0)}
                     sx={{
-                      color: theme === 'dark' ? '#fff' : '#1b2433',
+                      color: applyThemeColor(theme, '#fff', '#1b2433'),
                       '&.MuiButtonBase-root.Mui-selected': {
-                        color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                        color: applyThemeColor(theme, '#c2f158', '#1b2433'),
                         fontWeight: theme === 'dark' ? '400' : '700',
                         '&.MuiTouchRipple-root': {
-                          color: theme === 'dark' ? '#fff' : '#1b2433',
+                          color: applyThemeColor(theme, '#fff', '#1b2433'),
                         },
                       },
                     }}
@@ -85,19 +90,19 @@ function MyData() {
                     label="Records"
                     {...a11yProps(1)}
                     sx={{
-                      color: theme === 'dark' ? '#fff' : '#1b2433',
+                      color: applyThemeColor(theme, '#fff', '#1b2433'),
                       '&.MuiButtonBase-root.Mui-selected': {
-                        color: theme === 'dark' ? '#c2f158' : '#1b2433',
+                        color: applyThemeColor(theme, '#c2f158', '#1b2433'),
                         fontWeight: theme === 'dark' ? '400' : '700',
                       },
                     }}
                   />
                 </Tabs>
               </Box>
-              <TabPanel value={value} index={0} padding='16px 0 16px'>
+              <TabPanel value={value} index={0} padding="16px 0 16px">
                 <MyOverall data={data} />
               </TabPanel>
-              <TabPanel value={value} index={1} padding='0 0 16px'>
+              <TabPanel value={value} index={1} padding="0 0 16px">
                 <MyRecords data={data} />
               </TabPanel>
             </Box>

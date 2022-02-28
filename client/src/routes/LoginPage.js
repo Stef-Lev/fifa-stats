@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import useAuth from '../hooks/useAuth';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
+import useAuth from '../hooks/useAuth';
 import { ThemeContext } from '../context/ThemeContext';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function LoginPage() {
   const { loginPlayer, error, clearError } = useAuth();
@@ -39,21 +40,21 @@ function LoginPage() {
               sx={{
                 marginBottom: '26px',
                 '& .MuiOutlinedInput-root': {
-                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '& fieldset': {
-                    borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                    borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                   },
                   '&:hover fieldset': {
-                    borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                 },
                 '& label': {
-                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '&.Mui-focused': {
-                    color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                 },
               }}
@@ -72,21 +73,21 @@ function LoginPage() {
               sx={{
                 marginBottom: '26px',
                 '& .MuiOutlinedInput-root': {
-                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '& fieldset': {
-                    borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                    borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                   },
                   '&:hover fieldset': {
-                    borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                 },
                 '& label': {
-                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '&.Mui-focused': {
-                    color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                 },
               }}

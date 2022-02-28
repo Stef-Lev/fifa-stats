@@ -4,7 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function TestDonut({ values, colors, title }) {
+function DonutChart({ values, colors, title }) {
   const style = { width: '100%' };
 
   const mapValues = (arr, value) => {
@@ -35,10 +35,10 @@ function TestDonut({ values, colors, title }) {
   };
 
   return (
-    <div className='chart-item' data-title={title}>
+    <div className="chart-item" data-title={title}>
       <Doughnut data={data} options={options} style={style} />
     </div>
   );
 }
 
-export default TestDonut;
+export default DonutChart;

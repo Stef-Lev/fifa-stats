@@ -3,7 +3,7 @@ import { HexColorPicker } from 'react-colorful';
 import IconButton from '@mui/material/IconButton';
 import CancelIcon from '@mui/icons-material/Cancel';
 
-const ColorSelect = ({ open, onClose, color, onChange }) => {
+const ColorPicker = ({ open, onClose, color, onChange }) => {
   return (
     <>
       {open && (
@@ -26,4 +26,4 @@ const ColorSelect = ({ open, onClose, color, onChange }) => {
   );
 };
 
-export default ColorSelect;
+export default ColorPicker;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,27 +10,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from '@mui/material/Link';
-import { Link as RouterLink } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { PlayerContext } from '../context/PlayerContext';
 import useLogout from '../hooks/useLogout';
 import { headerData } from '../helpers/headerData';
 
 const Header = () => {
-  const [state, setState] = useState({
+  const [headerState, setHeaderState] = useState({
     mobileView: false,
     drawerOpen: false,
   });
-
   const { player } = useContext(PlayerContext);
-  const { mobileView, drawerOpen } = state;
   const { logoutPlayer } = useLogout();
+  const { mobileView, drawerOpen } = headerState;
 
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 854
-        ? setState((prevState) => ({ ...prevState, mobileView: true }))
-        : setState((prevState) => ({ ...prevState, mobileView: false }));
+      return window.innerWidth < 920
+        ? setHeaderState((prevState) => ({ ...prevState, mobileView: true }))
+        : setHeaderState((prevState) => ({ ...prevState, mobileView: false }));
     };
 
     setResponsiveness();
@@ -77,7 +76,10 @@ const Header = () => {
             }}
             onClick={() => {
               mobileView &&
-                setState((prevState) => ({ ...prevState, drawerOpen: false }));
+                setHeaderState((prevState) => ({
+                  ...prevState,
+                  drawerOpen: false,
+                }));
               logoutPlayer();
             }}
           >
@@ -95,7 +97,10 @@ const Header = () => {
               key: label,
               onClick: () =>
                 mobileView &&
-                setState((prevState) => ({ ...prevState, drawerOpen: false })),
+                setHeaderState((prevState) => ({
+                  ...prevState,
+                  drawerOpen: false,
+                })),
             }}
           >
             <MenuItem
@@ -129,9 +134,9 @@ const Header = () => {
 
   const displayMobile = () => {
     const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+      setHeaderState((prevState) => ({ ...prevState, drawerOpen: true }));
     const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+      setHeaderState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
       <Toolbar>
@@ -170,7 +175,10 @@ const Header = () => {
             }}
             onClick={() =>
               mobileView &&
-              setState((prevState) => ({ ...prevState, drawerOpen: false }))
+              setHeaderState((prevState) => ({
+                ...prevState,
+                drawerOpen: false,
+              }))
             }
           >
             <CloseIcon />

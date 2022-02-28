@@ -15,6 +15,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { PlayerContext } from '../context/PlayerContext';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function RoleSelection() {
   const [players, setPlayers] = useState([]);
@@ -94,17 +95,27 @@ function RoleSelection() {
                           value={row.role}
                           sx={{
                             '&.MuiOutlinedInput-root': {
-                              color: theme === 'dark' ? '#fff' : '#1b2433',
+                              color: applyThemeColor(theme, '#fff', '#1b2433'),
                               '& fieldset': {
-                                borderColor:
-                                  theme === 'dark' ? '#fff' : '#1b2433',
+                                borderColor: applyThemeColor(
+                                  theme,
+                                  '#fff',
+                                  '#1b2433',
+                                ),
                               },
                               '&.Mui-focused fieldset': {
-                                borderColor:
-                                  theme === 'dark' ? '#fff' : '#1b2433',
+                                borderColor: applyThemeColor(
+                                  theme,
+                                  '#fff',
+                                  '#1b2433',
+                                ),
                               },
                               '& .MuiSvgIcon-root': {
-                                color: theme === 'dark' ? '#fff' : '#1b2433',
+                                color: applyThemeColor(
+                                  theme,
+                                  '#fff',
+                                  '#1b2433',
+                                ),
                               },
                             },
                           }}

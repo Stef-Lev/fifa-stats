@@ -1,6 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
-import { PlayerContext } from '../context/PlayerContext';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -9,9 +7,12 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
-import TournamentGameItem from './TournamentGameItem';
 import Chip from '@mui/material/Chip';
+import { ThemeContext } from '../context/ThemeContext';
+import { PlayerContext } from '../context/PlayerContext';
+import TournamentGameItem from './TournamentGameItem';
 import { updateMethod } from '../helpers/httpService';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function TournamentGamesContainer({ tournament, colors }) {
   const [game, setGame] = useState({
@@ -94,9 +95,9 @@ function TournamentGamesContainer({ tournament, colors }) {
                 id="select-label"
                 shrink
                 sx={{
-                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '&.Mui-focused': {
-                    color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                 }}
               >
@@ -113,15 +114,27 @@ function TournamentGamesContainer({ tournament, colors }) {
                     label="Player"
                     sx={{
                       '&.MuiOutlinedInput-root': {
-                        color: theme === 'dark' ? '#fff' : '#1b2433',
+                        color: applyThemeColor(theme, '#fff', '#1b2433'),
                         '& fieldset': {
-                          borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                          borderColor: applyThemeColor(
+                            theme,
+                            '#fff',
+                            '#1b2433',
+                          ),
                         },
                         '&:hover fieldset': {
-                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                          borderColor: applyThemeColor(
+                            theme,
+                            '#c2f158',
+                            '#b834c6',
+                          ),
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                          borderColor: applyThemeColor(
+                            theme,
+                            '#c2f158',
+                            '#b834c6',
+                          ),
                         },
                       },
                     }}
@@ -148,21 +161,21 @@ function TournamentGamesContainer({ tournament, colors }) {
                 onChange={(ev) => handleGoalsChange(ev, 'home')}
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
+                    color: applyThemeColor(theme, '#fff', '#1b2433'),
                     '& fieldset': {
-                      borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                      borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                     },
                     '&:hover fieldset': {
-                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                      borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                      borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                     },
                   },
                   '& label': {
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
+                    color: applyThemeColor(theme, '#fff', '#1b2433'),
                     '&.Mui-focused': {
-                      color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                      color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                     },
                   },
                 }}
@@ -179,9 +192,9 @@ function TournamentGamesContainer({ tournament, colors }) {
                 id="select-label"
                 shrink
                 sx={{
-                  color: theme === 'dark' ? '#fff' : '#1b2433',
+                  color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '&.Mui-focused': {
-                    color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                    color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                 }}
               >
@@ -198,15 +211,27 @@ function TournamentGamesContainer({ tournament, colors }) {
                     label="Player"
                     sx={{
                       '&.MuiOutlinedInput-root': {
-                        color: theme === 'dark' ? '#fff' : '#1b2433',
+                        color: applyThemeColor(theme, '#fff', '#1b2433'),
                         '& fieldset': {
-                          borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                          borderColor: applyThemeColor(
+                            theme,
+                            '#fff',
+                            '#1b2433',
+                          ),
                         },
                         '&:hover fieldset': {
-                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                          borderColor: applyThemeColor(
+                            theme,
+                            '#c2f158',
+                            '#b834c6',
+                          ),
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                          borderColor: applyThemeColor(
+                            theme,
+                            '#c2f158',
+                            '#b834c6',
+                          ),
                         },
                       },
                     }}
@@ -233,21 +258,21 @@ function TournamentGamesContainer({ tournament, colors }) {
                 onChange={(ev) => handleGoalsChange(ev, 'away')}
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
+                    color: applyThemeColor(theme, '#fff', '#1b2433'),
                     '& fieldset': {
-                      borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                      borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                     },
                     '&:hover fieldset': {
-                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                      borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                      borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                     },
                   },
                   '& label': {
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
+                    color: applyThemeColor(theme, '#fff', '#1b2433'),
                     '&.Mui-focused': {
-                      color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                      color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                     },
                   },
                 }}

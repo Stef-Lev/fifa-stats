@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { updateMethod } from '../helpers/httpService';
 import useFindPlayer from '../hooks/useFindPlayer';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Switch from '@mui/material/Switch';
 import Loader from '../components/Loader';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import ColorSelect from '../components/ColorSelect';
+import ColorPicker from '../components/ColorPicker';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import useLogout from '../hooks/useLogout';
@@ -18,19 +18,23 @@ const SettingsPage = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
   const { logoutPlayer } = useLogout();
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [color, setColor] = useState('#fff');
+  const [pickerColor, setPickerColor] = useState('#fff');
 
-  const handleShowColorSelect = () => {
+  useEffect(() => {
+    if (player) {
+      setPickerColor(player.color);
+    }
+  }, [player]);
+
+  const handleShowColorPicker = () => {
     setPickerOpen((prev) => !prev);
   };
 
   const handleUpdateColor = () => {
-    const obj = { id: player._id, color };
-    updateMethod(`/api/players/color/`, player._id, obj)
-      .then((res) => {
-        handleShowColorSelect();
-      })
-      .then(() => window.location.reload());
+    const obj = { id: player._id, color: pickerColor };
+    updateMethod(`/api/players/color/`, player._id, obj).then(() => {
+      handleShowColorPicker();
+    });
   };
 
   return (
@@ -58,8 +62,8 @@ const SettingsPage = () => {
                 </div>
                 <div
                   className="color-circle"
-                  style={{ backgroundColor: player.color }}
-                  onClick={() => handleShowColorSelect()}
+                  style={{ backgroundColor: pickerColor }}
+                  onClick={() => handleShowColorPicker()}
                 ></div>
               </div>
               <div className="set-item p10" onClick={() => logoutPlayer()}>
@@ -68,11 +72,11 @@ const SettingsPage = () => {
                   <Typography>Logout</Typography>
                 </div>
               </div>
-              <ColorSelect
+              <ColorPicker
                 open={pickerOpen}
                 onClose={() => handleUpdateColor()}
-                color={player.color}
-                onChange={(e) => setColor(e)}
+                color={pickerColor}
+                onChange={(e) => setPickerColor(e)}
               />
             </div>
           </Container>

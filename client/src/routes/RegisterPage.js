@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import useAuth from '../hooks/useAuth';
 import { ThemeContext } from '../context/ThemeContext';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function RegisterPage() {
   const { registerPlayer, error, clearError } = useAuth();
@@ -42,21 +43,21 @@ function RegisterPage() {
             sx={{
               marginBottom: '16px',
               '& .MuiOutlinedInput-root': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '& fieldset': {
-                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                  borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                 },
                 '&:hover fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
               '& label': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '&.Mui-focused': {
-                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
             }}
@@ -73,21 +74,21 @@ function RegisterPage() {
             sx={{
               marginBottom: '16px',
               '& .MuiOutlinedInput-root': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '& fieldset': {
-                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                  borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                 },
                 '&:hover fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
               '& label': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '&.Mui-focused': {
-                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
             }}
@@ -105,21 +106,21 @@ function RegisterPage() {
             sx={{
               marginBottom: '16px',
               '& .MuiOutlinedInput-root': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '& fieldset': {
-                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                  borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                 },
                 '&:hover fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
               '& label': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '&.Mui-focused': {
-                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
             }}
@@ -138,21 +139,21 @@ function RegisterPage() {
             sx={{
               marginBottom: '16px',
               '& .MuiOutlinedInput-root': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '& fieldset': {
-                  borderColor: theme === 'dark' ? '#fff' : '#1b2433',
+                  borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
                 },
                 '&:hover fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
               '& label': {
-                color: theme === 'dark' ? '#fff' : '#1b2433',
+                color: applyThemeColor(theme, '#fff', '#1b2433'),
                 '&.Mui-focused': {
-                  color: theme === 'dark' ? '#c2f158' : '#b834c6',
+                  color: applyThemeColor(theme, '#c2f158', '#b834c6'),
                 },
               },
             }}

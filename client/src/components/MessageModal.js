@@ -23,7 +23,7 @@ const MessageModal = ({
       >
         <Box id="modal">
           <div className="flex-centered">
-            <ErrorOutlineIcon id='warning-icon' />
+            <ErrorOutlineIcon id="warning-icon" />
           </div>
           <Typography id="modal-modal-title" variant="h5">
             {title}
@@ -35,7 +35,7 @@ const MessageModal = ({
             <div className="flex-centered mt20">
               <Button
                 variant="contained"
-                className='mr20'
+                className="mr20"
                 color="primary"
                 onClick={onClose}
               >
@@ -51,7 +51,7 @@ const MessageModal = ({
               <Button
                 variant="contained"
                 color="primary"
-                className='mr20'
+                className="mr20"
                 onClick={buttonAction}
               >
                 Yes

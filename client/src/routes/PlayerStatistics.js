@@ -9,6 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { calcAverage } from '../helpers/calcAverage';
+import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function a11yProps(index) {
   return {
@@ -83,91 +84,95 @@ function PlayerStatistics() {
     <div className="players-stats-page">
       {loading && <Loader />}
       {!loading && (
-        <Container maxWidth="sm" className='main-container'>
-        <div>
-          <h3 className='route-title'>Player Statistics</h3>
-          <Box sx={{ width: '100%' }}>
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: theme === 'dark' ? '#c2f158' : '#1b2433',
-              }}
-            >
-              <Tabs
-                value={value}
-                onChange={handleTabChange}
-                aria-label="tournament tabs"
+        <Container maxWidth="sm" className="main-container">
+          <div>
+            <h3 className="route-title">Player Statistics</h3>
+            <Box sx={{ width: '100%' }}>
+              <Box
                 sx={{
-                  '& .MuiTabs-indicator': {
-                    backgroundColor: theme === 'dark' ? '#c2f158' : '#1b2433',
-                    height: '4px',
-                  },
-                  '& .MuiTabs-flexContainer': {
-                    justifyContent: 'space-between',
-                  },
+                  borderBottom: 1,
+                  borderColor: applyThemeColor(theme, '#c2f158', '#1b2433'),
                 }}
               >
-                <Tab
-                  label="Games"
-                  {...a11yProps(0)}
+                <Tabs
+                  value={value}
+                  onChange={handleTabChange}
+                  aria-label="tournament tabs"
                   sx={{
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
-                    '&.MuiButtonBase-root.Mui-selected': {
-                      color: theme === 'dark' ? '#c2f158' : '#1b2433',
-                      fontWeight: theme === 'dark' ? '400' : '700',
-                      '&.MuiTouchRipple-root': {
-                        color: theme === 'dark' ? '#fff' : '#1b2433',
+                    '& .MuiTabs-indicator': {
+                      backgroundColor: applyThemeColor(
+                        theme,
+                        '#c2f158',
+                        '#1b2433',
+                      ),
+                      height: '4px',
+                    },
+                    '& .MuiTabs-flexContainer': {
+                      justifyContent: 'space-between',
+                    },
+                  }}
+                >
+                  <Tab
+                    label="Games"
+                    {...a11yProps(0)}
+                    sx={{
+                      color: applyThemeColor(theme, '#fff', '#1b2433'),
+                      '&.MuiButtonBase-root.Mui-selected': {
+                        color: applyThemeColor(theme, '#c2f158', '#1b2433'),
+                        fontWeight: theme === 'dark' ? '400' : '700',
+                        '&.MuiTouchRipple-root': {
+                          color: applyThemeColor(theme, '#fff', '#1b2433'),
+                        },
                       },
-                    },
-                  }}
-                />
-                <Tab
-                  label="Goals"
-                  {...a11yProps(1)}
-                  sx={{
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
-                    '&.MuiButtonBase-root.Mui-selected': {
-                      color: theme === 'dark' ? '#c2f158' : '#1b2433',
-                      fontWeight: theme === 'dark' ? '400' : '700',
-                    },
-                  }}
-                />
-                <Tab
-                  label="Tournaments"
-                  {...a11yProps(2)}
-                  sx={{
-                    color: theme === 'dark' ? '#fff' : '#1b2433',
-                    '&.MuiButtonBase-root.Mui-selected': {
-                      color: theme === 'dark' ? '#c2f158' : '#1b2433',
-                      fontWeight: theme === 'dark' ? '400' : '700',
-                    },
-                  }}
-                />
-              </Tabs>
+                    }}
+                  />
+                  <Tab
+                    label="Goals"
+                    {...a11yProps(1)}
+                    sx={{
+                      color: applyThemeColor(theme, '#fff', '#1b2433'),
+                      '&.MuiButtonBase-root.Mui-selected': {
+                        color: applyThemeColor(theme, '#c2f158', '#1b2433'),
+                        fontWeight: theme === 'dark' ? '400' : '700',
+                      },
+                    }}
+                  />
+                  <Tab
+                    label="Tournaments"
+                    {...a11yProps(2)}
+                    sx={{
+                      color: applyThemeColor(theme, '#fff', '#1b2433'),
+                      '&.MuiButtonBase-root.Mui-selected': {
+                        color: applyThemeColor(theme, '#c2f158', '#1b2433'),
+                        fontWeight: theme === 'dark' ? '400' : '700',
+                      },
+                    }}
+                  />
+                </Tabs>
+              </Box>
+              <TabPanel value={value} index={0} padding={padding}>
+                <PlayerStats players={players} tab="games" />
+              </TabPanel>
+              <TabPanel value={value} index={1} padding={padding}>
+                <PlayerStats players={players} tab="goals" />
+              </TabPanel>
+              <TabPanel value={value} index={2} padding={padding}>
+                <PlayerStats players={players} tab="tournaments" />
+              </TabPanel>
             </Box>
-            <TabPanel value={value} index={0} padding={padding}>
-              <PlayerStats players={players} tab="games" />
-            </TabPanel>
-            <TabPanel value={value} index={1} padding={padding}>
-              <PlayerStats players={players} tab="goals" />
-            </TabPanel>
-            <TabPanel value={value} index={2} padding={padding}>
-              <PlayerStats players={players} tab="tournaments" />
-            </TabPanel>
-          </Box>
-          <div className="stat-facts">
-            <p>
-              Tournament Master:{' '}
-              <span className="stat">{facts.tournamentMaster}</span>
-            </p>
-            <p>
-              Top Offense: <span className="stat">{facts.topOffense}</span>
-            </p>
-            <p>
-              Top Defense: <span className="stat">{facts.topDefense}</span>
-            </p>
+            <div className="stat-facts">
+              <p>
+                Tournament Master:{' '}
+                <span className="stat">{facts.tournamentMaster}</span>
+              </p>
+              <p>
+                Top Offense: <span className="stat">{facts.topOffense}</span>
+              </p>
+              <p>
+                Top Defense: <span className="stat">{facts.topDefense}</span>
+              </p>
+            </div>
           </div>
-        </div>
         </Container>
       )}
     </div>

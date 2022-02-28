@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MyRecords({data}) {
+function MyRecords({ data }) {
   return (
     <>
       <h4>Average goals per game</h4>
