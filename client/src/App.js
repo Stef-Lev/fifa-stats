@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
-import ErrorPage from './routes/ErrorPage';
+import Error404 from './routes/Error404';
 import LoginPage from './routes/LoginPage';
 import RegisterPage from './routes/RegisterPage';
 import Tournaments from './routes/Tournaments';
@@ -75,7 +75,6 @@ function App() {
                     </PrivateRoute>
                   }
                 />
-                <Route element={<ErrorPage />} />
                 <Route
                   exact
                   path="/tournaments"
@@ -121,6 +120,7 @@ function App() {
                     </PrivateRoute>
                   }
                 />
+                <Route exact path="*" element={<Error404 />} />
               </Routes>
             </PlayerContext.Provider>
           </ThemeContextProvider>
@@ -133,6 +133,5 @@ function App() {
 export default App;
 
 // @TODO
-// Create ErrorPage 404
 // Refactor scss
 // Refactor all code
