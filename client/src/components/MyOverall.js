@@ -2,30 +2,30 @@ import React from 'react';
 import DonutChart from './DonutChart';
 
 function MyOverall({ data }) {
-  const gamesColors = ['#c2f158', '#82aac5', '#e93c42'];
-  const tournamentsColors = ['#b834c6', '#1077c3'];
+  const gamesStatColors = ['#50d892', '#e8c250', '#e34135'];
+  const tournamentsStatColors = ['#0685ac', '#9fc8d5'];
 
   return (
     <>
       <div className="charts-container">
         <DonutChart
           values={[
-            { status: 'won', value: data.games_won },
-            { status: 'drawn', value: data.games_drawn },
-            { status: 'lost', value: data.games_lost },
+            { status: 'Won', value: data.games_won },
+            { status: 'Drawn', value: data.games_drawn },
+            { status: 'Lost', value: data.games_lost },
           ]}
-          colors={gamesColors}
+          colors={gamesStatColors}
           title="Games"
         />
         <DonutChart
           values={[
-            { status: 'won', value: data.tournaments_won },
+            { status: 'Won', value: data.tournaments_won },
             {
-              status: 'lost',
+              status: 'Lost',
               value: data.tournaments_played - data.tournaments_won,
             },
           ]}
-          colors={tournamentsColors}
+          colors={tournamentsStatColors}
           title="Tournaments"
         />
       </div>

@@ -18,17 +18,17 @@ const MessageModal = ({
       <Modal
         open={open}
         onClose={onClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="message-modal-title"
+        aria-describedby="message-modal-description"
       >
         <Box id="modal">
           <div className="flex-centered">
             <ErrorOutlineIcon id="warning-icon" />
           </div>
-          <Typography id="modal-modal-title" variant="h5">
+          <Typography id="message-modal-title" variant="h5">
             {title}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography id="message-modal-description" sx={{ mt: 2 }}>
             {msg}
           </Typography>
           {type === 'cancel' && (

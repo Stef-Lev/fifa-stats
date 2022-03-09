@@ -22,7 +22,7 @@ function PlayerStats({ tab, players }) {
     <div>
       {tab === 'games' && (
         <TableContainer component={Paper}>
-          <Table aria-label="simple table" size="medium">
+          <Table aria-label="games table" size="medium">
             <TableHead sx={{ borderBottom: '1px solid white' }}>
               <TableRow>
                 <TableCell>Player</TableCell>
@@ -55,7 +55,7 @@ function PlayerStats({ tab, players }) {
       )}
       {tab === 'goals' && (
         <TableContainer component={Paper}>
-          <Table aria-label="simple table" size="medium">
+          <Table aria-label="goals table" size="medium">
             <TableHead sx={{ borderBottom: '1px solid white' }}>
               <TableRow>
                 <TableCell>Player</TableCell>
@@ -83,7 +83,7 @@ function PlayerStats({ tab, players }) {
       )}
       {tab === 'tournaments' && (
         <TableContainer component={Paper}>
-          <Table aria-label="simple table" size="medium">
+          <Table aria-label="tournaments table" size="medium">
             <TableHead sx={{ borderBottom: '1px solid white' }}>
               <TableRow>
                 <TableCell>Player</TableCell>

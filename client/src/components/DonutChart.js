@@ -5,10 +5,12 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function DonutChart({ values, colors, title }) {
-  const style = { width: '100%' };
-
   const mapValues = (arr, value) => {
     return arr.map((item) => item[value]);
+  };
+
+  const style = {
+    width: '100%',
   };
 
   const data = {

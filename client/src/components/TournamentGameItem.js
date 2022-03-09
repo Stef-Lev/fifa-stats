@@ -9,6 +9,12 @@ function TournamentGameItem({ game, tournament, colors }) {
   const { home, away } = game.opponents;
   const { player } = useContext(PlayerContext);
 
+  const goalsChipStyle = {
+    color: '#fff',
+    width: '24px',
+    height: '24px',
+  };
+
   const removeGame = () => {
     deleteMethod(
       `/api/tournaments/${tournament._id}/game/${game._id}`,
@@ -42,7 +48,7 @@ function TournamentGameItem({ game, tournament, colors }) {
             label={home.goals}
             style={{
               backgroundColor: getPlayerColor(home.player),
-              color: '#fff',
+              ...goalsChipStyle,
             }}
             size="small"
           />
@@ -54,7 +60,7 @@ function TournamentGameItem({ game, tournament, colors }) {
             label={away.goals}
             style={{
               backgroundColor: getPlayerColor(away.player),
-              color: '#fff',
+              ...goalsChipStyle,
             }}
             size="small"
           />

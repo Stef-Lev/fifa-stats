@@ -1,53 +1,30 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import IconButton from '@mui/material/IconButton';
 import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import AddIcon from '@mui/icons-material/Add';
 import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
+import Chip from '@mui/material/Chip';
 import { ThemeContext } from '../context/ThemeContext';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 
-function PlayerSelection({ playerList, addAction }) {
-  const [player, setPlayer] = useState({ name: '', id: '', team: '' });
+function PlayerScoreInput({
+  playersList,
+  label,
+  state,
+  onGoalChange,
+  onPlayerChange,
+}) {
   const { theme } = useContext(ThemeContext);
 
-  const clearFields = () => {
-    setPlayer({ name: '', id: '', team: '' });
-  };
-
-  const filterPlayer = (list, selected) => {
-    return list.filter((player) => player.fullname === selected)[0];
-  };
-
-  const handleSubmit = () => {
-    if (player.name) {
-      addAction(player);
-      clearFields();
-    }
-  };
-
-  const handlePlayerChange = (event) => {
-    const selectedPlayer = filterPlayer(playerList, event.target.value);
-    setPlayer({
-      ...player,
-      name: selectedPlayer.fullname,
-      id: selectedPlayer._id,
-    });
-  };
-
-  const handleTeamChange = (event) => {
-    setPlayer({ ...player, team: event.target.value });
-  };
-
   return (
-    <div className="flex-between container">
-      <FormControl className="w-40">
+    <div className="side-by-side">
+      <FormControl className="w-55">
         <InputLabel
-          id="player-select-label"
+          id="select-label"
+          shrink
           sx={{
             color: applyThemeColor(theme, '#fff', '#1b2433'),
             '&.Mui-focused': {
@@ -58,18 +35,22 @@ function PlayerSelection({ playerList, addAction }) {
           Player
         </InputLabel>
         <Select
-          labelId="player-select-input"
+          labelId="select-label"
           id="select"
-          value={player.name}
+          value={state[label].participant}
           label="Player"
           input={
             <OutlinedInput
+              notched
               label="Player"
               sx={{
                 '&.MuiOutlinedInput-root': {
                   color: applyThemeColor(theme, '#fff', '#1b2433'),
                   '& fieldset': {
                     borderColor: applyThemeColor(theme, '#fff', '#1b2433'),
+                  },
+                  '&:hover fieldset': {
+                    borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
                   },
                   '&.Mui-focused fieldset': {
                     borderColor: applyThemeColor(theme, '#c2f158', '#b834c6'),
@@ -78,24 +59,25 @@ function PlayerSelection({ playerList, addAction }) {
               }}
             />
           }
-          onChange={handlePlayerChange}
+          onChange={(ev) => onPlayerChange(ev, label)}
         >
-          {playerList.map((player, index) => (
-            <MenuItem key={index + 1} value={player.fullname}>
-              {player.fullname}
+          {playersList.map((item, index) => (
+            <MenuItem key={index + 1} value={item.player.name}>
+              {item.player.name}
             </MenuItem>
           ))}
         </Select>
-        <FormHelperText />
       </FormControl>
-      <FormControl className="w-40">
+      <FormControl className="goal-input">
         <TextField
-          id="team"
-          label="Team"
+          type="number"
+          id={`${label}-goals`}
+          label="Goals"
           variant="outlined"
           autoComplete="off"
-          value={player.team}
-          onChange={handleTeamChange}
+          InputLabelProps={{ shrink: true }}
+          value={state[label].goals}
+          onChange={(ev) => onGoalChange(ev, label)}
           sx={{
             '& .MuiOutlinedInput-root': {
               color: applyThemeColor(theme, '#fff', '#1b2433'),
@@ -119,15 +101,14 @@ function PlayerSelection({ playerList, addAction }) {
         />
         <FormHelperText />
       </FormControl>
-      <IconButton
-        aria-label="add"
-        className="brand-btn round-btn"
-        onClick={handleSubmit}
-      >
-        <AddIcon className="square32" />
-      </IconButton>
+      <div className="flex-centered">
+        <Chip
+          label={`${label.charAt(0).toUpperCase()}${label.slice(1)}`}
+          color={label === 'home' ? 'primary' : 'error'}
+        />
+      </div>
     </div>
   );
 }
 
-export default PlayerSelection;
+export default PlayerScoreInput;
