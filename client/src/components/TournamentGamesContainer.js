@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
-import { ThemeContext } from '../context/ThemeContext';
 import { PlayerContext } from '../context/PlayerContext';
 import TournamentGameItem from './TournamentGameItem';
 import PlayerScoreInput from './PlayerScoreInput';
@@ -11,7 +10,7 @@ function TournamentGamesContainer({ tournament, colors }) {
     home: { participant: '', id: '', team: '', goals: '' },
     away: { participant: '', id: '', team: '', goals: '' },
   });
-  const { theme } = useContext(ThemeContext);
+
   const { player } = useContext(PlayerContext);
 
   const getParticipantData = (list, attr, name) => {
@@ -84,14 +83,14 @@ function TournamentGamesContainer({ tournament, colors }) {
           <PlayerScoreInput
             playersList={tournament.participants}
             label="home"
-            state={game}
+            game={game}
             onGoalChange={handleGoalsChange}
             onPlayerChange={handlePlayerChange}
           />
           <PlayerScoreInput
             playersList={tournament.participants}
             label="away"
-            state={game}
+            game={game}
             onGoalChange={handleGoalsChange}
             onPlayerChange={handlePlayerChange}
           />

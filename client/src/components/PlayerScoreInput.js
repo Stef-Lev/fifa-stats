@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -13,11 +13,20 @@ import { applyThemeColor } from '../helpers/applyThemeColor';
 function PlayerScoreInput({
   playersList,
   label,
-  state,
+  game,
   onGoalChange,
   onPlayerChange,
 }) {
   const { theme } = useContext(ThemeContext);
+
+  const opposite = (label) => {
+    switch (label) {
+      case 'home':
+        return 'away';
+      case 'away':
+        return 'home';
+    }
+  };
 
   return (
     <div className="side-by-side">
@@ -37,7 +46,7 @@ function PlayerScoreInput({
         <Select
           labelId="select-label"
           id="select"
-          value={state[label].participant}
+          value={game[label].participant}
           label="Player"
           input={
             <OutlinedInput
@@ -61,11 +70,13 @@ function PlayerScoreInput({
           }
           onChange={(ev) => onPlayerChange(ev, label)}
         >
-          {playersList.map((item, index) => (
-            <MenuItem key={index + 1} value={item.player.name}>
-              {item.player.name}
-            </MenuItem>
-          ))}
+          {playersList
+            .filter((item) => item.player.id !== game[opposite(label)].id)
+            .map((item, index) => (
+              <MenuItem key={index + 1} value={item.player.name}>
+                {item.player.name}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
       <FormControl className="goal-input">
@@ -76,7 +87,7 @@ function PlayerScoreInput({
           variant="outlined"
           autoComplete="off"
           InputLabelProps={{ shrink: true }}
-          value={state[label].goals}
+          value={game[label].goals}
           onChange={(ev) => onGoalChange(ev, label)}
           sx={{
             '& .MuiOutlinedInput-root': {
