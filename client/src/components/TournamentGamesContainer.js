@@ -3,14 +3,18 @@ import Button from '@mui/material/Button';
 import TournamentGameItem from './TournamentGameItem';
 import PlayerScoreInput from './PlayerScoreInput';
 import { PlayerContext } from '../context/PlayerContext';
-import { updateMethod } from '../helpers/httpService';
 
-function TournamentGamesContainer({ tournament, colors }) {
-  const [game, setGame] = useState({
+function TournamentGamesContainer({
+  tournament,
+  colors,
+  onGameSubmit,
+  onGameRemove,
+}) {
+  const defaultGame = {
     home: { participant: '', id: '', team: '', goals: '' },
     away: { participant: '', id: '', team: '', goals: '' },
-  });
-
+  };
+  const [game, setGame] = useState(defaultGame);
   const { player } = useContext(PlayerContext);
 
   const getParticipantData = (list, attr, name) => {
@@ -55,23 +59,13 @@ function TournamentGamesContainer({ tournament, colors }) {
     });
   };
 
-  const handleGameSubmit = () => {
-    updateMethod(`/api/tournaments/`, tournament._id, game).then(() =>
-      window.location.reload(),
-    );
-  };
-
   const shouldShowButton = () => {
     if (player && tournament) {
-      if (
+      return (
         player.role === 'admin' &&
         tournament.status !== 'Completed' &&
         !allGamesPlayed()
-      ) {
-        return true;
-      } else {
-        return false;
-      }
+      );
     }
     return false;
   };
@@ -98,7 +92,7 @@ function TournamentGamesContainer({ tournament, colors }) {
             <Button
               className="brand-btn"
               variant="contained"
-              onClick={handleGameSubmit}
+              onClick={() => onGameSubmit(game, () => setGame(defaultGame))}
               disabled={allGamesPlayed()}
             >
               Submit game
@@ -114,6 +108,7 @@ function TournamentGamesContainer({ tournament, colors }) {
               game={game}
               tournament={tournament}
               colors={colors}
+              onRemove={onGameRemove}
             />
           ))}
       </div>

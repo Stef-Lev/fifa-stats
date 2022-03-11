@@ -13,6 +13,7 @@ import {
   getOneMethod,
   deleteMethod,
   getAllMethod,
+  updateMethod,
 } from '../helpers/httpService';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 
@@ -28,6 +29,10 @@ function TournamentPlay() {
   const { player } = useContext(PlayerContext);
 
   useEffect(() => {
+    fetchTournament(id);
+  }, [id]);
+
+  const fetchTournament = (id) => {
     getOneMethod(`/api/tournaments/`, id)
       .then((data) => {
         setTournament(data);
@@ -41,7 +46,7 @@ function TournamentPlay() {
         setColors(colorArr);
       })
       .then(() => setLoading(false));
-  }, [id]);
+  };
 
   const finalizeTournament = () => {
     getOneMethod(`/api/tournaments/complete/`, id).then(() => {
@@ -70,6 +75,18 @@ function TournamentPlay() {
     return false;
   };
 
+  const onGameSubmit = (game, callback) => {
+    updateMethod(`/api/tournaments/`, id, game)
+      .then(() => fetchTournament(id))
+      .then(callback());
+  };
+
+  const onGameRemove = (game) => {
+    deleteMethod(`/api/tournaments/${id}/game/${game._id}`, '').then(() =>
+      fetchTournament(id),
+    );
+  };
+
   return (
     <div className="tournament-play-page">
       {loading && <Loader />}
@@ -81,10 +98,12 @@ function TournamentPlay() {
           </Typography>
           <div>
             <Standings tournament={tournament} />
-            {/* <div className="container">
-              <PlayerToTeamInfo tournament={tournament} colors={colors}/>
-            </div> */}
-            <TournamentGamesContainer tournament={tournament} colors={colors} />
+            <TournamentGamesContainer
+              tournament={tournament}
+              colors={colors}
+              onGameSubmit={onGameSubmit}
+              onGameRemove={onGameRemove}
+            />
             {shouldShowButton() && (
               <div className="flex-centered">
                 <Button

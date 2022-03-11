@@ -3,9 +3,8 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
 import { PlayerContext } from '../context/PlayerContext';
-import { deleteMethod } from '../helpers/httpService';
 
-function TournamentGameItem({ game, tournament, colors }) {
+function TournamentGameItem({ game, tournament, colors, onRemove }) {
   const { home, away } = game.opponents;
   const { player } = useContext(PlayerContext);
 
@@ -15,12 +14,6 @@ function TournamentGameItem({ game, tournament, colors }) {
     height: '24px',
   };
 
-  const removeGame = () => {
-    deleteMethod(
-      `/api/tournaments/${tournament._id}/game/${game._id}`,
-      '',
-    ).then(() => window.location.reload());
-  };
   const getPlayerColor = (id) => {
     if (id) {
       return colors.find((item) => item.id === id).color;
@@ -31,11 +24,7 @@ function TournamentGameItem({ game, tournament, colors }) {
 
   const shouldShowButton = () => {
     if (player && tournament) {
-      if (player.role === 'admin' && tournament.status !== 'Completed') {
-        return true;
-      } else {
-        return false;
-      }
+      return player.role === 'admin' && tournament.status !== 'Completed';
     }
     return false;
   };
@@ -68,7 +57,7 @@ function TournamentGameItem({ game, tournament, colors }) {
       </div>
       {shouldShowButton() && (
         <div className="flex-centered">
-          <HighlightOffIcon onClick={removeGame} />
+          <HighlightOffIcon onClick={() => onRemove(game)} />
         </div>
       )}
       {!shouldShowButton() && (
