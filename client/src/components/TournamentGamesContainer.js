@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
-import { PlayerContext } from '../context/PlayerContext';
 import TournamentGameItem from './TournamentGameItem';
 import PlayerScoreInput from './PlayerScoreInput';
+import { PlayerContext } from '../context/PlayerContext';
 import { updateMethod } from '../helpers/httpService';
 
 function TournamentGamesContainer({ tournament, colors }) {

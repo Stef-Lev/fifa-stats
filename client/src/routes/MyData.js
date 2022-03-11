@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Container from '@mui/material/Container';
-import { PlayerContext } from '../context/PlayerContext';
-import { ThemeContext } from '../context/ThemeContext';
 import Loader from '../components/Loader';
 import TabPanel from '../components/TabPanel';
 import GenericError from '../components/GenericError';
 import MyOverall from '../components/MyOverall';
 import MyRecords from '../components/MyRecords';
+import { PlayerContext } from '../context/PlayerContext';
+import { ThemeContext } from '../context/ThemeContext';
 import { getOneMethod } from '../helpers/httpService';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 

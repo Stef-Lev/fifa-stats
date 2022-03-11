@@ -11,13 +11,13 @@ import RoleSelection from './routes/RoleSelection';
 import TournamentPlay from './routes/TournamentPlay';
 import TournamentCreate from './routes/TournamentCreate';
 import MyData from './routes/MyData';
-import Header from './components/Header';
-import useFindPlayer from './hooks/useFindPlayer';
-import { PlayerContext } from './context/PlayerContext';
-import ThemeContextProvider from './context/ThemeContextProvider';
 import PrivateRoute from './routes/PrivateRoute';
 import AdminRoute from './routes/AdminRoute';
 import RedirectLoggedIn from './routes/RedirectLoggedIn';
+import Header from './components/Header';
+import { PlayerContext } from './context/PlayerContext';
+import ThemeContextProvider from './context/ThemeContextProvider';
+import useFindPlayer from './hooks/useFindPlayer';
 
 function App() {
   const { player, setPlayer, isLoading } = useFindPlayer();
@@ -133,5 +133,4 @@ function App() {
 export default App;
 
 // @TODO
-// Refactor scss
-// Refactor all code
+// Refactor page refreshes

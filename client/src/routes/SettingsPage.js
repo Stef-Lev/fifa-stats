@@ -1,17 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { updateMethod } from '../helpers/httpService';
-import useFindPlayer from '../hooks/useFindPlayer';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Switch from '@mui/material/Switch';
-import Loader from '../components/Loader';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import ColorPicker from '../components/ColorPicker';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Loader from '../components/Loader';
+import ColorPicker from '../components/ColorPicker';
 import useLogout from '../hooks/useLogout';
+import { updateMethod } from '../helpers/httpService';
 import { ThemeContext } from '../context/ThemeContext';
+import useFindPlayer from '../hooks/useFindPlayer';
 
 const SettingsPage = () => {
   const { player, isLoading } = useFindPlayer();

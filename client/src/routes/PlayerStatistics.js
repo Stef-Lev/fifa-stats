@@ -8,7 +8,11 @@ import TabPanel from '../components/TabPanel';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { calcAverage } from '../helpers/calcAverage';
+import {
+  calculateTopTournament,
+  calculateTopOffense,
+  calculateTopDefense,
+} from '../helpers/calculations';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function a11yProps(index) {
@@ -29,37 +33,6 @@ function PlayerStatistics() {
   });
   const { theme } = useContext(ThemeContext);
   const padding = '32px 0 16px';
-
-  const calculateTopTournament = (players) => {
-    if (players.length) {
-      let sortedTournaments = players.sort(
-        (a, b) =>
-          calcAverage(b.tournaments_played.won, b.tournaments_played.total) -
-          calcAverage(a.tournaments_played.won, a.tournaments_played.total),
-      );
-      return sortedTournaments[0].fullname;
-    }
-  };
-  const calculateTopOffense = (players) => {
-    if (players.length) {
-      let sortedOffense = players.sort(
-        (a, b) =>
-          calcAverage(b.goals.for, b.games_played.statistics.total) -
-          calcAverage(a.goals.for, a.games_played.statistics.total),
-      );
-      return sortedOffense[0].fullname;
-    }
-  };
-  const calculateTopDefense = (players) => {
-    if (players.length) {
-      let sortedDefense = players.sort(
-        (a, b) =>
-          calcAverage(a.goals.against, a.games_played.statistics.total) -
-          calcAverage(b.goals.against, b.games_played.statistics.total),
-      );
-      return sortedDefense[0].fullname;
-    }
-  };
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);

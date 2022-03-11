@@ -31,4 +31,3 @@ export const deleteMethod = (url, id) => {
     method: 'DELETE',
   }).then((res) => res.json());
 };
-

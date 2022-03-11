@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { PlayerContext } from '../context/PlayerContext';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Chip from '@mui/material/Chip';
+import { PlayerContext } from '../context/PlayerContext';
 import { deleteMethod } from '../helpers/httpService';
 
 function TournamentGameItem({ game, tournament, colors }) {

@@ -3,9 +3,9 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
-import useAuth from '../hooks/useAuth';
 import { ThemeContext } from '../context/ThemeContext';
 import { applyThemeColor } from '../helpers/applyThemeColor';
+import useAuth from '../hooks/useAuth';
 
 function LoginPage() {
   const { loginPlayer, error, clearError } = useAuth();

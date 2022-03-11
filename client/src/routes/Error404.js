@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import { ThemeContext } from '../context/ThemeContext';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import { ThemeContext } from '../context/ThemeContext';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function Error404() {

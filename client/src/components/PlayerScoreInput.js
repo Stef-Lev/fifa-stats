@@ -25,6 +25,8 @@ function PlayerScoreInput({
         return 'away';
       case 'away':
         return 'home';
+      default:
+        return '';
     }
   };
 

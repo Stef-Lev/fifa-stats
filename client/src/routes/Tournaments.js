@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getAllMethod } from '../helpers/httpService';
-import TournamentItem from '../components/TournamentItem';
 import Container from '@mui/material/Container';
+import TournamentItem from '../components/TournamentItem';
 import GenericError from '../components/GenericError';
 import Loader from '../components/Loader';
+import { getAllMethod } from '../helpers/httpService';
 
 function Tournaments() {
   const [tournaments, setTournaments] = useState([]);

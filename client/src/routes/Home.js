@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import HomeGridItem from '../components/HomeGridItem';
-import { PlayerContext } from '../context/PlayerContext';
-import Loader from '../components/Loader';
+import { useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import HomeGridItem from '../components/HomeGridItem';
+import Loader from '../components/Loader';
+import { PlayerContext } from '../context/PlayerContext';
 
 const links = [
   { label: 'Tournaments', link: '/tournaments' },
@@ -19,40 +19,40 @@ function Home() {
 
   return (
     <div>
-      <Container maxWidth="sm" className='main-container'>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          {player && (
-            <div className="greeting">
-              <p>Welcome {player.fullname}!</p>
+      <Container maxWidth="sm" className="main-container">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {player && (
+              <div className="greeting">
+                <p>Welcome {player.fullname}!</p>
+              </div>
+            )}
+            <div className="home-image-container">
+              <div className="fifa-image" alt="fifa"></div>
             </div>
-          )}
-          <div className="home-image-container">
-            <div className="fifa-image" alt="fifa"></div>
-          </div>
-          <div className="home-grid">
-            {links.map((item, index) => (
-              <HomeGridItem
-                key={index + 1}
-                title={item.label}
-                index={index}
-                page={item.link}
-              />
-            ))}
-          </div>
-          {player?.role === 'admin' && (
-            <Button
-              fullWidth
-              className="brand-btn"
-              onClick={() => navigate('/tournaments/new')}
-            >
-              New Tournament
-            </Button>
-          )}
-        </>
-      )}
+            <div className="home-grid">
+              {links.map((item, index) => (
+                <HomeGridItem
+                  key={index + 1}
+                  title={item.label}
+                  index={index}
+                  page={item.link}
+                />
+              ))}
+            </div>
+            {player?.role === 'admin' && (
+              <Button
+                fullWidth
+                className="brand-btn"
+                onClick={() => navigate('/tournaments/new')}
+              >
+                New Tournament
+              </Button>
+            )}
+          </>
+        )}
       </Container>
     </div>
   );

@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { updateMethod, getAllMethod } from '../helpers/httpService';
-import Container from '@mui/material/Container';
+import {
+  FormHelperText,
+  MenuItem,
+  FormControl,
+  Select,
+  Container,
+  Paper,
+} from '@mui/material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import Loader from '../components/Loader';
-import { FormHelperText } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { PlayerContext } from '../context/PlayerContext';
 import { applyThemeColor } from '../helpers/applyThemeColor';
+import { updateMethod, getAllMethod } from '../helpers/httpService';
+import { PlayerContext } from '../context/PlayerContext';
+import { ThemeContext } from '../context/ThemeContext';
 
 function RoleSelection() {
   const [players, setPlayers] = useState([]);
@@ -74,7 +78,7 @@ function RoleSelection() {
             tournaments
           </p>
           <TableContainer component={Paper}>
-            <Table aria-label="simple table" size="small">
+            <Table aria-label="roles table" size="small">
               <TableHead sx={{ borderBottom: '1px solid white' }}>
                 <TableRow>
                   <TableCell>Player</TableCell>
