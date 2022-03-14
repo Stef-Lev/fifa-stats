@@ -17,6 +17,7 @@ import RedirectLoggedIn from './routes/RedirectLoggedIn';
 import Header from './components/Header';
 import { PlayerContext } from './context/PlayerContext';
 import ThemeContextProvider from './context/ThemeContextProvider';
+import ApiErrorContextProvider from './context/ApiErrorContextProvider';
 import useFindPlayer from './hooks/useFindPlayer';
 
 function App() {
@@ -24,10 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <Router>
-          <ThemeContextProvider>
-            <PlayerContext.Provider value={{ player, setPlayer, isLoading }}>
+      <Router>
+        <ThemeContextProvider>
+          <PlayerContext.Provider value={{ player, setPlayer, isLoading }}>
+            <ApiErrorContextProvider>
               {player && <Header />}
               <Routes>
                 <Route
@@ -122,15 +123,12 @@ function App() {
                 />
                 <Route exact path="*" element={<Error404 />} />
               </Routes>
-            </PlayerContext.Provider>
-          </ThemeContextProvider>
-        </Router>
-      </div>
+            </ApiErrorContextProvider>
+          </PlayerContext.Provider>
+        </ThemeContextProvider>
+      </Router>
     </div>
   );
 }
 
 export default App;
-
-// @TODO
-// Refactor page refreshes

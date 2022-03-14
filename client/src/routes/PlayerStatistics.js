@@ -13,6 +13,7 @@ import {
   calculateTopOffense,
   calculateTopDefense,
 } from '../helpers/calculations';
+import { ApiErrorContext } from '../context/ApiErrorContext';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 
 function a11yProps(index) {
@@ -32,6 +33,7 @@ function PlayerStatistics() {
     topDefense: '',
   });
   const { theme } = useContext(ThemeContext);
+  const { showFlashError } = useContext(ApiErrorContext);
   const padding = '32px 0 16px';
 
   const handleTabChange = (event, newValue) => {
@@ -39,11 +41,15 @@ function PlayerStatistics() {
   };
 
   useEffect(() => {
-    getAllMethod(`/api/players/`).then((data) => {
-      setPlayers(data);
-      setLoading(false);
-    });
-  }, []);
+    getAllMethod(`/api/players/`)
+      .then((data) => {
+        setPlayers(data);
+        setLoading(false);
+      })
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
+  }, [showFlashError]);
 
   useEffect(() => {
     setFacts({

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -9,6 +9,7 @@ import MessageModal from '../components/MessageModal';
 import TournamentGamesContainer from '../components/TournamentGamesContainer';
 import { ThemeContext } from '../context/ThemeContext';
 import { PlayerContext } from '../context/PlayerContext';
+import { ApiErrorContext } from '../context/ApiErrorContext';
 import {
   getOneMethod,
   deleteMethod,
@@ -27,32 +28,43 @@ function TournamentPlay() {
   const [openFinalModal, setOpenFinalModal] = useState(false);
   const { theme } = useContext(ThemeContext);
   const { player } = useContext(PlayerContext);
+  const { showFlashError } = useContext(ApiErrorContext);
+
+  const fetchTournament = useCallback(
+    (id) => {
+      getOneMethod(`/api/tournaments/`, id)
+        .then((data) => {
+          setTournament(data);
+        })
+        .then(() => getAllMethod('/api/players/'))
+        .then((res) => {
+          const colorArr = res.map((item) => ({
+            id: item._id,
+            color: item.color,
+          }));
+          setColors(colorArr);
+        })
+        .then(() => setLoading(false))
+        .catch(() =>
+          showFlashError('Something went wrong. Please try again later.'),
+        );
+    },
+    [showFlashError],
+  );
 
   useEffect(() => {
     fetchTournament(id);
-  }, [id]);
-
-  const fetchTournament = (id) => {
-    getOneMethod(`/api/tournaments/`, id)
-      .then((data) => {
-        setTournament(data);
-      })
-      .then(() => getAllMethod('/api/players/'))
-      .then((res) => {
-        const colorArr = res.map((item) => ({
-          id: item._id,
-          color: item.color,
-        }));
-        setColors(colorArr);
-      })
-      .then(() => setLoading(false));
-  };
+  }, [id, fetchTournament]);
 
   const finalizeTournament = () => {
-    getOneMethod(`/api/tournaments/complete/`, id).then(() => {
-      setOpenFinalModal(false);
-      navigate('/');
-    });
+    getOneMethod(`/api/tournaments/complete/`, id)
+      .then(() => {
+        setOpenFinalModal(false);
+        navigate('/');
+      })
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
   };
 
   const cancelTournament = () => {
@@ -61,7 +73,9 @@ function TournamentPlay() {
         setOpenCancelModal(false);
         navigate('/');
       })
-      .catch((err) => console.log(new Error(err)));
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
   };
 
   const shouldShowButton = () => {
@@ -78,13 +92,18 @@ function TournamentPlay() {
   const onGameSubmit = (game, callback) => {
     updateMethod(`/api/tournaments/`, id, game)
       .then(() => fetchTournament(id))
-      .then(callback());
+      .then(callback())
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
   };
 
   const onGameRemove = (game) => {
-    deleteMethod(`/api/tournaments/${id}/game/${game._id}`, '').then(() =>
-      fetchTournament(id),
-    );
+    deleteMethod(`/api/tournaments/${id}/game/${game._id}`, '')
+      .then(() => fetchTournament(id))
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
   };
 
   return (

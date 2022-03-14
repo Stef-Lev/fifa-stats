@@ -10,6 +10,7 @@ import MyOverall from '../components/MyOverall';
 import MyRecords from '../components/MyRecords';
 import { PlayerContext } from '../context/PlayerContext';
 import { ThemeContext } from '../context/ThemeContext';
+import { ApiErrorContext } from '../context/ApiErrorContext';
 import { getOneMethod } from '../helpers/httpService';
 import { applyThemeColor } from '../helpers/applyThemeColor';
 
@@ -26,15 +27,20 @@ function MyData() {
   const [loading, setLoading] = useState(true);
   const [value, setValue] = React.useState(0);
   const { theme } = useContext(ThemeContext);
+  const { showFlashError } = useContext(ApiErrorContext);
 
   useEffect(() => {
     if (player) {
-      getOneMethod(`/api/players/stats/`, player._id).then((res) => {
-        setData(res);
-        setLoading(false);
-      });
+      getOneMethod(`/api/players/stats/`, player._id)
+        .then((res) => {
+          setData(res);
+          setLoading(false);
+        })
+        .catch(() =>
+          showFlashError('Something went wrong. Please try again later.'),
+        );
     }
-  }, [player._id, player]);
+  }, [player._id, player, showFlashError]);
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);

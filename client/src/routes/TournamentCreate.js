@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import Loader from '../components/Loader';
 import PlayerSelection from '../components/PlayerSelection';
 import Participant from '../components/Participant';
+import { ApiErrorContext } from '../context/ApiErrorContext';
 import { getAllMethod, postMethod } from '../helpers/httpService';
 
 function TournamentCreate() {
@@ -16,14 +17,19 @@ function TournamentCreate() {
   const [playerList, setPlayerList] = useState([]);
   const [participants, setParticipants] = useState([]);
   const navigate = useNavigate();
+  const { showFlashError } = useContext(ApiErrorContext);
 
   useEffect(() => {
-    getAllMethod(`/api/players`).then((data) => {
-      setPlayers(data);
-      setPlayerList(data);
-      setLoading(false);
-    });
-  }, []);
+    getAllMethod(`/api/players`)
+      .then((data) => {
+        setPlayers(data);
+        setPlayerList(data);
+        setLoading(false);
+      })
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
+  }, [showFlashError]);
 
   const playerAdd = (item) => {
     setParticipants([...participants, item]);
@@ -44,9 +50,11 @@ function TournamentCreate() {
       teams_rating: rating,
       participants,
     };
-    postMethod(`/api/tournaments`, reqBody).then((res) =>
-      navigate(`/tournaments/${res._id}`),
-    );
+    postMethod(`/api/tournaments`, reqBody)
+      .then((res) => navigate(`/tournaments/${res._id}`))
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
   };
 
   return (

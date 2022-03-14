@@ -20,19 +20,25 @@ import { applyThemeColor } from '../helpers/applyThemeColor';
 import { updateMethod, getAllMethod } from '../helpers/httpService';
 import { PlayerContext } from '../context/PlayerContext';
 import { ThemeContext } from '../context/ThemeContext';
+import { ApiErrorContext } from '../context/ApiErrorContext';
 
 function RoleSelection() {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const { player } = useContext(PlayerContext);
+  const { showFlashError } = useContext(ApiErrorContext);
 
   useEffect(() => {
-    getAllMethod(`/api/players/`).then((data) => {
-      setPlayers(data);
-      setLoading(false);
-    });
-  }, []);
+    getAllMethod(`/api/players/`)
+      .then((data) => {
+        setPlayers(data);
+        setLoading(false);
+      })
+      .catch(() =>
+        showFlashError('Something went wrong. Please try again later.'),
+      );
+  }, [showFlashError]);
 
   const createData = (fullname, username, role, id) => {
     return { fullname, username, role, id };
@@ -56,9 +62,13 @@ function RoleSelection() {
         `/api/players/role/`,
         playersArray[changedItemIndex]._id,
         obj,
-      ).then(() => {
-        setPlayers(playersArray);
-      });
+      )
+        .then(() => {
+          setPlayers(playersArray);
+        })
+        .catch(() =>
+          showFlashError('Something went wrong. Please try again later.'),
+        );
     }
   };
 

@@ -11,11 +11,13 @@ import ColorPicker from '../components/ColorPicker';
 import useLogout from '../hooks/useLogout';
 import { updateMethod } from '../helpers/httpService';
 import { ThemeContext } from '../context/ThemeContext';
+import { ApiErrorContext } from '../context/ApiErrorContext';
 import useFindPlayer from '../hooks/useFindPlayer';
 
 const SettingsPage = () => {
   const { player, isLoading } = useFindPlayer();
   const { theme, updateTheme } = useContext(ThemeContext);
+  const { showFlashError } = useContext(ApiErrorContext);
   const { logoutPlayer } = useLogout();
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerColor, setPickerColor] = useState('#fff');
@@ -32,9 +34,14 @@ const SettingsPage = () => {
 
   const handleUpdateColor = () => {
     const obj = { id: player._id, color: pickerColor };
-    updateMethod(`/api/players/color/`, player._id, obj).then(() => {
-      handleShowColorPicker();
-    });
+    updateMethod(`/api/players/color/`, player._id, obj)
+      .then(() => {
+        handleShowColorPicker();
+      })
+      .catch(() => {
+        handleShowColorPicker();
+        showFlashError('Something went wrong. Please try again later.');
+      });
   };
 
   return (

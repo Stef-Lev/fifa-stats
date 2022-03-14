@@ -10,7 +10,7 @@
 
 body {
   @include theme-aware('background', 'background');
-  transition: all 250ms ease-in-out;
+  transition: background 250ms ease-in-out;
 }
 
 input:-webkit-autofill,
@@ -26,6 +26,8 @@ input:-webkit-autofill:active {
   flex-direction: column;
   padding: 1rem;
   margin-top: 56px;
+  position: relative;
+  height: calc(100vh - 56px);
 
   .app-bar {
     color: $brandDarkBlue;
@@ -439,6 +441,39 @@ input:-webkit-autofill:active {
     height: 30px;
     width: 100%;
     margin: 10px 0;
+  }
+  .error-flash {
+    position: absolute;
+    left: 0;
+    bottom: 2%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    @keyframes visible {
+      0% {
+        bottom: -20%;
+      }
+      100% {
+        bottom: 2%;
+      }
+    }
+
+    &.is-visible {
+      display: flex;
+      animation: visible 0.5s ease-in;
+      bottom: 2%;
+    }
+
+    .flash-box {
+      background-color: $error;
+      color: white;
+      border-radius: 8px;
+      padding: 6px 8px;
+      margin: 0 16px;
+      max-width: 320px;
+    }
   }
   .route-title {
     font-size: 1.5rem;

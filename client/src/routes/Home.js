@@ -18,7 +18,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="home-page">
       <Container maxWidth="sm" className="main-container">
         {isLoading ? (
           <Loader />

@@ -4,7 +4,6 @@ const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
-const auth = require('./utils/auth');
 const bodyParser = require('body-parser');
 const database = findDatabase(process.env.NODE_ENV);
 const databaseName = database.split('/')[3].split('?')[0].toUpperCase();
@@ -14,7 +13,6 @@ const tournament = require('./routes/tournamentRoute');
 const userAuth = require('./routes/authRoute');
 const cookieParser = require('cookie-parser');
 const jwtSecret = process.env.JWT_SECRET;
-const path = require('path');
 
 mongoose.connect(database);
 
