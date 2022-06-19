@@ -8,6 +8,7 @@ import TabPanel from '../components/TabPanel';
 import GenericError from '../components/GenericError';
 import MyOverall from '../components/MyOverall';
 import MyRecords from '../components/MyRecords';
+import MyTeams from '../components/MyTeams';
 import { PlayerContext } from '../context/PlayerContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { ApiErrorContext } from '../context/ApiErrorContext';
@@ -103,6 +104,20 @@ function MyData() {
                       },
                     }}
                   />
+                  <Tab
+                    label="My teams"
+                    {...a11yProps(2)}
+                    sx={{
+                      color: applyThemeColor(theme, '#fff', '#1b2433'),
+                      '&.MuiButtonBase-root.Mui-selected': {
+                        color: applyThemeColor(theme, '#c2f158', '#1b2433'),
+                        fontWeight: theme === 'dark' ? '400' : '700',
+                        '&.MuiTouchRipple-root': {
+                          color: applyThemeColor(theme, '#fff', '#1b2433'),
+                        },
+                      },
+                    }}
+                  />
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0} padding="16px 0 16px">
@@ -110,6 +125,9 @@ function MyData() {
               </TabPanel>
               <TabPanel value={value} index={1} padding="0 0 16px">
                 <MyRecords data={data} />
+              </TabPanel>
+              <TabPanel value={value} index={2} padding="0 0 16px">
+                <MyTeams data={data} />
               </TabPanel>
             </Box>
           </>

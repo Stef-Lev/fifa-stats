@@ -17,9 +17,11 @@ exports.list = catchAsync(async (req, res) => {
 exports.stats = catchAsync(async (req, res) => {
   const id = req.params.id;
   let dataObj = {};
-  const player = await Player.findById(id);
-  if (player.games_played.list.length > 0) {
-    const games = await Game.find({});
+  const player = await (
+    await Player.findById(id)
+  ).populate('games_played.list');
+  const games = player.games_played.list;
+  if (games.length > 0) {
     const sortedWins = games
       .filter((item) => item.winner.length < 2 && item.winner[0] == id)
       .map((item) => ({ id: item._id, scores: item.score.split(' - ') }))
@@ -53,6 +55,21 @@ exports.stats = catchAsync(async (req, res) => {
       .player.toJSON();
     const lossOpponent = await Player.findById(topLossAgainst);
 
+    let myTeams = [];
+
+    for (let game of games) {
+      if (game.opponents.home.player == id) {
+        myTeams.push(game.opponents.home.team);
+      } else if (game.opponents.away.player == id) {
+        myTeams.push(game.opponents.away.team);
+      } else {
+        return;
+      }
+    }
+    const uniqueTeams = [...new Set(myTeams)].sort((a, b) =>
+      a.localeCompare(b),
+    );
+
     dataObj.name = player.fullname;
     dataObj.id = player.id;
     dataObj.games_played = player.games_played.statistics.total;
@@ -77,10 +94,12 @@ exports.stats = catchAsync(async (req, res) => {
       against: lossOpponent.fullname,
       teams: topLoss.opponents,
     };
+    dataObj.teams_list = uniqueTeams;
+    res.status(200).json(dataObj);
   } else {
     dataObj.errorMsg = 'No games played';
+    res.status(404).json(dataObj);
   }
-  res.status(200).json(dataObj);
 });
 
 exports.updateColor = catchAsync(async (req, res) => {
