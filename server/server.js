@@ -37,7 +37,7 @@ db.once('open', () => {
   console.log(`Database ${databaseName} connected...`);
 });
 
-app.use(cors());
+app.use(cors({ origin: ['https://fifa-stats-frontend.onrender.com'] }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json(), urlEncodedParser);
